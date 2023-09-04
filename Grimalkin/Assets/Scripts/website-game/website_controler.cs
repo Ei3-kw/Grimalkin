@@ -23,10 +23,10 @@ public class website_controler : MonoBehaviour
         
     }
 
-    public void register_item_sold()
+    public void register_item_sold(int key)
     {
 
-        //shopping_list.GetComponent<website_item_controler>().set_location_key(i);
+        shopping_list.GetComponent<shopping_list_controler>().remove_item(key);
     }
 
 
@@ -68,6 +68,7 @@ public class website_controler : MonoBehaviour
 
             // set the location 'key' of the item
             item.GetComponent<website_item_controler>().set_location_key(i);
+
         }
 
 
