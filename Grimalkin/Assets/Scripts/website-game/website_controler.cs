@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class website_controler : MonoBehaviour
 {
+    public int num_items_to_buy;
+
     public GameObject item_prefab;
     public Sprite[] possible_items;
     public Transform[] item_slots;
+    public GameObject shopping_list;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,12 @@ public class website_controler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void register_item_sold()
+    {
+
+        //shopping_list.GetComponent<website_item_controler>().set_location_key(i);
     }
 
 
@@ -56,7 +65,35 @@ public class website_controler : MonoBehaviour
             SpriteRenderer spriteRenderer = item.GetComponent<SpriteRenderer>();
             // Assign the new sprite
             spriteRenderer.sprite = item_chosen;
+
+            // set the location 'key' of the item
+            item.GetComponent<website_item_controler>().set_location_key(i);
         }
+
+
+
+
+
+        // set up shopping list
+        // choose N random items from chosen_items
+        var to_buy = new Sprite[num_items_to_buy];
+        var keys = new int[num_items_to_buy];
+
+        for (int i = 0; i < num_items_to_buy; i++)
+        {
+            // Take only from the latter part of the list - ignore the first i items.
+            int take = Random.Range(i, chosen_items.Length);
+            to_buy[i] = chosen_items[take];
+
+            // Swap our random choice to the beginning of the array,
+            // so we don't choose it again on subsequent iterations.
+            chosen_items[take] = chosen_items[i];
+            chosen_items[i] = to_buy[i];
+            keys[i] = take;
+        }
+
+
+        shopping_list.GetComponent<shopping_list_controler>().refill_shopping_list(keys, to_buy);
 
 
     }

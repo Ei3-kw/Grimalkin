@@ -8,8 +8,10 @@ public class website_item_controler : MonoBehaviour
     public TextMeshPro item_price;
     public GameObject sold_banner;
     public GameObject shopping_list_icon;
+    public GameObject website;
 
     int inital_price = 100;
+    int location_key = -1;
 
     int current_price;
     int price_increase = 0;
@@ -58,9 +60,17 @@ public class website_item_controler : MonoBehaviour
         // if it is on the shopping list
         if (shopping_list_icon) 
         {
+            // communicate back to the website
+            website.GetComponent<website_controler>().register_item_sold();
             shopping_list_icon.SetActive(false);
         }
         
+    }
+
+    // location of that item on the website
+    public void set_location_key(int key)
+    {
+        location_key = key;
     }
 
     // Update is called once per frame
