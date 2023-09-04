@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383894589512442294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.12574}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1257}
   m_LocalScale: {x: 0.15340853, y: 0.15340853, z: 0.15340853}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.06, y: -1.5017}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: 0.7815, y: -1.4315}
+  m_SizeDelta: {x: 29.4062, y: 4.0847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5383894589512442299
 MeshRenderer:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 5383894590829633390}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000002980232}
   m_LocalPosition: {x: 1.469, y: 1.791, z: -0.23400001}
-  m_LocalScale: {x: 0.100646, y: 0.100646, z: 0.100646}
+  m_LocalScale: {x: 0.36, y: 0.36, z: 0.36}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5383894589927048823}

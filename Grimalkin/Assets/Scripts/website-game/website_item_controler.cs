@@ -7,6 +7,7 @@ public class website_item_controler : MonoBehaviour
 {
     public TextMeshPro item_price;
     public GameObject sold_banner;
+    public GameObject shopping_list_icon;
 
     int inital_price = 100;
 
@@ -17,6 +18,10 @@ public class website_item_controler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // TODO: remove ?
+        shopping_list_icon.SetActive(true);
+
+
         current_price = inital_price;
         // unsold state
         sold_banner.SetActive(item_sold);
@@ -48,6 +53,14 @@ public class website_item_controler : MonoBehaviour
         item_sold = true;
         price_increase = 0;
         sold_banner.SetActive(item_sold);
+
+        // set the shopping list item as bought
+        // if it is on the shopping list
+        if (shopping_list_icon) 
+        {
+            shopping_list_icon.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame

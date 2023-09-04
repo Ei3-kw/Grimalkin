@@ -11,6 +11,18 @@ public class website_controler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        refill_items();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+
+    public void refill_items() 
+    {
         // choose N random items from possible_items
         var chosen_items = new Sprite[item_slots.Length];
 
@@ -41,18 +53,12 @@ public class website_controler : MonoBehaviour
             item = Instantiate(item_prefab, item_slot.position, item_slot.rotation) as GameObject; // instatitate 
 
             // get the sprite renderer
-            SpriteRenderer spriteRenderer = item.GetComponent<SpriteRenderer>();       
+            SpriteRenderer spriteRenderer = item.GetComponent<SpriteRenderer>();
             // Assign the new sprite
             spriteRenderer.sprite = item_chosen;
         }
+
+
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
