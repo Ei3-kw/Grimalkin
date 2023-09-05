@@ -16,6 +16,8 @@ public class website_controler : MonoBehaviour
     private int total_inital_cost;
     private int total_extra_paid;
 
+    private int items_sold = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +32,10 @@ public class website_controler : MonoBehaviour
 
     public void register_item_sold(int key, int inital_price, int sold_price)
     {
-        shopping_list.GetComponent<shopping_list_controler>().remove_item(key);
         total_inital_cost += inital_price;
         total_extra_paid += sold_price - inital_price;
-
-
+        items_sold++;
+        shopping_list.GetComponent<shopping_list_controler>().remove_item(key);
     }
 
 
@@ -108,8 +109,7 @@ public class website_controler : MonoBehaviour
 
     public void game_won()
     {
-        Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}\nGaze Interest Fee: ${total_extra_paid}\nTotal Cost: ${total_inital_cost+ total_extra_paid}");
-        computer.GetComponent<computer_controler>().end_game();
+        computer.GetComponent<computer_controler>().end_game(total_inital_cost, total_extra_paid);
 
     }
 

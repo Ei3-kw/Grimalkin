@@ -19,8 +19,6 @@ public class website_item_controler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
         current_price = inital_price;
         // unsold state
         sold_banner.SetActive(item_sold);

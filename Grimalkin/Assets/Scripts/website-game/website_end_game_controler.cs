@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class website_start_game_controler : MonoBehaviour
+public class website_end_game_controler : MonoBehaviour
 {
+
     public GameObject computer;
 
     // Start is called before the first frame update
@@ -20,6 +21,6 @@ public class website_start_game_controler : MonoBehaviour
 
     private void OnMouseDown()
     {
-        computer.GetComponent<computer_controler>().open_start_screen();
+        computer.GetComponent<computer_controler>().start_game();
     }
 }
