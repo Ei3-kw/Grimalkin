@@ -45,9 +45,9 @@ public class computer_controler : MonoBehaviour
 
         // show end of game screnn
         end_game_screen.SetActive(true);
-        checkout_text.text = "Shopping Cart Checkout\n\nOriginal Cost: <color=green>$100 </color>\nGaze Interest Fee: <color=red>$50 </color>\nTotal Cost: <color=red>$150 </color>";
+        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>${total_extra_paid} </color>\nTotal Cost: <color=red>${total_inital_cost + total_extra_paid} </color>";
 
-        Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}, Gaze Interest Fee: ${total_extra_paid}, Total Cost: ${total_inital_cost + total_extra_paid}");
+        //Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}, Gaze Interest Fee: ${total_extra_paid}, Total Cost: ${total_inital_cost + total_extra_paid}");
     }
 
     public void open_start_screen()

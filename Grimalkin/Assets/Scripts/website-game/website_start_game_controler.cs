@@ -20,6 +20,6 @@ public class website_start_game_controler : MonoBehaviour
 
     private void OnMouseDown()
     {
-        computer.GetComponent<computer_controler>().open_start_screen();
+        computer.GetComponent<computer_controler>().start_game();
     }
 }

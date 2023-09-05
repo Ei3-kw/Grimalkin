@@ -21,6 +21,6 @@ public class website_end_game_controler : MonoBehaviour
 
     private void OnMouseDown()
     {
-        computer.GetComponent<computer_controler>().start_game();
+        computer.GetComponent<computer_controler>().open_start_screen();
     }
 }
