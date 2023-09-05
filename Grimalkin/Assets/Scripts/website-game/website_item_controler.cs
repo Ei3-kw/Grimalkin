@@ -27,6 +27,11 @@ public class website_item_controler : MonoBehaviour
         item_price.text = current_price.ToString();
     }
 
+    public void set_website(GameObject given_website) 
+    {
+        website = given_website;
+    }
+
     public void OnMouseOver()
     {
         if (!item_sold) 
@@ -42,22 +47,23 @@ public class website_item_controler : MonoBehaviour
             current_price += price_increase;
             item_price.text = (current_price).ToString();
             price_increase = 0; // as soon as you look away price jumps up
-            Debug.Log("New Price: " + current_price);
         }
 
        
     }
 
-    public void OnMouseDown() {
-        item_sold = true;
-        price_increase = 0;
-        sold_banner.SetActive(item_sold);
+    public void OnMouseDown() 
+    {
+        if (!item_sold)
+        {
+            item_sold = true;
+            price_increase = 0;
+            sold_banner.SetActive(item_sold);
 
-        // set the shopping list item as bought
-        // communicate back to the website
-        website.GetComponent<website_controler>().register_item_sold(location_key);
-        
-        
+            // set the shopping list item as bought
+            // communicate back to the website
+            website.GetComponent<website_controler>().register_item_sold(location_key);
+        }       
     }
 
     // location of that item on the website
