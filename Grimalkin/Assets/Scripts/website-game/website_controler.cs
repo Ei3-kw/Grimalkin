@@ -11,6 +11,11 @@ public class website_controler : MonoBehaviour
     public Transform[] item_slots;
     public GameObject shopping_list;
 
+    private GameObject computer;
+
+    private int total_inital_cost;
+    private int total_extra_paid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +28,13 @@ public class website_controler : MonoBehaviour
         
     }
 
-    public void register_item_sold(int key)
+    public void register_item_sold(int key, int inital_price, int sold_price)
     {
         shopping_list.GetComponent<shopping_list_controler>().remove_item(key);
+        total_inital_cost += inital_price;
+        total_extra_paid += sold_price - inital_price;
+
+
     }
 
 
@@ -58,7 +67,7 @@ public class website_controler : MonoBehaviour
 
             // create the new item
             GameObject item;
-            item = Instantiate(item_prefab, item_slot.position, item_slot.rotation) as GameObject; // instatitate 
+            item = Instantiate(item_prefab, item_slot.position, item_slot.rotation, this.transform); // instatitate 
 
             // get the sprite renderer
             SpriteRenderer spriteRenderer = item.GetComponent<SpriteRenderer>();
@@ -95,8 +104,20 @@ public class website_controler : MonoBehaviour
 
 
         shopping_list.GetComponent<shopping_list_controler>().refill_shopping_list(keys, to_buy);
+    }
 
+    public void game_won()
+    {
+        Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}\nGaze Interest Fee: ${total_extra_paid}\nTotal Cost: ${total_inital_cost+ total_extra_paid}");
+        computer.GetComponent<computer_controler>().end_game();
 
     }
 
+    public void set_computer(GameObject given_computer)
+    {
+        computer = given_computer;
+    }
+
 }
+
+ 

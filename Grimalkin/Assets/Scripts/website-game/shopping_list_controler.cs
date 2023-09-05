@@ -52,22 +52,17 @@ public class shopping_list_controler : MonoBehaviour
             Destroy(item_to_sl_obj[item_key]);
             item_to_sl_obj.Remove(item_key);
 
+            Debug.Log("sold item" + item_key);
+
             // redraw the new shopping list
             refill_shopping_list(item_to_shopping_list.Keys.ToArray(), item_to_icon.Values.ToArray());
 
-            Debug.Log("sold item" + item_key);
+            
         }
     }
 
     public void refill_shopping_list(int[] item_keys, Sprite[] item_icons) 
     {
-        // if there are no shopping list items left
-        // we have finished the game
-        if (!item_to_sl_obj.Any()) 
-        { 
-            
-        }
-
         // destory all the old item
         foreach (GameObject sl_item in item_to_sl_obj.Values.ToArray())
         {
@@ -90,7 +85,7 @@ public class shopping_list_controler : MonoBehaviour
 
             // create the new item
             GameObject item;
-            item = Instantiate(sl_item_prefab, item_slot.position, item_slot.rotation) as GameObject; // instatitate 
+            item = Instantiate(sl_item_prefab, item_slot.position, item_slot.rotation, this.transform); // instatitate 
             item_to_sl_obj[item_keys[i]] = item;
 
             // get the sprite renderer
@@ -98,6 +93,13 @@ public class shopping_list_controler : MonoBehaviour
             // Assign the new sprite
             // display the item
             spriteRenderer.sprite = item_chosen;
+        }
+
+        // if there are no shopping list items left
+        // we have finished the game
+        if (!item_to_shopping_list.Any())
+        {
+            website.GetComponent<website_controler>().game_won();
         }
     }
 }

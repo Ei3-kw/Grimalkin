@@ -62,7 +62,7 @@ public class website_item_controler : MonoBehaviour
 
             // set the shopping list item as bought
             // communicate back to the website
-            website.GetComponent<website_controler>().register_item_sold(location_key);
+            website.GetComponent<website_controler>().register_item_sold(location_key, inital_price, current_price);
         }       
     }
 
