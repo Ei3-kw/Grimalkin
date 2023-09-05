@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using System;
+
 
 public class website_controler : MonoBehaviour
 {
@@ -39,22 +42,26 @@ public class website_controler : MonoBehaviour
 
     public void refill_items() 
     {
-        // choose N random items from possible_items
+        // choose N random item locations from possible_items
+
+        // choose the item locations
+        var rnd = new System.Random();
+        var items = Enumerable.Range(0, possible_items.Length).OrderBy(x => rnd.Next()).Take(item_slots.Length).ToArray();
+
+
+        Debug.Log(items);
+
         var chosen_items = new Sprite[item_slots.Length];
 
-        for (int i = 0; i < item_slots.Length; i++)
+        // for each of the items chosen
+        int location = 0;
+        foreach (int item in items)
         {
-            // Take only from the latter part of the list - ignore the first i items.
-            int take = Random.Range(i, possible_items.Length);
-            chosen_items[i] = possible_items[take];
-
-            // Swap our random choice to the beginning of the array,
-            // so we don't choose it again on subsequent iterations.
-            possible_items[take] = possible_items[i];
-            possible_items[i] = chosen_items[i];
+            chosen_items[location] = possible_items[item];
+            location++;
         }
 
-
+        ////////// choose objects for webpage ///////////////
         // for all all N items slots on the website
         // instantate each of the items in the correct pos setting the art to the 
         // respective item from possible_items
@@ -82,27 +89,25 @@ public class website_controler : MonoBehaviour
 
 
 
-
+        ////////// choose objects for shoppinglist ///////////////
         // set up shopping list
-        // choose N random items from chosen_items
-        var to_buy = new Sprite[num_items_to_buy];
-        var keys = new int[num_items_to_buy];
+        // choose num_items_to_buy random items from chosen_items
 
-        for (int i = 0; i < num_items_to_buy; i++)
+        // choose the item locations
+        var keys = Enumerable.Range(0, chosen_items.Length).OrderBy(x => rnd.Next()).Take(num_items_to_buy).ToArray();
+
+        Sprite[] icons = new Sprite[num_items_to_buy];
+
+        // from the item locations find the assocated sprites
+        int icon_num = 0;
+        foreach (int key in keys)
         {
-            // Take only from the latter part of the list - ignore the first i items.
-            int take = Random.Range(i, chosen_items.Length);
-            to_buy[i] = chosen_items[take];
-
-            // Swap our random choice to the beginning of the array,
-            // so we don't choose it again on subsequent iterations.
-            chosen_items[take] = chosen_items[i];
-            chosen_items[i] = to_buy[i];
-            keys[i] = take;
+            icons[icon_num] = chosen_items[key];
+            icon_num++;
         }
 
 
-        shopping_list.GetComponent<shopping_list_controler>().refill_shopping_list(keys, to_buy);
+        shopping_list.GetComponent<shopping_list_controler>().refill_shopping_list(keys, icons);
     }
 
     public void game_won()

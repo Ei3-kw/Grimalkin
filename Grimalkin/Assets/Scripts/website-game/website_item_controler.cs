@@ -8,6 +8,7 @@ public class website_item_controler : MonoBehaviour
     public TextMeshPro item_price;
     public GameObject sold_banner;
     public GameObject website;
+    public GameObject eye_icon;
 
     int inital_price = 100;
     int location_key = -1;
@@ -22,7 +23,8 @@ public class website_item_controler : MonoBehaviour
         current_price = inital_price;
         // unsold state
         sold_banner.SetActive(item_sold);
-        item_price.text = current_price.ToString();
+        eye_icon.SetActive(false);
+        item_price.text = $"${current_price}.00";
     }
 
     public void set_website(GameObject given_website) 
@@ -32,6 +34,7 @@ public class website_item_controler : MonoBehaviour
 
     public void OnMouseOver()
     {
+        eye_icon.SetActive(true);
         if (!item_sold) 
         { // if the item is not sold yet, price gouge
             price_increase++; // increment the conter while the item is being looked at
@@ -40,10 +43,13 @@ public class website_item_controler : MonoBehaviour
 
     public void OnMouseExit()
     {
+        // no longer looking
+        eye_icon.SetActive(false);
+
         if (!item_sold)
         { // if the item is not sold yet, price gouge
             current_price += price_increase;
-            item_price.text = (current_price).ToString();
+            item_price.text = $"${current_price}.00";
             price_increase = 0; // as soon as you look away price jumps up
         }
 

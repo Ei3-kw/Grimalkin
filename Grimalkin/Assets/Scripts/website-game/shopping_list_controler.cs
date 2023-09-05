@@ -41,6 +41,7 @@ public class shopping_list_controler : MonoBehaviour
 
     public void remove_item(int item_key)
     {
+        Debug.Log("Sold item: " + item_key);
         // if the item sold was on the shopping list
         if (item_to_shopping_list.ContainsKey(item_key)) 
         {
@@ -52,7 +53,7 @@ public class shopping_list_controler : MonoBehaviour
             Destroy(item_to_sl_obj[item_key]);
             item_to_sl_obj.Remove(item_key);
 
-            Debug.Log("sold item" + item_key);
+            Debug.Log("Remove from SL: " + item_key);
 
             // redraw the new shopping list
             refill_shopping_list(item_to_shopping_list.Keys.ToArray(), item_to_icon.Values.ToArray());
@@ -72,6 +73,7 @@ public class shopping_list_controler : MonoBehaviour
 
         for (int i = 0; i < item_keys.Length; i++)
         {
+            Debug.Log("KEY ADDED: " + item_keys[i]);
             // create the mapping
             // from item key to sl key
             item_to_shopping_list[item_keys[i]] = i;
@@ -100,6 +102,13 @@ public class shopping_list_controler : MonoBehaviour
         if (!item_to_shopping_list.Any())
         {
             website.GetComponent<website_controler>().game_won();
+        }
+
+
+        // Print the dictionary to the log (console)
+        foreach (var kvp in item_to_shopping_list)
+        {
+            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
         }
     }
 }
