@@ -7,6 +7,9 @@ public class computer_controler : MonoBehaviour
 {
     public GameObject website_game_prefab;
     public GameObject start_game_button;
+    public GameObject start_text_message;
+
+
     public Transform game_location;
 
     public GameObject end_game_screen;
@@ -18,6 +21,8 @@ public class computer_controler : MonoBehaviour
     void Start()
     {
         start_game_button.SetActive(true);
+        start_text_message.SetActive(true);
+
         end_game_screen.SetActive(false);
     }
 
@@ -31,6 +36,7 @@ public class computer_controler : MonoBehaviour
     {
         // make button go awawy
         start_game_button.SetActive(false);
+        start_text_message.SetActive(false);
 
         // start the game
         current_website_game = Instantiate(website_game_prefab, game_location.position, game_location.rotation, this.transform);
@@ -45,7 +51,7 @@ public class computer_controler : MonoBehaviour
 
         // show end of game screnn
         end_game_screen.SetActive(true);
-        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>${total_extra_paid} </color>\nTotal Cost: <color=red>${total_inital_cost + total_extra_paid} </color>";
+        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${total_inital_cost + total_extra_paid} </color>";
 
         //Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}, Gaze Interest Fee: ${total_extra_paid}, Total Cost: ${total_inital_cost + total_extra_paid}");
     }
@@ -59,5 +65,6 @@ public class computer_controler : MonoBehaviour
 
         // make button come back
         start_game_button.SetActive(true);
+        start_text_message.SetActive(true);
     }
 }
