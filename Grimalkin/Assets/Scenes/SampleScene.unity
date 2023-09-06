@@ -2392,11 +2392,13 @@ MonoBehaviour:
   jumpForce: 13
   jumpCooldown: 0.25
   airMultiplier: 0.4
+  readyToJump: 0
   jumpKey: 32
-  playerHeight: 1
+  playerHeight: 8
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
   orientation: {fileID: 1720195589}
 --- !u!1001 &2138107809
 PrefabInstance:
