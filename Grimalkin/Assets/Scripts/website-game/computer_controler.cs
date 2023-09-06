@@ -16,7 +16,7 @@ public class computer_controler : MonoBehaviour
 
     private GameObject current_website_game;
 
-    private bool in_game = false;
+    private bool player_can_start = true;
     private bool player_can_quit = false;
 
     public Transform camera_pos_for_game;
@@ -29,9 +29,7 @@ public class computer_controler : MonoBehaviour
 
 
 
-    public float smoothTime = 1F;
-    private Vector3 velocity = Vector3.zero;
-
+    public int buffer_timer_between_interactios;
 
     // Start is called before the first frame update
     void Start()
@@ -42,15 +40,17 @@ public class computer_controler : MonoBehaviour
         end_game_screen.SetActive(false);
     }
 
+
     // Update is called once per frame
     void Update()
     {
+
         // if the user is not in game yet
         // and the user has triggered the game to start
-        if (!in_game && Input.GetKey("e")) // TODO: check if user is in range of computer
+        if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
         {
             player_can_quit = false;
-            in_game = true;
+            player_can_start = false;
 
             // store old cam position
 
@@ -67,19 +67,21 @@ public class computer_controler : MonoBehaviour
             Transform camera = player_cam.GetComponent<Transform>();
 
             // Interpolate the camera's position toward the target position
-            //camera.position = targetPosition;
+            camera.position = targetPosition;
             camera.rotation = targetRotation;
 
 
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
             player_can_quit = true;
+
+
         }
 
-        if (in_game && player_can_quit && Input.GetKey("e"))
+        else if (player_can_quit && Input.GetKeyDown("e"))
         { // player wants to exit the game
-            in_game = false;
 
             // relock the cursor
             Cursor.lockState = CursorLockMode.Locked;
@@ -93,7 +95,7 @@ public class computer_controler : MonoBehaviour
             Transform camera = player_cam.GetComponent<Transform>();
 
             // Interpolate the camera's position toward the target position
-            //camera.position = targetPosition;
+            camera.position = targetPosition;
             camera.rotation = targetRotation;
 
 
@@ -103,8 +105,8 @@ public class computer_controler : MonoBehaviour
             camera_holder.GetComponent<MoveCamera>().enabled = true;
             player_cam.GetComponent<PlayerCam>().enabled = true;
 
-
-
+            player_can_start = true;
+            player_can_quit = false;
         }
 
         
