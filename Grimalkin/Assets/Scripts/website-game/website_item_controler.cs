@@ -75,10 +75,10 @@ public class website_item_controler : MonoBehaviour
         current_price += price_increase;
 
         /// fade out
-        StartCoroutine(fade_out_price());
+        //StartCoroutine(fade_out_price());
         item_price.text = $"${current_price}.00";
         /// fade in
-        StartCoroutine(fade_in_price());
+        //StartCoroutine(fade_in_price());
   
 
         if (!discount_banner_displayed && price_increase > price_inc_to_trigger_banner)
