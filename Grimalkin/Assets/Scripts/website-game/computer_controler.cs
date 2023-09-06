@@ -9,13 +9,29 @@ public class computer_controler : MonoBehaviour
     public GameObject start_game_button;
     public GameObject start_text_message;
 
-
     public Transform game_location;
 
     public GameObject end_game_screen;
     public TextMeshPro checkout_text;
 
     private GameObject current_website_game;
+
+    private bool in_game = false;
+    private bool player_can_quit = false;
+
+    public Transform camera_pos_for_game;
+    // movment script holders
+    public GameObject player; // PlayerMovement.cs
+    public GameObject camera_holder; // MoveCamera.cs
+    public GameObject player_cam; // PlayerCam.cs
+
+    public Transform player_cam_pos;
+
+
+
+    public float smoothTime = 1F;
+    private Vector3 velocity = Vector3.zero;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +45,77 @@ public class computer_controler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the user is not in game yet
+        // and the user has triggered the game to start
+        if (!in_game && Input.GetKey("e")) // TODO: check if user is in range of computer
+        {
+            player_can_quit = false;
+            in_game = true;
+
+            // store old cam position
+
+            // disable the 3 movment scripts
+            player.GetComponent<PlayerMovement>().enabled = false;
+            camera_holder.GetComponent<MoveCamera>().enabled = false;
+            player_cam.GetComponent<PlayerCam>().enabled = false;
+
+            // move the camera into position
+            // Calculate the position to move the camera to
+            Vector3 targetPosition = camera_pos_for_game.position;
+            Quaternion targetRotation = camera_pos_for_game.rotation;
+
+            Transform camera = player_cam.GetComponent<Transform>();
+
+            // Interpolate the camera's position toward the target position
+            //camera.position = targetPosition;
+            camera.rotation = targetRotation;
+
+
+            // unlock the cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            player_can_quit = true;
+        }
+
+        if (in_game && player_can_quit && Input.GetKey("e"))
+        { // player wants to exit the game
+            in_game = false;
+
+            // relock the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+
+            // move the camera back into player
+            // Calculate the position to move the camera to
+            Vector3 targetPosition = player_cam_pos.position;
+            Quaternion targetRotation = player_cam_pos.rotation;
+            Transform camera = player_cam.GetComponent<Transform>();
+
+            // Interpolate the camera's position toward the target position
+            //camera.position = targetPosition;
+            camera.rotation = targetRotation;
+
+
+
+            // re enable the 3 movment scripts
+            player.GetComponent<PlayerMovement>().enabled = true;
+            camera_holder.GetComponent<MoveCamera>().enabled = true;
+            player_cam.GetComponent<PlayerCam>().enabled = true;
+
+
+
+        }
+
         
+
     }
+
+
 
     public void start_game()
     {
+        player_can_quit = false;
         // make button go awawy
         start_game_button.SetActive(false);
         start_text_message.SetActive(false);
@@ -66,5 +148,7 @@ public class computer_controler : MonoBehaviour
         // make button come back
         start_game_button.SetActive(true);
         start_text_message.SetActive(true);
+
+        player_can_quit = true;
     }
 }
