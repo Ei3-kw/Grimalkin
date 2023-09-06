@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: website
+    uniqueID: 1934505975
+    locked: 0
+  - name: items
+    uniqueID: 3551708319
+    locked: 0
+  - name: prices
+    uniqueID: 1338423561
+    locked: 0
+  - name: overlays
+    uniqueID: 542806735
+    locked: 0
