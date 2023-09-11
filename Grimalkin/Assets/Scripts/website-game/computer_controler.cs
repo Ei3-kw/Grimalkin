@@ -22,7 +22,6 @@ public class computer_controler : MonoBehaviour
     public Transform camera_pos_for_game;
     // movment script holders
     public GameObject player; // PlayerMovement.cs
-    public GameObject camera_holder; // MoveCamera.cs
     public GameObject player_cam; // PlayerCam.cs
 
     public Transform player_cam_pos;
@@ -55,9 +54,7 @@ public class computer_controler : MonoBehaviour
             // store old cam position
 
             // disable the 3 movment scripts
-            player.GetComponent<PlayerMovement>().enabled = false;
-            camera_holder.GetComponent<MoveCamera>().enabled = false;
-            player_cam.GetComponent<PlayerCam>().enabled = false;
+            player.GetComponent<playerController>().enabled = false;
 
             // move the camera into position
             // Calculate the position to move the camera to
@@ -101,9 +98,7 @@ public class computer_controler : MonoBehaviour
 
 
             // re enable the 3 movment scripts
-            player.GetComponent<PlayerMovement>().enabled = true;
-            camera_holder.GetComponent<MoveCamera>().enabled = true;
-            player_cam.GetComponent<PlayerCam>().enabled = true;
+            player.GetComponent<playerControler>().enabled = true;
 
             player_can_start = true;
             player_can_quit = false;
