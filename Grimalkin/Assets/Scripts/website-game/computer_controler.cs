@@ -98,7 +98,7 @@ public class computer_controler : MonoBehaviour
 
 
             // re enable the 3 movment scripts
-            player.GetComponent<playerControler>().enabled = true;
+            player.GetComponent<playerController>().enabled = true;
 
             player_can_start = true;
             player_can_quit = false;
