@@ -541,6 +541,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7567103768967235817, guid: f9a1a5c1a73edba4e8a191866f65123e, type: 3}
   m_PrefabInstance: {fileID: 1803621324}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &542591771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542591772}
+  m_Layer: 3
+  m_Name: PlayerHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &542591772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542591771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.419, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1901110302}
+  m_Father: {fileID: 2087699397}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543587076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2200114559990214439, guid: 40399f95a6f26064ebdd3b08052bb9fc, type: 3}
@@ -1743,8 +1775,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 2986344447
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.69411767}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2146,11 +2178,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901110301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.419, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2087699397}
+  m_Father: {fileID: 542591772}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1901110304
@@ -2410,7 +2442,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1901110302}
+  - {fileID: 542591772}
   - {fileID: 1633940614}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -2457,6 +2489,7 @@ MonoBehaviour:
   cam: {fileID: 1901110304}
   simVision: 1
   pointerPos: {x: 0, y: 0}
+  interaction_UI: {fileID: 1580393473}
   computer: {fileID: 8168413674818712868}
 --- !u!4 &2137584054 stripped
 Transform:
@@ -2596,9 +2629,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1901110301}
     - target: {fileID: 3907504826614943467, guid: c8d8f3f80d99fb24d85dda87ae428ea8, type: 3}
+      propertyPath: player_canvas
+      value: 
+      objectReference: {fileID: 1002416198}
+    - target: {fileID: 3907504826614943467, guid: c8d8f3f80d99fb24d85dda87ae428ea8, type: 3}
       propertyPath: player_cam_pos
       value: 
-      objectReference: {fileID: 1901110302}
+      objectReference: {fileID: 542591772}
     - target: {fileID: 3907504826614943469, guid: c8d8f3f80d99fb24d85dda87ae428ea8, type: 3}
       propertyPath: m_Name
       value: computer

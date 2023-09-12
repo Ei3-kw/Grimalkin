@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -23,6 +24,8 @@ public class playerController : MonoBehaviour
 
     Vector3 posFilter;
 
+
+    public GameObject interaction_UI;
     // list of objects the player can interact with
     public GameObject computer;
 
@@ -35,7 +38,7 @@ public class playerController : MonoBehaviour
         screenSize = new Vector2(Screen.width,Screen.height);
         pointerPos = screenSize/2;
         Cursor.lockState = CursorLockMode.Locked;
-        
+        interaction_UI.SetActive(false); // turn the UI element off
     }
     private void Update()
     {
@@ -77,8 +80,18 @@ public class playerController : MonoBehaviour
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to interact with computer";
+                interaction_UI.SetActive(true); // turn the UI element on
             }
-            
+            else // if they are not looking at any object of interest
+            {
+                interaction_UI.SetActive(false); // turn the UI element off
+            }
+        }
+        else // if they are not looking at any object at all
+        {
+            interaction_UI.SetActive(false); // turn the UI element off
         }
     }
 
