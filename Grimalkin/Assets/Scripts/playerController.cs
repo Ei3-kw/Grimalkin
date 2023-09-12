@@ -21,7 +21,10 @@ public class playerController : MonoBehaviour
     public Vector2 pointerPos;
     RaycastHit hit;
 
-    Vector3 posFilter; 
+    Vector3 posFilter;
+
+    // list of objects the player can interact with
+    public GameObject computer;
 
 
     
@@ -58,12 +61,25 @@ public class playerController : MonoBehaviour
         //ray casting 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log("sending out ray");
             Ray ray = cam.ScreenPointToRay(pointerPos);
             if (Physics.Raycast(ray, out hit)) {
                 Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
             }
         }
 
+
+        // check what the player is looking at
+        Ray looking_at = cam.ScreenPointToRay(pointerPos);
+        if (Physics.Raycast(looking_at, out hit))
+        {
+            if (hit.collider.gameObject == computer) 
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+            }
+            
+        }
     }
 
     private void UpdateAxes()
