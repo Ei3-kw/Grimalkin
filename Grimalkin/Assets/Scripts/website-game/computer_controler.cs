@@ -19,13 +19,14 @@ public class computer_controler : MonoBehaviour
     private bool player_can_start = true;
     private bool player_can_quit = false;
 
-    public Transform camera_pos_for_game;
-    // movment script holders
-    public GameObject player; // PlayerMovement.cs
-    public GameObject camera_holder; // MoveCamera.cs
-    public GameObject player_cam; // PlayerCam.cs
+    // controls for the player when entering the game
+    public GameObject player;
+    public GameObject player_cam;
+    public Transform camera_pos_for_game; // new pos we want cam
+    public Transform player_cam_pos; // old cam pos before game
+    public GameObject player_canvas;
 
-    public Transform player_cam_pos;
+
 
 
 
@@ -35,8 +36,7 @@ public class computer_controler : MonoBehaviour
     void Start()
     {
         start_game_button.SetActive(true);
-        start_text_message.SetActive(true);
-
+        start_text_message.SetActive(false);
         end_game_screen.SetActive(false);
     }
 
@@ -44,45 +44,10 @@ public class computer_controler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // if the user is not in game yet
-        // and the user has triggered the game to start
-        if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
+        // player wants to exit the game
+        if (player_can_quit && Input.GetKeyDown("e"))
         {
-            player_can_quit = false;
-            player_can_start = false;
-
-            // store old cam position
-
-            // disable the 3 movment scripts
-            player.GetComponent<PlayerMovement>().enabled = false;
-            camera_holder.GetComponent<MoveCamera>().enabled = false;
-            player_cam.GetComponent<PlayerCam>().enabled = false;
-
-            // move the camera into position
-            // Calculate the position to move the camera to
-            Vector3 targetPosition = camera_pos_for_game.position;
-            Quaternion targetRotation = camera_pos_for_game.rotation;
-
-            Transform camera = player_cam.GetComponent<Transform>();
-
-            // Interpolate the camera's position toward the target position
-            camera.position = targetPosition;
-            camera.rotation = targetRotation;
-
-
-            // unlock the cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            player_can_quit = true;
-
-
-        }
-
-        else if (player_can_quit && Input.GetKeyDown("e"))
-        { // player wants to exit the game
-
+            start_text_message.SetActive(false);
             // relock the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -98,21 +63,50 @@ public class computer_controler : MonoBehaviour
             camera.position = targetPosition;
             camera.rotation = targetRotation;
 
-
-
-            // re enable the 3 movment scripts
-            player.GetComponent<PlayerMovement>().enabled = true;
-            camera_holder.GetComponent<MoveCamera>().enabled = true;
-            player_cam.GetComponent<PlayerCam>().enabled = true;
+            // re enable the movment script and UI
+            player.GetComponent<playerController>().enabled = true;
+            player_canvas.SetActive(true);
 
             player_can_start = true;
             player_can_quit = false;
         }
-
-        
-
     }
 
+
+    // Will be called when the opbject is being looked at by the player
+    public void look_at()
+    {
+
+        // if the user is not in game yet
+        // and the user has triggered the game to start
+        if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
+        {
+            start_text_message.SetActive(true);
+
+            player_can_quit = false;
+            player_can_start = false;
+
+            // disable the movment script and UI
+            player.GetComponent<playerController>().enabled = false;
+            player_canvas.SetActive(false);
+
+            // move the camera into position
+            // Calculate the position to move the camera to
+            Vector3 targetPosition = camera_pos_for_game.position;
+            Quaternion targetRotation = camera_pos_for_game.rotation;
+            Transform camera = player_cam.GetComponent<Transform>();
+
+            // Interpolate the camera's position toward the target position
+            camera.position = targetPosition;
+            camera.rotation = targetRotation;
+
+            // unlock the cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            player_can_quit = true;
+        }
+    }
 
 
     public void start_game()

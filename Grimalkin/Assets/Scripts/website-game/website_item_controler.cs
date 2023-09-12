@@ -5,7 +5,7 @@ using TMPro;
 
 public class website_item_controler : MonoBehaviour   
 {
-    public int price_inc_to_trigger_banner = 75;
+    public int price_inc_to_trigger_banner = 50;
     public float fade_out_time = 0.25f;
     
     public TextMeshPro item_price;
