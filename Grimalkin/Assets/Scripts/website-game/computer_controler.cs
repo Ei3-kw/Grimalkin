@@ -36,8 +36,7 @@ public class computer_controler : MonoBehaviour
     void Start()
     {
         start_game_button.SetActive(true);
-        start_text_message.SetActive(true);
-
+        start_text_message.SetActive(false);
         end_game_screen.SetActive(false);
     }
 
@@ -45,11 +44,45 @@ public class computer_controler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // player wants to exit the game
+        if (player_can_quit && Input.GetKeyDown("e"))
+        {
+            start_text_message.SetActive(false);
+            // relock the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+
+            // move the camera back into player
+            // Calculate the position to move the camera to
+            Vector3 targetPosition = player_cam_pos.position;
+            Quaternion targetRotation = player_cam_pos.rotation;
+            Transform camera = player_cam.GetComponent<Transform>();
+
+            // Interpolate the camera's position toward the target position
+            camera.position = targetPosition;
+            camera.rotation = targetRotation;
+
+            // re enable the movment script and UI
+            player.GetComponent<playerController>().enabled = true;
+            player_canvas.SetActive(true);
+
+            player_can_start = true;
+            player_can_quit = false;
+        }
+    }
+
+
+    // Will be called when the opbject is being looked at by the player
+    public void look_at()
+    {
 
         // if the user is not in game yet
         // and the user has triggered the game to start
         if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
         {
+            start_text_message.SetActive(true);
+
             player_can_quit = false;
             player_can_start = false;
 
@@ -73,37 +106,7 @@ public class computer_controler : MonoBehaviour
 
             player_can_quit = true;
         }
-
-        else if (player_can_quit && Input.GetKeyDown("e"))
-        { // player wants to exit the game
-
-            // relock the cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-
-            // move the camera back into player
-            // Calculate the position to move the camera to
-            Vector3 targetPosition = player_cam_pos.position;
-            Quaternion targetRotation = player_cam_pos.rotation;
-            Transform camera = player_cam.GetComponent<Transform>();
-
-            // Interpolate the camera's position toward the target position
-            camera.position = targetPosition;
-            camera.rotation = targetRotation;
-
-            // re enable the movment script and UI
-            player.GetComponent<playerController>().enabled = true;
-            player_canvas.SetActive(true);
-
-            player_can_start = true;
-            player_can_quit = false;
-        }
-
-        
-
     }
-
 
 
     public void start_game()

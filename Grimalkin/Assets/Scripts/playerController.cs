@@ -76,13 +76,16 @@ public class playerController : MonoBehaviour
         Ray looking_at = cam.ScreenPointToRay(pointerPos);
         if (Physics.Raycast(looking_at, out hit))
         {
-            if (hit.collider.gameObject == computer) 
+            if (hit.collider.gameObject == computer) // if looking at the computer
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
                 TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
                 interaction_text.text = "Press [e] to interact with computer";
                 interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the computer it is beign looked at
+                hit.collider.gameObject.GetComponent<computer_controler>().look_at();
             }
             else // if they are not looking at any object of interest
             {
