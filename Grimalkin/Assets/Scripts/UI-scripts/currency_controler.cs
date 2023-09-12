@@ -131,11 +131,11 @@ public class currency_controler : MonoBehaviour
         ///////// change text
         if (change < 0) // if it is a decrease
         {
-            money_text.text = $"<color=red>{current_money + change} ↓</color>";
+            money_text.text = $"<color=red>{current_money + change}.00 ↓</color>";
         }
         else // if it is an icnrease
         {
-            money_text.text = $"<color=green>{current_money + change} ↑</color>";
+            money_text.text = $"<color=green>{current_money + change}.00 ↑</color>";
         }
 
         ////// fade in
@@ -161,7 +161,7 @@ public class currency_controler : MonoBehaviour
         }
 
         ///////// change text
-        money_text.text = $"{current_money + change}";
+        money_text.text = $"{current_money + change}.00";
 
         ////// fade in
         currentTime = 0f;
