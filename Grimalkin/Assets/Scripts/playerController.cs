@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -21,7 +22,12 @@ public class playerController : MonoBehaviour
     public Vector2 pointerPos;
     RaycastHit hit;
 
-    Vector3 posFilter; 
+    Vector3 posFilter;
+
+
+    public GameObject interaction_UI;
+    // list of objects the player can interact with
+    public GameObject computer;
 
 
     
@@ -32,7 +38,7 @@ public class playerController : MonoBehaviour
         screenSize = new Vector2(Screen.width,Screen.height);
         pointerPos = screenSize/2;
         Cursor.lockState = CursorLockMode.Locked;
-        
+        interaction_UI.SetActive(false); // turn the UI element off
     }
     private void Update()
     {
@@ -58,12 +64,38 @@ public class playerController : MonoBehaviour
         //ray casting 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log("sending out ray");
             Ray ray = cam.ScreenPointToRay(pointerPos);
             if (Physics.Raycast(ray, out hit)) {
                 Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
             }
         }
 
+
+        // check what the player is looking at
+        Ray looking_at = cam.ScreenPointToRay(pointerPos);
+        if (Physics.Raycast(looking_at, out hit))
+        {
+            if (hit.collider.gameObject == computer) // if looking at the computer
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to interact with computer";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the computer it is beign looked at
+                hit.collider.gameObject.GetComponent<computer_controler>().look_at();
+            }
+            else // if they are not looking at any object of interest
+            {
+                interaction_UI.SetActive(false); // turn the UI element off
+            }
+        }
+        else // if they are not looking at any object at all
+        {
+            interaction_UI.SetActive(false); // turn the UI element off
+        }
     }
 
     private void UpdateAxes()
