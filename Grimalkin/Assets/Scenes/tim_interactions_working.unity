@@ -564,6 +564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4ed4d1b2d03ff4ca1de4afb5cb6ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money_text_obj: {fileID: 1409946242}
+  credit_text_obj: {fileID: 690703454}
+  fade_out_time: 1.25
 --- !u!4 &402609801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a2eee9005c521a742a1445bc0f7611b6, type: 3}
@@ -3259,6 +3262,10 @@ PrefabInstance:
       propertyPath: player_cam
       value: 
       objectReference: {fileID: 1901110301}
+    - target: {fileID: 3907504826614943467, guid: c8d8f3f80d99fb24d85dda87ae428ea8, type: 3}
+      propertyPath: currency_UI
+      value: 
+      objectReference: {fileID: 359505058}
     - target: {fileID: 3907504826614943467, guid: c8d8f3f80d99fb24d85dda87ae428ea8, type: 3}
       propertyPath: optional_UI
       value: 
