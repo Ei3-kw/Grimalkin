@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class playerController : MonoBehaviour
 
     Vector3 posFilter;
 
-
+    public GameObject eye_pointer; //where the eye is looking
     public GameObject interaction_UI;
     // list of objects the player can interact with
     public GameObject computer;
@@ -34,6 +35,10 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // set the eye pointer to be half transparent
+        Color newColor = new Color(1, 1, 1, 0.5f);
+        eye_pointer.GetComponent<Image>().material.color = newColor;
+
         posFilter = new Vector3(1,0,1);
         screenSize = new Vector2(Screen.width,Screen.height);
         pointerPos = screenSize/2;
@@ -86,15 +91,27 @@ public class playerController : MonoBehaviour
 
                 // tell the computer it is beign looked at
                 hit.collider.gameObject.GetComponent<computer_controler>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().material.color = newColor;
             }
             else // if they are not looking at any object of interest
             {
                 interaction_UI.SetActive(false); // turn the UI element off
+                
+                // set the eye pointer to be half transparent
+                Color newColor = new Color(1, 1, 1, 0.5f);
+                eye_pointer.GetComponent<Image>().material.color = newColor;
             }
         }
         else // if they are not looking at any object at all
         {
             interaction_UI.SetActive(false); // turn the UI element off
+
+            // set the eye pointer to be half transparent
+            Color newColor = new Color(1, 1, 1, 0.5f);
+            eye_pointer.GetComponent<Image>().material.color = newColor;
         }
     }
 
