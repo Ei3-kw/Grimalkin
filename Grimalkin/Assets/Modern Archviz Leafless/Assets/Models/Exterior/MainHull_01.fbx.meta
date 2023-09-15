@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 4a8f696e28b2b174d927aac0e3d17980
+timeCreated: 1514918170
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: BathroomWall_RockTile_01
+    100002: BathroomWall_Tile_01
+    100004: ConcreteCeiling_01
+    100006: Fireplace_01
+    100008: Frame_01
+    100010: Hull_FirstFloor_01
+    100012: Hull_TopFloor_01
+    100014: InteriorWall_01
+    100016: //RootNode
+    100018: Railing_01
+    100020: SUbHull_01
+    100022: TopFloor_Wall_01
+    100024: WoodFloors_01
+    400000: BathroomWall_RockTile_01
+    400002: BathroomWall_Tile_01
+    400004: ConcreteCeiling_01
+    400006: Fireplace_01
+    400008: Frame_01
+    400010: Hull_FirstFloor_01
+    400012: Hull_TopFloor_01
+    400014: InteriorWall_01
+    400016: //RootNode
+    400018: Railing_01
+    400020: SUbHull_01
+    400022: TopFloor_Wall_01
+    400024: WoodFloors_01
+    2300000: BathroomWall_RockTile_01
+    2300002: BathroomWall_Tile_01
+    2300004: ConcreteCeiling_01
+    2300006: Fireplace_01
+    2300008: Frame_01
+    2300010: Hull_FirstFloor_01
+    2300012: Hull_TopFloor_01
+    2300014: InteriorWall_01
+    2300016: Railing_01
+    2300018: TopFloor_Wall_01
+    2300020: WoodFloors_01
+    3300000: BathroomWall_RockTile_01
+    3300002: BathroomWall_Tile_01
+    3300004: ConcreteCeiling_01
+    3300006: Fireplace_01
+    3300008: Frame_01
+    3300010: Hull_FirstFloor_01
+    3300012: Hull_TopFloor_01
+    3300014: InteriorWall_01
+    3300016: Railing_01
+    3300018: TopFloor_Wall_01
+    3300020: WoodFloors_01
+    4300000: Hull_FirstFloor_01
+    4300002: WoodFloors_01
+    4300004: ConcreteCeiling_01
+    4300006: Hull_TopFloor_01
+    4300008: TopFloor_Wall_01
+    4300010: Railing_01
+    4300012: Fireplace_01
+    4300014: InteriorWall_01
+    4300016: BathroomWall_Tile_01
+    4300018: BathroomWall_RockTile_01
+    4300020: Frame_01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
