@@ -20,6 +20,11 @@ public class HeatMapGenerator : MonoBehaviour
     public void Start()
 
     {
+
+    }
+
+    public void show_heat_map()
+    {
         // Get the mouse positions recorded during tracking.
         List<Vector2> mousePositions = MouseTracker.GetMousePositions();
         //Debug.Log(mousePositions[4]);
@@ -30,13 +35,13 @@ public class HeatMapGenerator : MonoBehaviour
         int unitsY = Mathf.CeilToInt(heatmapImage.rectTransform.rect.height / unitSize);
         // Debug.Log(heatmapImage.rectTransform.rect.width);
         // Debug.Log(heatmapImage.rectTransform.rect.height);
-        
+
         // Debug.Log(unitsX);
         // Debug.Log(unitsY);
-        
+
 
         // Create a texture for the heat map.
-        Texture2D heatMapTexture = new Texture2D(unitsX, unitsY,TextureFormat.RGBAFloat, false);
+        Texture2D heatMapTexture = new Texture2D(unitsX, unitsY, TextureFormat.RGBAFloat, false);
         heatMapTexture.filterMode = FilterMode.Bilinear;
 
         // Create an array to store the density for each unit.
@@ -78,10 +83,10 @@ public class HeatMapGenerator : MonoBehaviour
 
                 //Debug.Log(intensity);
                 Color color = heatmapGradient.Evaluate(intensity);
-                // Color color =new Color(0,255,0);
-;
+                color.a =  0.5f;
+                
 
-                heatMapTexture.SetPixel(x, y,color);
+                heatMapTexture.SetPixel(x, y, color);
                 // Debug.Log(x);
                 // // Debug.Log(intensity);
                 // Debug.Log(y);
