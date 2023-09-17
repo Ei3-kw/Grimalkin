@@ -25,25 +25,32 @@ public class playerController : MonoBehaviour
 
     Vector3 posFilter;
 
+    private string story_stage = "None";
+
     public GameObject eye_pointer; //where the eye is looking
     public GameObject interaction_UI;
     // list of objects the player can interact with
     public GameObject computer;
+    public GameObject coffee_cup;
+    public GameObject camping_wall_painting;
 
 
-    
+
     // Start is called before the first frame update
     private void Start()
     {
         // set the eye pointer to be half transparent
         Color newColor = new Color(1, 1, 1, 0.5f);
-        eye_pointer.GetComponent<Image>().material.color = newColor;
+        eye_pointer.GetComponent<Image>().color = newColor;
 
         posFilter = new Vector3(1,0,1);
         screenSize = new Vector2(Screen.width,Screen.height);
         pointerPos = screenSize/2;
         Cursor.lockState = CursorLockMode.Locked;
         interaction_UI.SetActive(false); // turn the UI element off
+
+        newColor = new Color(1, 1, 1, 1);
+        eye_pointer.GetComponent<Image>().material.color = newColor;
     }
     private void Update()
     {
@@ -81,7 +88,10 @@ public class playerController : MonoBehaviour
         Ray looking_at = cam.ScreenPointToRay(pointerPos);
         if (Physics.Raycast(looking_at, out hit))
         {
-            if (hit.collider.gameObject == computer) // if looking at the computer
+            ////////////////////////////////////////////////////////
+            ///////////////////// computer /////////////////////////
+            ////////////////////////////////////////////////////////
+            if (story_stage == "website_game" && hit.collider.gameObject == computer) 
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
@@ -94,24 +104,66 @@ public class playerController : MonoBehaviour
 
                 // set the eye pointer to be fully coloured
                 Color newColor = new Color(1, 1, 1, 1);
-                eye_pointer.GetComponent<Image>().material.color = newColor;
+                eye_pointer.GetComponent<Image>().color = newColor;
             }
+            ////////////////////////////////////////////////////////
+            ///////////////////// coffee /////////////////////////
+            ////////////////////////////////////////////////////////
+            else if (story_stage == "coffee" && hit.collider.gameObject == coffee_cup)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to drink coffee";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the coffee it is being looked at
+                hit.collider.gameObject.GetComponent<coffee_controller>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            ////////////////////////////////////////////////////////
+            ///////////////////// camping painting /////////////////////////
+            ////////////////////////////////////////////////////////
+            else if (story_stage == "look_at_painting" && hit.collider.gameObject == camping_wall_painting)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] look at camping picture";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the coffee it is being looked at
+                hit.collider.gameObject.GetComponent<cwp_controller>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            ////////////////////////////////////////////////////////
+            ///////////////////// Other obj /////////////////////////
+            ////////////////////////////////////////////////////////
             else // if they are not looking at any object of interest
             {
                 interaction_UI.SetActive(false); // turn the UI element off
                 
                 // set the eye pointer to be half transparent
                 Color newColor = new Color(1, 1, 1, 0.5f);
-                eye_pointer.GetComponent<Image>().material.color = newColor;
+                eye_pointer.GetComponent<Image>().color = newColor;
             }
         }
+        ////////////////////////////////////////////////////////
+        ///////////////////// NO obj /////////////////////////
+        ////////////////////////////////////////////////////////
         else // if they are not looking at any object at all
         {
             interaction_UI.SetActive(false); // turn the UI element off
 
             // set the eye pointer to be half transparent
             Color newColor = new Color(1, 1, 1, 0.5f);
-            eye_pointer.GetComponent<Image>().material.color = newColor;
+            eye_pointer.GetComponent<Image>().color = newColor;
         }
     }
 
@@ -146,5 +198,10 @@ public class playerController : MonoBehaviour
             }
         }
         
+    }
+
+    public void set_story_stage(string stage)
+    {
+        story_stage = stage;
     }
 }
