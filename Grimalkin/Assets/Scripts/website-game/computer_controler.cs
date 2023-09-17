@@ -79,11 +79,12 @@ public class computer_controler : MonoBehaviour
     // Will be called when the opbject is being looked at by the player
     public void look_at()
     {
-
         // if the user is not in game yet
         // and the user has triggered the game to start
         if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
         {
+            // once player starts for the first time glow ends
+            gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
 
             player_can_quit = false;
