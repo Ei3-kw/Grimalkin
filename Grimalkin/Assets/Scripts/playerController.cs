@@ -37,13 +37,16 @@ public class playerController : MonoBehaviour
     {
         // set the eye pointer to be half transparent
         Color newColor = new Color(1, 1, 1, 0.5f);
-        eye_pointer.GetComponent<Image>().material.color = newColor;
+        eye_pointer.GetComponent<Image>().color = newColor;
 
         posFilter = new Vector3(1,0,1);
         screenSize = new Vector2(Screen.width,Screen.height);
         pointerPos = screenSize/2;
         Cursor.lockState = CursorLockMode.Locked;
         interaction_UI.SetActive(false); // turn the UI element off
+
+        newColor = new Color(1, 1, 1, 1);
+        eye_pointer.GetComponent<Image>().material.color = newColor;
     }
     private void Update()
     {
@@ -81,7 +84,10 @@ public class playerController : MonoBehaviour
         Ray looking_at = cam.ScreenPointToRay(pointerPos);
         if (Physics.Raycast(looking_at, out hit))
         {
-            if (hit.collider.gameObject == computer) // if looking at the computer
+            ////////////////////////////////////////////////////////
+            ///////////////////// computer /////////////////////////
+            ////////////////////////////////////////////////////////
+            if (hit.collider.gameObject == computer) 
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
@@ -94,24 +100,30 @@ public class playerController : MonoBehaviour
 
                 // set the eye pointer to be fully coloured
                 Color newColor = new Color(1, 1, 1, 1);
-                eye_pointer.GetComponent<Image>().material.color = newColor;
+                eye_pointer.GetComponent<Image>().color = newColor;
             }
+            ////////////////////////////////////////////////////////
+            ///////////////////// Other obj /////////////////////////
+            ////////////////////////////////////////////////////////
             else // if they are not looking at any object of interest
             {
                 interaction_UI.SetActive(false); // turn the UI element off
                 
                 // set the eye pointer to be half transparent
                 Color newColor = new Color(1, 1, 1, 0.5f);
-                eye_pointer.GetComponent<Image>().material.color = newColor;
+                eye_pointer.GetComponent<Image>().color = newColor;
             }
         }
+        ////////////////////////////////////////////////////////
+        ///////////////////// NO obj /////////////////////////
+        ////////////////////////////////////////////////////////
         else // if they are not looking at any object at all
         {
             interaction_UI.SetActive(false); // turn the UI element off
 
             // set the eye pointer to be half transparent
             Color newColor = new Color(1, 1, 1, 0.5f);
-            eye_pointer.GetComponent<Image>().material.color = newColor;
+            eye_pointer.GetComponent<Image>().color = newColor;
         }
     }
 
