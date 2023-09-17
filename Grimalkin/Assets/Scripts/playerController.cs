@@ -25,13 +25,17 @@ public class playerController : MonoBehaviour
 
     Vector3 posFilter;
 
+    private string story_stage = "None";
+
     public GameObject eye_pointer; //where the eye is looking
     public GameObject interaction_UI;
     // list of objects the player can interact with
     public GameObject computer;
+    public GameObject coffee_cup;
+    public GameObject camping_wall_painting;
 
 
-    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -87,7 +91,7 @@ public class playerController : MonoBehaviour
             ////////////////////////////////////////////////////////
             ///////////////////// computer /////////////////////////
             ////////////////////////////////////////////////////////
-            if (hit.collider.gameObject == computer) 
+            if (story_stage == "website_game" && hit.collider.gameObject == computer) 
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
@@ -97,6 +101,36 @@ public class playerController : MonoBehaviour
 
                 // tell the computer it is beign looked at
                 hit.collider.gameObject.GetComponent<computer_controler>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            if (story_stage == "coffee" && hit.collider.gameObject == coffee_cup)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to drink coffee";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the coffee it is being looked at
+                hit.collider.gameObject.GetComponent<coffee_controller>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            if (story_stage == "look_at_painting" && hit.collider.gameObject == camping_wall_painting)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to drink coffee";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the coffee it is being looked at
+                hit.collider.gameObject.GetComponent<coffee_controller>().look_at();
 
                 // set the eye pointer to be fully coloured
                 Color newColor = new Color(1, 1, 1, 1);
@@ -158,5 +192,10 @@ public class playerController : MonoBehaviour
             }
         }
         
+    }
+
+    public void set_story_stage(string stage)
+    {
+        story_stage = stage;
     }
 }
