@@ -31,13 +31,9 @@ public class story_controller : MonoBehaviour
         subtitle_text = subtitles.GetComponent<TextMeshProUGUI>();
         ////////////////////////////
 
-        // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
 
 
-
+        ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
         StartCoroutine(start_stage_1());
 
@@ -77,6 +73,12 @@ public class story_controller : MonoBehaviour
     // DIALOG 1
     private IEnumerator start_stage_1()
     {
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+        currency_UI.SetActive(false);
+
         player.GetComponent<playerController>().set_story_stage("start_dialog");
 
         // screen fade in
