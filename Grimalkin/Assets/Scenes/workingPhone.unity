@@ -3196,6 +3196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978250403}
   - component: {fileID: 978250404}
+  - component: {fileID: 978250405}
   m_Layer: 0
   m_Name: phone
   m_TagString: Untagged
@@ -3236,8 +3237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c80c7a28c60249c88f8518038aa532e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refreshDelay: 1
-  myObserver: {fileID: 2087699400}
+  refreshDelay: 4
+  myObserver: {fileID: 0}
   phoneText: {fileID: 1373643637}
   imageMat: {fileID: 2100000, guid: ad9f6be21ad5c4f7aa982c96a357f1fa, type: 2}
   phoneBody: {fileID: 6086024115503319964}
@@ -3254,6 +3255,26 @@ MonoBehaviour:
   - test
   - new desk in town only 999.99$
   - you should try this now !!!!
+--- !u!114 &978250405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978250402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c98adce47204d81beca2cfc4dc0a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recentSize: 300
+  visionPointer: {fileID: 885656896}
+  cam: {fileID: 1901110304}
+  testing: 0
+  totalKeys: []
+  totalValues: 
+  recentKeys: []
+  recentValues: 
 --- !u!1001 &979991056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7829,7 +7850,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.2
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -8277,7 +8298,6 @@ GameObject:
   - component: {fileID: 2087699397}
   - component: {fileID: 2087699399}
   - component: {fileID: 2087699398}
-  - component: {fileID: 2087699400}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -8348,26 +8368,6 @@ MonoBehaviour:
   eye_pointer: {fileID: 885656895}
   interaction_UI: {fileID: 1580393473}
   computer: {fileID: 8168413674818712868}
---- !u!114 &2087699400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087699393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c98adce47204d81beca2cfc4dc0a2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recentSize: 300
-  visionPointer: {fileID: 885656896}
-  cam: {fileID: 1901110304}
-  testing: 1
-  totalKeys: []
-  totalValues: 
-  recentKeys: []
-  recentValues: 
 --- !u!1001 &2100856616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10102,7 +10102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6088302039132455411
 GameObject:
   m_ObjectHideFlags: 0
