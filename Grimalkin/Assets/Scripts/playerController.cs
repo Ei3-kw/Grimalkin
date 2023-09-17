@@ -109,7 +109,7 @@ public class playerController : MonoBehaviour
             ////////////////////////////////////////////////////////
             ///////////////////// coffee /////////////////////////
             ////////////////////////////////////////////////////////
-            if (story_stage == "coffee" && hit.collider.gameObject == coffee_cup)
+            else if (story_stage == "coffee" && hit.collider.gameObject == coffee_cup)
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact
@@ -127,7 +127,7 @@ public class playerController : MonoBehaviour
             ////////////////////////////////////////////////////////
             ///////////////////// camping painting /////////////////////////
             ////////////////////////////////////////////////////////
-            if (story_stage == "look_at_painting" && hit.collider.gameObject == camping_wall_painting)
+            else if (story_stage == "look_at_painting" && hit.collider.gameObject == camping_wall_painting)
             {
                 Debug.Log(hit.collider.gameObject.name + "was registered");
                 // show a a message on screen that the user can now interact

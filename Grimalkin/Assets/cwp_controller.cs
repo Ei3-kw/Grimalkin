@@ -29,7 +29,6 @@ public class cwp_controller : MonoBehaviour
         {
             // once player starts for the first time glow ends
             gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
-            gameObject.SetActive(false);
 
             // communitcate back to story
             player.GetComponent<story_controller>().looked_at_cwp();

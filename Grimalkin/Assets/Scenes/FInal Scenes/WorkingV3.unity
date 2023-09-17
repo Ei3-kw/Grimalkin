@@ -7481,7 +7481,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10338147, y: 1.4584141, z: 3.0586452}
+  m_Size: {x: 0.61, y: 1.67, z: 3.11}
   m_Center: {x: 0.051690504, y: 0.00000017881393, z: -0.00007706881}
 --- !u!114 &1257586982
 MonoBehaviour:
@@ -12693,7 +12693,7 @@ MonoBehaviour:
   interaction_UI: {fileID: 1580393473}
   computer: {fileID: 8168413674818712868}
   coffee_cup: {fileID: 1782785481}
-  camping_wall_painting: {fileID: 0}
+  camping_wall_painting: {fileID: 1257586976}
 --- !u!114 &2087699400
 MonoBehaviour:
   m_ObjectHideFlags: 0
