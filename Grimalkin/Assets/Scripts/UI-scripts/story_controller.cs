@@ -43,7 +43,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_8());
+        StartCoroutine(start_stage_6());
 
     }
 
@@ -240,7 +240,7 @@ public class story_controller : MonoBehaviour
     // hmm what to do..
     private IEnumerator start_stage_6()
     {
-        set_story_stage("website_game");
+        set_story_stage("before_website_game");
 
         subtitle_text.text = "Damn, there are definitely things that I forgot on this list...";
         yield return new WaitForSeconds(3); // wait
@@ -250,6 +250,7 @@ public class story_controller : MonoBehaviour
 
 
         subtitle_text.text = "";
+        set_story_stage("website_game");
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Check out the living room computer");
