@@ -1,4 +1,11 @@
-# DECO3801
+# Grimalkin GAMEPLAY DEMO
+To play please:
+1. clone the repo to your local machine
+2. OPEN: DECO3801 / Game_Demo / Grimalkin.exe
+3. you are now playing :) the game will auto exit at the end
+
+
+# DEV INFO
 **main** branch: is the main dev branch
 
 **working-preview** branch: is the branch that we merge to ONLY after the changes in main are working

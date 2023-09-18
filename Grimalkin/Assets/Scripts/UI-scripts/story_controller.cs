@@ -27,6 +27,7 @@ public class story_controller : MonoBehaviour
 
     // game 4
     public GameObject bed;
+    public GameObject fade_obj;
 
     // game 5
     public GameObject tablet;
@@ -43,9 +44,19 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_6());
+        StartCoroutine(start_stage_1());
 
     }
+
+
+
+
+
+
+
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -293,18 +304,34 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_8()
     {
         // bed has been clicked on
-        set_story_stage("wake_up");
+        set_story_stage("before_wake_up");
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
+        bed.GetComponent<Outline>().enabled = false;
+
+
+
+
+
+        GDTFadeEffect fade_cont = fade_obj.GetComponent<GDTFadeEffect>();
+        // fade out screen
+        fade_cont.firstToLast = false; // fade to black
+        fade_obj.SetActive(false);
+        fade_obj.SetActive(true);
+        yield return new WaitForSeconds(3); // wait
 
         // turn on alarm
         tablet.GetComponent<tablet_controller>().turn_on_alarm();
         // turn on tabelet glow
         tablet.GetComponent<Outline>().enabled = true;
 
-        // fade out screen
+
 
         // fade in screen
+        fade_cont.firstToLast = true; // fade to clear
+        fade_obj.SetActive(false);
+        fade_obj.SetActive(true);
+        yield return new WaitForSeconds(3); // wait
 
         //
         subtitle_text.text = "uhhh..h..";
@@ -315,6 +342,9 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(2); // wait
 
         subtitle_text.text = "";
+
+        // bed has been clicked on
+        set_story_stage("wake_up");
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Find your ipad and turn off the alarm");
@@ -348,6 +378,12 @@ public class story_controller : MonoBehaviour
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Go to the door and see what arrived");
 
+        subtitle_text.text = "This is it so far..........";
+        yield return new WaitForSeconds(10); // wait
+
+        subtitle_text.text = "Game will now exit";
+        yield return new WaitForSeconds(10); // wait
+        Application.Quit();
 
         yield return null;
 

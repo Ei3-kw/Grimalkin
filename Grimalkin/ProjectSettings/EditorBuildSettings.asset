@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/2dTablet.unity
-    guid: b16462520dcd20646b833827259d8a63
-  - enabled: 1
-    path: Assets/Scenes/3d_tablet.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/BonusTablet.unity
-    guid: 1ae04c7877fe55246911f2d5d87d501f
+    path: Assets/Scenes/FInal Scenes/WorkingV4.unity
+    guid: dd552f639b02f254f9b422beb545f21e
   m_configObjects: {}
