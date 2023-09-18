@@ -10,13 +10,21 @@ public class StopButtonController : MonoBehaviour
     public TextMeshPro ipad_text;
     public GameObject alarm_sound;
 
+    public GameObject player;
+
+    public TextMeshProUGUI subtitles;
+
     private bool clicked = false;
+
+    private void Update()
+    {
+        Debug.Log("button is alive");
+    }
 
     // Start is called before the first frame update
     void OnMouseDown()
     {
         Debug.Log("PRESSED YOOO");
-        Result.solved = true;
 
         // turn of music
         alarm_sound.SetActive(false);
@@ -37,6 +45,13 @@ public class StopButtonController : MonoBehaviour
         ipad_text.text = "Good Morning!";
         yield return new WaitForSeconds(2); // wait
         ipad_text.text = "Updating.";
+        subtitles.text = "Updating...? Really..? now..?";
+        yield return new WaitForSeconds(1); // wait
+        ipad_text.text = "Updating..";
+        yield return new WaitForSeconds(1); // wait
+        ipad_text.text = "Updating...";
+        yield return new WaitForSeconds(1); // wait
+        ipad_text.text = "Updating.";
         yield return new WaitForSeconds(1); // wait
         ipad_text.text = "Updating..";
         yield return new WaitForSeconds(1); // wait
@@ -55,13 +70,21 @@ public class StopButtonController : MonoBehaviour
         ipad_text.text = "Updating...";
         yield return new WaitForSeconds(1); // wait
         ipad_text.text = "Update Complete!";
+        subtitles.text = "Finally!";
 
         yield return new WaitForSeconds(2); // wait
         // Load the specified heatmap when the object is clicked
         heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
-        yield return new WaitForSeconds(4); // wait
+        subtitles.text = "USER WILL NOT SEE THIS IN FINAL GAME";
+        yield return new WaitForSeconds(5); // wait
 
         tablet.GetComponent<tablet_controller>().update_done();
+        subtitles.text = "";
+
+        // progress story
+        // communitcate back to story
+        player.GetComponent<story_controller>().alarm_off();
+
         yield return null;
 
     }

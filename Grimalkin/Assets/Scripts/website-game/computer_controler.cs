@@ -28,6 +28,7 @@ public class computer_controler : MonoBehaviour
 
     // UI to adjust currency
     public GameObject currency_UI;
+    public GameObject notifcations;
 
 
 
@@ -72,6 +73,9 @@ public class computer_controler : MonoBehaviour
 
             player_can_start = true;
             player_can_quit = false;
+
+            // communitcate back to story
+            player.GetComponent<story_controller>().finished_website_game();
         }
     }
 
@@ -83,6 +87,9 @@ public class computer_controler : MonoBehaviour
         // and the user has triggered the game to start
         if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
         {
+            // remove task notifaction
+            notifcations.GetComponent<notification_controller>().remove_notif();
+
             // once player starts for the first time glow ends
             gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
@@ -108,7 +115,7 @@ public class computer_controler : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            player_can_quit = true;
+            player_can_quit = false;
         }
     }
 
