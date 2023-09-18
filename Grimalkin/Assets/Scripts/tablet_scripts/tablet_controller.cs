@@ -7,6 +7,7 @@ public class tablet_controller : MonoBehaviour
     public Transform camera_pos_for_game;
     public GameObject player_cam;
     public Transform player_cam_pos;
+    public GameObject alarm;
 
     public GameObject alarm_game;
 
@@ -22,7 +23,13 @@ public class tablet_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        look_at();
+        
+
+    }
+
+    public void turn_on_alarm()
+    {
+        alarm.SetActive(true);
     }
 
     // Will be called when the opbject is being looked at by the player
