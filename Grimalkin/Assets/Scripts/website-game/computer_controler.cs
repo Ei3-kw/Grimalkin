@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -24,7 +24,11 @@ public class computer_controler : MonoBehaviour
     public GameObject player_cam;
     public Transform camera_pos_for_game; // new pos we want cam
     public Transform player_cam_pos; // old cam pos before game
-    public GameObject player_canvas;
+    public GameObject optional_UI;
+
+    // UI to adjust currency
+    public GameObject currency_UI;
+    public GameObject notifcations;
 
 
 
@@ -44,6 +48,7 @@ public class computer_controler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         // player wants to exit the game
         if (player_can_quit && Input.GetKeyDown("e"))
         {
@@ -65,22 +70,31 @@ public class computer_controler : MonoBehaviour
 
             // re enable the movment script and UI
             player.GetComponent<playerController>().enabled = true;
-            player_canvas.SetActive(true);
+            optional_UI.SetActive(true);
 
             player_can_start = true;
             player_can_quit = false;
+
+            // communitcate back to story
+            player.GetComponent<story_controller>().finished_website_game();
+        
         }
+        */
     }
 
 
     // Will be called when the opbject is being looked at by the player
     public void look_at()
     {
-
         // if the user is not in game yet
         // and the user has triggered the game to start
         if (player_can_start && Input.GetKeyDown("e")) // TODO: check if user is in range of computer
         {
+            // remove task notifaction
+            notifcations.GetComponent<notification_controller>().remove_notif();
+
+            // once player starts for the first time glow ends
+            gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
 
             player_can_quit = false;
@@ -88,7 +102,7 @@ public class computer_controler : MonoBehaviour
 
             // disable the movment script and UI
             player.GetComponent<playerController>().enabled = false;
-            player_canvas.SetActive(false);
+            optional_UI.SetActive(false);
 
             // move the camera into position
             // Calculate the position to move the camera to
@@ -104,7 +118,7 @@ public class computer_controler : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            player_can_quit = true;
+            player_can_quit = false;
         }
     }
 
@@ -129,9 +143,13 @@ public class computer_controler : MonoBehaviour
 
         // show end of game screnn
         end_game_screen.SetActive(true);
-        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${total_inital_cost + total_extra_paid} </color>";
+        int final_cost = total_inital_cost + total_extra_paid;
+        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${final_cost} </color>";
 
-        //Debug.Log($"Game Over\nTotal Item Price: ${total_inital_cost}, Gaze Interest Fee: ${total_extra_paid}, Total Cost: ${total_inital_cost + total_extra_paid}");
+        // adust money and credits
+        currency_UI.GetComponent<currency_controler>().change_money(-final_cost);
+        currency_UI.GetComponent<currency_controler>().change_credits(3);
+
     }
 
     public void open_start_screen()
@@ -146,5 +164,46 @@ public class computer_controler : MonoBehaviour
         start_text_message.SetActive(true);
 
         player_can_quit = true;
+
+
+
+        // exit the game FOR REALLLL
+        start_text_message.SetActive(false);
+        // relock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+
+        // move the camera back into player
+        // Calculate the position to move the camera to
+        Vector3 targetPosition = player_cam_pos.position;
+        Quaternion targetRotation = player_cam_pos.rotation;
+        Transform camera = player_cam.GetComponent<Transform>();
+
+        // Interpolate the camera's position toward the target position
+        camera.position = targetPosition;
+        camera.rotation = targetRotation;
+
+        // re enable the movment script and UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+
+        player_can_start = true;
+        player_can_quit = false;
+
+        // communitcate back to story
+        player.GetComponent<story_controller>().finished_website_game();
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+

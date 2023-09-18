@@ -1,2 +1,6 @@
 
 .DS_Store
+.vscode/
+.vs/
+*.meta
+Grimalkin/Assets/arts/IMG_0012.png.meta
