@@ -3989,7 +3989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &618626668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15762,8 +15762,8 @@ MonoBehaviour:
   bed: {fileID: 1869079872}
   fade_obj: {fileID: 794514028}
   tablet: {fileID: 1540791716}
-  ss_exit_text: {fileID: 0}
-  ss_all_interaction_slides: {fileID: 0}
+  ss_exit_text: {fileID: 618626667}
+  ss_all_interaction_slides: {fileID: 279665502}
   ss_screen: {fileID: 1083577560}
   ss_start_text: {fileID: 1637118537}
   ss_press_e_text: {fileID: 1420789429}

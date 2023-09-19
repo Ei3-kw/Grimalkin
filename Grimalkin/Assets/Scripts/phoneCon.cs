@@ -67,8 +67,9 @@ public class phoneCon : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F))
         {
-            phoneON = !phoneON;
-            phoneBody.SetActive(phoneON);
+            // TO DO MAYYBE IMPLEMENT ??????
+            // phoneON = !phoneON;
+            // phoneBody.SetActive(phoneON);
         }
         if (!phoneON &&  Time.time > nextNotificationTime ){
             nextNotificationTime = Time.time  + NotificationDelay;
@@ -79,7 +80,7 @@ public class phoneCon : MonoBehaviour
         }
         else if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
         {   
-            nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,2.0f) ;
+            nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
             if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[0])
             {
                 int index = postersNames.IndexOf(mainTopic);
@@ -102,6 +103,7 @@ public class phoneCon : MonoBehaviour
                             int rint = UnityEngine.Random.Range(0, posters[index].collection.Count);
                             imageMat.mainTexture = posters[index].collection[rint].image;
                             phoneText.text = posters[index].collection[rint].Text;
+                            Debug.Log(phoneText.text);
                             break;
                         }
                     }

@@ -32,9 +32,14 @@ public class story_controller : MonoBehaviour
     // game 5
     public GameObject tablet;
 
+    // game ??
+    public GameObject phone;
+    public GameObject phone_packing_list;
+    public GameObject[] camping_items;
 
 
-
+    // intro controls
+    public GameObject controls_intro;
 
 
 
@@ -66,6 +71,8 @@ public class story_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        phone.SetActive(false);
+
         // define paramas
         subtitle_text = subtitles.GetComponent<TextMeshProUGUI>();
         ////////////////////////////
@@ -80,7 +87,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_9());
+        StartCoroutine(start_stage_7());
 
 
 
@@ -100,11 +107,21 @@ public class story_controller : MonoBehaviour
     void Update()
     {
         // if they want to open their phone for the first time
-        if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("f"))
+        if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("e"))
         {
+
             // DO NOT CHANEG THISSSSS
             StartCoroutine(start_stage_5());
         }
+
+        if (story_stage == "waiting_for_socail_phone" && Input.GetKeyDown("e"))
+        {
+            Debug.Log("socail media time");
+            StartCoroutine(start_stage_5_2());
+
+        }
+
+            
 
 
 
@@ -172,6 +189,11 @@ public class story_controller : MonoBehaviour
         StartCoroutine(start_stage_9());
     }
 
+    public void got_all_items()
+    {
+        StartCoroutine(start_stage_6());
+    }
+
 
 
 
@@ -206,6 +228,24 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "I really need to plan something for that...";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "But first, I would kill for a coffee";
+        yield return new WaitForSeconds(2); // wait
+
+        // describe to user the controls
+        ss_screen.SetActive(true);
+        ss_press_e_text.SetActive(true);
+        controls_intro.SetActive(true);
+
+
+
+        // only progress when click e
+        while (!Input.GetKeyDown("e"))
+        {
+            yield return null;
+        }
+        controls_intro.SetActive(false);
+        ss_screen.SetActive(false);
+        ss_press_e_text.SetActive(false);
+
 
         // re enable the movment script and UI
         player.GetComponent<playerController>().enabled = true;
@@ -282,12 +322,11 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "I have a list of items I need to pack saved on my phone";
         yield return new WaitForSeconds(4); // wait
-        subtitle_text.text = "Press [F] to open your phone";
-        yield return new WaitForSeconds(4); // wait
-        subtitle_text.text = "";
+        subtitle_text.text = "Press [e] to open your phone";
+
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Press [F] to open you phone and check packing list");
+        notifcations.GetComponent<notification_controller>().set_notif("Press [e] to open you phone and check packing list");
 
         set_story_stage("waiting_for_phone_open");
         yield return null;
@@ -299,18 +338,61 @@ public class story_controller : MonoBehaviour
     {
         set_story_stage("phone_opened");
 
+        // open packing list on phone infront of face
+        phone_packing_list.SetActive(true);
+
+
+
+
+
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
+        yield return new WaitForSeconds(10); // wait
+        subtitle_text.text = "I just need to find these items around the house and pick them up";
         yield return new WaitForSeconds(4); // wait
-        subtitle_text.text = "Implement phone interaction........";
-        yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "Pick up all the items we need.......";
-        yield return new WaitForSeconds(2); // wait
+        subtitle_text.text = "I can look at photos of the camp site while I collect the items!";
+        yield return new WaitForSeconds(4); // wait
+        subtitle_text.text = "Press [e] to open social media";
 
+
+
+
+        set_story_stage("waiting_for_socail_phone");
+        yield return null;
+    }
+
+    // game 2
+    // hmm what to do..
+    private IEnumerator start_stage_5_2()
+    {
+        set_story_stage("open_socail_phone");
+
+        // close packing list on phone infront of face
+        phone_packing_list.SetActive(false);
+        // open social media phone
+        phone.SetActive(true);
+
+        subtitle_text.text = "Oooh these places on social media look nice!";
+        yield return new WaitForSeconds(4); // wait
+
+        subtitle_text.text = "Lets go find those items!";
+        notifcations.GetComponent<notification_controller>().create_items_notif();
+
+        // set all the items to glow :)
+        foreach (GameObject item_to_get in camping_items)
+        {
+            item_to_get.GetComponent<Outline>().enabled = true; // turn on glow
+        }
+        set_story_stage("getting_items");
+
+
+        yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "";
-        StartCoroutine(start_stage_6());
+
+
+
 
         yield return null;
     }
@@ -321,10 +403,16 @@ public class story_controller : MonoBehaviour
     {
         set_story_stage("before_website_game");
 
-        subtitle_text.text = "Damn, there are definitely things that I forgot on this list...";
+        subtitle_text.text = "Ok! that seems like all the items on the old list...";
         yield return new WaitForSeconds(3); // wait
+        subtitle_text.text = "Damn, there are definitely things that I forgot on that list though...";
+        yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "I think I have second list on my computer with some other items that I needed to buy";
+        // close social media phone
+        phone.SetActive(false);
         yield return new WaitForSeconds(5); // wait
+
+
 
 
 
@@ -341,7 +429,7 @@ public class story_controller : MonoBehaviour
 
     private IEnumerator start_stage_7()
     {
-        set_story_stage("bed_time");
+        set_story_stage("before_bed_time");
 
         subtitle_text.text = "Ok! that seems like it then!!";
         yield return new WaitForSeconds(2); // wait
@@ -362,6 +450,7 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().set_notif("Time to go to bed for the night, find your bed");
         // turn on glow for bed
         bed.GetComponent<Outline>().enabled = true;
+        set_story_stage("bed_time");
 
         //StartCoroutine(start_stage_8());
 
@@ -377,6 +466,10 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().remove_notif();
         bed.GetComponent<Outline>().enabled = false;
 
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+        currency_UI.SetActive(false);
 
 
 
@@ -400,6 +493,12 @@ public class story_controller : MonoBehaviour
         fade_obj.SetActive(false);
         fade_obj.SetActive(true);
         yield return new WaitForSeconds(3); // wait
+
+        // re enable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+        currency_UI.SetActive(true);
+
 
         //
         subtitle_text.text = "uhhh..h..";
@@ -436,15 +535,15 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "Oh I think that is the door!";
         yield return new WaitForSeconds(1); // wait
         subtitle_text.text = "That must be our camping gear arriving!";
-        yield return new WaitForSeconds(1); // wait
+        yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "";
 
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Go to the door and see what arrived");
 
-        subtitle_text.text = "This is it so far..........";
-        yield return new WaitForSeconds(2); // wait
+        subtitle_text.text = "Uh oh! false alarm... nothing there. I can't wait to head off for camping tomorrow!!!!!!!";
+        yield return new WaitForSeconds(5); // wait
 
 
         StartCoroutine(ending_ss_start());
