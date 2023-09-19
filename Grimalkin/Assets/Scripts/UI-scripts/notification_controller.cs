@@ -11,7 +11,8 @@ public class notification_controller : MonoBehaviour
     
     // items
     private int num_items;
-    public GameObject shirt;
+    public GameObject shirt_icon;
+    public GameObject laptop_icon;
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +51,10 @@ public class notification_controller : MonoBehaviour
         notif_text.text = "Collect:";
 
         ////// set this
-        num_items = 1;
+        num_items = 2;
         // turn all the items on
-        shirt.SetActive(true);
+        shirt_icon.SetActive(true);
+        laptop_icon.SetActive(true);
 
 
 
@@ -63,10 +65,14 @@ public class notification_controller : MonoBehaviour
 
         if (item_name == "shirt")
         {
-            shirt.SetActive(false);
+            shirt_icon.SetActive(false);
             num_items--;
         }
-
+        if (item_name == "laptop")
+        {
+            laptop_icon.SetActive(false);
+            num_items--;
+        }
 
 
         if (num_items == 0)

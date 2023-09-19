@@ -87,7 +87,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_1());
+        StartCoroutine(start_stage_7());
 
 
 
@@ -326,7 +326,7 @@ public class story_controller : MonoBehaviour
 
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Press [F] to open you phone and check packing list");
+        notifcations.GetComponent<notification_controller>().set_notif("Press [e] to open you phone and check packing list");
 
         set_story_stage("waiting_for_phone_open");
         yield return null;
@@ -429,7 +429,7 @@ public class story_controller : MonoBehaviour
 
     private IEnumerator start_stage_7()
     {
-        set_story_stage("bed_time");
+        set_story_stage("before_bed_time");
 
         subtitle_text.text = "Ok! that seems like it then!!";
         yield return new WaitForSeconds(2); // wait
@@ -450,6 +450,7 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().set_notif("Time to go to bed for the night, find your bed");
         // turn on glow for bed
         bed.GetComponent<Outline>().enabled = true;
+        set_story_stage("bed_time");
 
         //StartCoroutine(start_stage_8());
 
