@@ -76,14 +76,14 @@ public class playerController : MonoBehaviour
         transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 
         //ray casting 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("sending out ray");
-            Ray ray = cam.ScreenPointToRay(pointerPos);
-            if (Physics.Raycast(ray, out hit)) {
-                Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     Debug.Log("sending out ray");
+        //     Ray ray = cam.ScreenPointToRay(pointerPos);
+        //     if (Physics.Raycast(ray, out hit)) {
+        //         Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
+        //     }
+        // }
 
 
         // check what the player is looking at
