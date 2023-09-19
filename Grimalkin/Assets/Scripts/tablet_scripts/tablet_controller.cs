@@ -37,8 +37,7 @@ public class tablet_controller : MonoBehaviour
     {
         // if the user is not in game yet
         // and the user has triggered the game to start
-        Debug.Log("test");
-        if (Input.GetKeyDown("e")) // TODO: check if user is in range of computer
+        if (Input.GetKeyDown("e")) // TODO: check if user is in range
         {
             Debug.Log("in");
 

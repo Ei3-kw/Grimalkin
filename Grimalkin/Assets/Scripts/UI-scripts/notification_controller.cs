@@ -16,17 +16,19 @@ public class notification_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void set_notif(string message)
     {
+        Debug.Log("notif set");
         gameObject.SetActive(true);
         notif_text.text = message;
     }
 
     public void remove_notif()
     {
+        Debug.Log("ntoif removed");
         gameObject.SetActive(false);
 
     }
