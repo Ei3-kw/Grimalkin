@@ -67,8 +67,9 @@ public class phoneCon : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F))
         {
-            phoneON = !phoneON;
-            phoneBody.SetActive(phoneON);
+            // TO DO MAYYBE IMPLEMENT ??????
+            // phoneON = !phoneON;
+            // phoneBody.SetActive(phoneON);
         }
         if (!phoneON &&  Time.time > nextNotificationTime ){
             nextNotificationTime = Time.time  + NotificationDelay;
