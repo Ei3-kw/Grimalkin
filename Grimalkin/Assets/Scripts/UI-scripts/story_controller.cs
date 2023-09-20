@@ -62,6 +62,14 @@ public class story_controller : MonoBehaviour
     public GameObject ss_sg_3;
     public GameObject ss_sg_4;
 
+    // alarm game
+    public GameObject ss_al_1;
+    public GameObject ss_al_2;
+
+    // ad game
+    public GameObject ss_ad_1;
+
+
 
 
 
@@ -87,7 +95,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_7());
+        StartCoroutine(start_stage_1());
 
 
 
@@ -138,7 +146,10 @@ public class story_controller : MonoBehaviour
             else if (story_stage == "ss_sg_1_waiting") { StartCoroutine(start_ss_sg_2()); }
             else if (story_stage == "ss_sg_2_waiting") { StartCoroutine(start_ss_sg_3()); }
             else if (story_stage == "ss_sg_3_waiting") { StartCoroutine(start_ss_sg_4()); }
-            else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_end_game()); }
+            else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_al_1()); }
+            else if (story_stage == "ss_al_1_waiting") { StartCoroutine(start_ss_al_2()); }
+            else if (story_stage == "ss_al_2_waiting") { StartCoroutine(start_ss_ad_1()); }
+            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_end_game()); }
 
             //end game
             else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
@@ -673,6 +684,48 @@ public class story_controller : MonoBehaviour
 
         // wait for button to be pressed to go to the next slide
         set_story_stage("ss_sg_4_waiting");
+        yield return null;
+    }
+
+    private IEnumerator start_ss_al_1()
+    {
+        set_story_stage("ss_al_1");
+        ss_sg_4.SetActive(false);
+
+        // BEcause of this you spennt ___ extra dollars
+        // and couldn't afford food, your partners dog died :<
+        ss_al_1.SetActive(true);
+
+        // wait for button to be pressed to go to the next slide
+        set_story_stage("ss_al_1_waiting");
+        yield return null;
+    }
+
+    private IEnumerator start_ss_al_2()
+    {
+        set_story_stage("ss_al_2");
+        ss_al_1.SetActive(false);
+
+        // BEcause of this you spennt ___ extra dollars
+        // and couldn't afford food, your partners dog died :<
+        ss_al_2.SetActive(true);
+
+        // wait for button to be pressed to go to the next slide
+        set_story_stage("ss_al_2_waiting");
+        yield return null;
+    }
+
+    private IEnumerator start_ss_ad_1()
+    {
+        set_story_stage("ss_ad_1");
+        ss_al_2.SetActive(false);
+
+        // BEcause of this you spennt ___ extra dollars
+        // and couldn't afford food, your partners dog died :<
+        ss_ad_1.SetActive(true);
+
+        // wait for button to be pressed to go to the next slide
+        set_story_stage("ss_ad_1_waiting");
         yield return null;
     }
 
