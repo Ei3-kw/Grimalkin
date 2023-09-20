@@ -68,6 +68,7 @@ public class story_controller : MonoBehaviour
 
     // ad game
     public GameObject ss_ad_1;
+    public GameObject ss_ad_2;
 
 
 
@@ -95,7 +96,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_9());
+        StartCoroutine(start_stage_1());
 
 
 
@@ -149,7 +150,8 @@ public class story_controller : MonoBehaviour
             else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_al_1()); }
             else if (story_stage == "ss_al_1_waiting") { StartCoroutine(start_ss_al_2()); }
             else if (story_stage == "ss_al_2_waiting") { StartCoroutine(start_ss_ad_1()); }
-            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_end_game()); }
+            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_ad_2()); }
+            else if (story_stage == "ss_ad_2_waiting") { StartCoroutine(start_ss_end_game()); }
 
             //end game
             else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
@@ -726,6 +728,20 @@ public class story_controller : MonoBehaviour
 
         // wait for button to be pressed to go to the next slide
         set_story_stage("ss_ad_1_waiting");
+        yield return null;
+    }
+
+    private IEnumerator start_ss_ad_2()
+    {
+        set_story_stage("ss_ad_2");
+        ss_ad_1.SetActive(false);
+
+        // BEcause of this you spennt ___ extra dollars
+        // and couldn't afford food, your partners dog died :<
+        ss_ad_2.SetActive(true);
+
+        // wait for button to be pressed to go to the next slide
+        set_story_stage("ss_ad_2_waiting");
         yield return null;
     }
 
