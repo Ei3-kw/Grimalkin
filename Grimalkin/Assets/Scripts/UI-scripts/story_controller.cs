@@ -68,6 +68,7 @@ public class story_controller : MonoBehaviour
 
     // ad game
     public GameObject ss_ad_1;
+    public GameObject ss_ad_2;
 
 
 
@@ -149,7 +150,8 @@ public class story_controller : MonoBehaviour
             else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_al_1()); }
             else if (story_stage == "ss_al_1_waiting") { StartCoroutine(start_ss_al_2()); }
             else if (story_stage == "ss_al_2_waiting") { StartCoroutine(start_ss_ad_1()); }
-            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_end_game()); }
+            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_ad_2()); }
+            else if (story_stage == "ss_ad_2_waiting") { StartCoroutine(start_ss_end_game()); }
 
             //end game
             else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
@@ -294,7 +296,7 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_3()
     {
         // coffee has been clicked on
-        set_story_stage("look_at_painting");
+        set_story_stage("bf_look_at_painting");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
@@ -313,7 +315,8 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().set_notif("Look around for ideas for your anniversary plans");
 
         // turn on glow for camping photo
-        camping_wall_photo.GetComponent<Outline>().enabled = true; 
+        camping_wall_photo.GetComponent<Outline>().enabled = true;
+        set_story_stage("look_at_painting");
 
         yield return null;
     }
@@ -726,6 +729,20 @@ public class story_controller : MonoBehaviour
 
         // wait for button to be pressed to go to the next slide
         set_story_stage("ss_ad_1_waiting");
+        yield return null;
+    }
+
+    private IEnumerator start_ss_ad_2()
+    {
+        set_story_stage("ss_ad_2");
+        ss_ad_1.SetActive(false);
+
+        // BEcause of this you spennt ___ extra dollars
+        // and couldn't afford food, your partners dog died :<
+        ss_ad_2.SetActive(true);
+
+        // wait for button to be pressed to go to the next slide
+        set_story_stage("ss_ad_2_waiting");
         yield return null;
     }
 
