@@ -296,7 +296,7 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_3()
     {
         // coffee has been clicked on
-        set_story_stage("look_at_painting");
+        set_story_stage("bf_look_at_painting");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
@@ -315,7 +315,8 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().set_notif("Look around for ideas for your anniversary plans");
 
         // turn on glow for camping photo
-        camping_wall_photo.GetComponent<Outline>().enabled = true; 
+        camping_wall_photo.GetComponent<Outline>().enabled = true;
+        set_story_stage("look_at_painting");
 
         yield return null;
     }
