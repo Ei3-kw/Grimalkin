@@ -17,7 +17,7 @@ public class computer_controler : MonoBehaviour
     private GameObject current_website_game;
 
     private bool player_can_start = true;
-    private bool player_can_quit = false;
+    //private bool player_can_quit = false;
 
     // controls for the player when entering the game
     public GameObject player;
@@ -97,7 +97,7 @@ public class computer_controler : MonoBehaviour
             gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
 
-            player_can_quit = false;
+            //player_can_quit = false;
             player_can_start = false;
 
             // disable the movment script and UI
@@ -118,14 +118,14 @@ public class computer_controler : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            player_can_quit = false;
+            //player_can_quit = false;
         }
     }
 
 
     public void start_game()
     {
-        player_can_quit = false;
+        //player_can_quit = false;
         // make button go awawy
         start_game_button.SetActive(false);
         start_text_message.SetActive(false);
@@ -163,7 +163,7 @@ public class computer_controler : MonoBehaviour
         start_game_button.SetActive(true);
         start_text_message.SetActive(true);
 
-        player_can_quit = true;
+        //player_can_quit = true;
 
 
 
@@ -189,7 +189,7 @@ public class computer_controler : MonoBehaviour
         optional_UI.SetActive(true);
 
         player_can_start = true;
-        player_can_quit = false;
+       // player_can_quit = false;
 
         // communitcate back to story
         player.GetComponent<story_controller>().finished_website_game();

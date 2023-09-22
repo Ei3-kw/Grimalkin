@@ -18,7 +18,7 @@ public class StopButtonController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("button is alive");
+
     }
 
     // Start is called before the first frame update
@@ -75,7 +75,7 @@ public class StopButtonController : MonoBehaviour
         yield return new WaitForSeconds(2); // wait
         // Load the specified heatmap when the object is clicked
         heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
-        subtitles.text = "USER WILL NOT SEE THIS IN FINAL GAME";
+        subtitles.text = "";
         yield return new WaitForSeconds(5); // wait
 
         tablet.GetComponent<tablet_controller>().update_done();
