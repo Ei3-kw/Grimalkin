@@ -1749,7 +1749,7 @@ MonoBehaviour:
   doorWidth: 0
   doorWidth2: 2
   slidingSpeed: 2
-  Player: {fileID: 0}
+  Player: {fileID: 2087699397}
   dir: -1
   isOpen: 0
 --- !u!1001 &123265107
@@ -8584,7 +8584,11 @@ PrefabInstance:
     - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2087699397}
+    - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+      propertyPath: openandclose
+      value: 
+      objectReference: {fileID: 1926980297}
     - target: {fileID: 8128322320853617336, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9002,9 +9006,17 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+      propertyPath: open
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2087699397}
+    - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+      propertyPath: openandclose
+      value: 
+      objectReference: {fileID: 887501249}
     - target: {fileID: 8128322320853617336, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9231,7 +9243,7 @@ PrefabInstance:
     - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2087699397}
     - target: {fileID: 8128322320853617336, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -11364,7 +11376,7 @@ MonoBehaviour:
   doorWidth: 0
   doorWidth2: 3
   slidingSpeed: 2
-  Player: {fileID: 0}
+  Player: {fileID: 2087699397}
   dir: -1
   isOpen: 0
 --- !u!23 &699576554
@@ -14522,6 +14534,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885656895}
   m_CullTransparentMesh: 1
+--- !u!95 &887501249 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7296751938604968510, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+  m_PrefabInstance: {fileID: 546487979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &889189444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7618384276434467300, guid: fb28b01c668360548b1caee1ee42ac7e, type: 3}
@@ -27568,6 +27585,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3556926673221530414, guid: 20474ee2cc522b94e8489a3245882f1e, type: 3}
   m_PrefabInstance: {fileID: 6272548339921831531}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1562034505 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7296751938604968510, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+  m_PrefabInstance: {fileID: 1727582871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1562436052
 GameObject:
   m_ObjectHideFlags: 0
@@ -30244,7 +30266,11 @@ PrefabInstance:
     - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2087699397}
+    - target: {fileID: 7296751938604968511, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+      propertyPath: openandclose
+      value: 
+      objectReference: {fileID: 1562034505}
     - target: {fileID: 8128322320853617336, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -34047,6 +34073,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5008556356809125375, guid: f01b8dde2f2266c4a9c87acaa4ed6003, type: 3}
   m_PrefabInstance: {fileID: 1924361180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1926980297 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7296751938604968510, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+  m_PrefabInstance: {fileID: 526714946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1927344331
 PrefabInstance:
