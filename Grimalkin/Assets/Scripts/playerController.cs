@@ -40,6 +40,9 @@ public class playerController : MonoBehaviour
     public GameObject shirt;
     public GameObject laptop;
 
+    // end game objs
+    public List<GameObject> end_game_objs;
+
 
 
     // Start is called before the first frame update
@@ -215,6 +218,25 @@ public class playerController : MonoBehaviour
 
                 // tell the object it is being looked at
                 hit.collider.gameObject.GetComponent<camping_item>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+
+            ////////////////////////////////////////////////////////
+            ///////////////////// end game objs /////////////////////////
+            ////////////////////////////////////////////////////////
+            else if (story_stage == "end_game_interactions" && end_game_objs.Contains(hit.collider.gameObject))
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to interact";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the object it is being looked at
+                hit.collider.gameObject.GetComponent<end_game_obj_controller>().look_at();
 
                 // set the eye pointer to be fully coloured
                 Color newColor = new Color(1, 1, 1, 1);

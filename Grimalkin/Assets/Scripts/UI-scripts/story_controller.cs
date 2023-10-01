@@ -70,7 +70,8 @@ public class story_controller : MonoBehaviour
     public GameObject ss_ad_1;
 
 
-
+    public GameObject old_objs;
+    public GameObject new_objs;
 
 
 
@@ -95,7 +96,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_1());
+        StartCoroutine(start_stage_9());
 
 
 
@@ -142,17 +143,10 @@ public class story_controller : MonoBehaviour
         /////// FOR THE SLIDE SHOW
         if (in_ss && Input.GetKeyDown("e"))
         {
-            if (story_stage == "ss_start_waiting") { StartCoroutine(start_ss_sg_1()); }
-            else if (story_stage == "ss_sg_1_waiting") { StartCoroutine(start_ss_sg_2()); }
-            else if (story_stage == "ss_sg_2_waiting") { StartCoroutine(start_ss_sg_3()); }
-            else if (story_stage == "ss_sg_3_waiting") { StartCoroutine(start_ss_sg_4()); }
-            else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_al_1()); }
-            else if (story_stage == "ss_al_1_waiting") { StartCoroutine(start_ss_al_2()); }
-            else if (story_stage == "ss_al_2_waiting") { StartCoroutine(start_ss_ad_1()); }
-            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_end_game()); }
+            if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_end()); }
 
             //end game
-            else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
+            // else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
         }
    
 
@@ -557,7 +551,7 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(5); // wait
 
 
-        StartCoroutine(ending_ss_start());
+        StartCoroutine(ending_ss_1());
 
         yield return null;
 
@@ -566,10 +560,10 @@ public class story_controller : MonoBehaviour
 
 
 
-
-    private IEnumerator start_ss_end_game()
+    /*
+    private IEnumerator ending_ss_end()
     {
-        set_story_stage("ss_end_game");
+        set_story_stage("ending_ss_end");
         ss_all_interaction_slides.SetActive(false);
         ss_press_e_text.SetActive(false);
         
@@ -582,25 +576,53 @@ public class story_controller : MonoBehaviour
 
 
         // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_end_game_waiting");
+        set_story_stage("ending_ss_end_waiting");
+        yield return null;
+    }
+    */
+
+    private IEnumerator ending_ss_end()
+    {
+        set_story_stage("ending_ss_end");
+        in_ss = false;
+
+        // disable old objs
+        old_objs.SetActive(false);
+
+        // enable new objs
+        new_objs.SetActive(true);
+
+        // remove task notifaction
+        notifcations.GetComponent<notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+        // currency_UI.SetActive(false); /////// TODO ? 
+
+        // pop up slide show screen (mosly opaque screen with text)
+        // can still kinda see background
+        ss_screen.SetActive(false);
+
+        // you left for your camping trip
+        // however the consqince from the days before came back to bite
+        ss_start_text.SetActive(false); // set other as false
+        // Press [e] to continue
+        ss_press_e_text.SetActive(false);
+
+        set_story_stage("end_game_interactions");
+
+
         yield return null;
     }
 
 
 
-
-
-
-
-
-
-
-
-    private IEnumerator ending_ss_start()
+    private IEnumerator ending_ss_1()
     {
         in_ss = true;
 
-        set_story_stage("ss_start");
+        set_story_stage("ending_ss_1");
         subtitle_text.text = "";
 
         // remove task notifaction
@@ -621,11 +643,12 @@ public class story_controller : MonoBehaviour
         // Press [e] to continue
         ss_press_e_text.SetActive(true);
 
-        set_story_stage("ss_start_waiting");
+        set_story_stage("ending_ss_1_waiting");
 
         yield return null;
     }
 
+    /*
     
     // the slide show showing the dangers
     ///////////////////////////////////////
@@ -732,7 +755,7 @@ public class story_controller : MonoBehaviour
 
 
 
-
+    */
 
 
 
@@ -741,10 +764,3 @@ public class story_controller : MonoBehaviour
 }
 
 
-
-/*
- 
-        subtitle_text.text = "Game will now exit";
-        yield return new WaitForSeconds(10); // wait
-        Application.Quit();
- */
