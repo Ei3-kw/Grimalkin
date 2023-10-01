@@ -13,6 +13,10 @@ public class Go3DView : MonoBehaviour
     public GameObject passcodePhone;
     public GameObject app;
 
+    public GameObject player;
+    public GameObject optional_UI;
+    public GameObject currency_UI;
+
 
     // Start is called before the first frame update
     // public void OnMouseDown()
@@ -21,7 +25,7 @@ public class Go3DView : MonoBehaviour
     //     myCamera.transform.LookAt(phoneObject.transform.position);
     //     Debug.Log("confimred");
     // }
-     private void OnMouseDown()
+    private void OnMouseDown()
     {
         // Debug.Log("yess");  
         StartCoroutine(ShowTextAndMoveCamera());
@@ -41,9 +45,18 @@ public class Go3DView : MonoBehaviour
         myCamera.transform.position = Go2DView.orginalCameraPosition;
         myCamera.transform.LookAt(phoneObject.transform.position);
         passcodePhone.SetActive(false);  
-        app.SetActive(false);  
+        app.SetActive(false);
 
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+        currency_UI.SetActive(true); /////// TODO ? 
 
+        // lock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        player.GetComponent<story_controller>().code_entered();
     }
    
 }
