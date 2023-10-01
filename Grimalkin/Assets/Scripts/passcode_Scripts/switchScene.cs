@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
     
 
-public class SwitchScene : MonoBehaviour
+public class switchScene : MonoBehaviour
 { 
 
     public void OnMouseDown()
