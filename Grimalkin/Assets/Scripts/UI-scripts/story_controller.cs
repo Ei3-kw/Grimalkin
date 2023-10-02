@@ -38,6 +38,9 @@ public class story_controller : MonoBehaviour
     public GameObject[] camping_items;
 
 
+    public GameObject passcode_phone;
+    public GameObject boxes;
+
     // intro controls
     public GameObject controls_intro;
 
@@ -56,22 +59,11 @@ public class story_controller : MonoBehaviour
     public GameObject ss_start_text;
     public GameObject ss_press_e_text;
 
-    // shopping game
-    public GameObject ss_sg_1;
-    public GameObject ss_sg_2;
-    public GameObject ss_sg_3;
-    public GameObject ss_sg_4;
-
-    // alarm game
-    public GameObject ss_al_1;
-    public GameObject ss_al_2;
-
-    // ad game
-    public GameObject ss_ad_1;
-    public GameObject ss_ad_2;
+    
 
 
-
+    public GameObject old_objs;
+    public GameObject new_objs;
 
 
 
@@ -81,6 +73,7 @@ public class story_controller : MonoBehaviour
     void Start()
     {
         phone.SetActive(false);
+        boxes.SetActive(false);
 
         // define paramas
         subtitle_text = subtitles.GetComponent<TextMeshProUGUI>();
@@ -98,7 +91,7 @@ public class story_controller : MonoBehaviour
         // beging dialog 1
         StartCoroutine(start_stage_1());
 
-
+       
 
     }
 
@@ -143,18 +136,10 @@ public class story_controller : MonoBehaviour
         /////// FOR THE SLIDE SHOW
         if (in_ss && Input.GetKeyDown("e"))
         {
-            if (story_stage == "ss_start_waiting") { StartCoroutine(start_ss_sg_1()); }
-            else if (story_stage == "ss_sg_1_waiting") { StartCoroutine(start_ss_sg_2()); }
-            else if (story_stage == "ss_sg_2_waiting") { StartCoroutine(start_ss_sg_3()); }
-            else if (story_stage == "ss_sg_3_waiting") { StartCoroutine(start_ss_sg_4()); }
-            else if (story_stage == "ss_sg_4_waiting") { StartCoroutine(start_ss_al_1()); }
-            else if (story_stage == "ss_al_1_waiting") { StartCoroutine(start_ss_al_2()); }
-            else if (story_stage == "ss_al_2_waiting") { StartCoroutine(start_ss_ad_1()); }
-            else if (story_stage == "ss_ad_1_waiting") { StartCoroutine(start_ss_ad_2()); }
-            else if (story_stage == "ss_ad_2_waiting") { StartCoroutine(start_ss_end_game()); }
+            if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_end()); }
 
             //end game
-            else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
+            // else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
         }
    
 
@@ -205,6 +190,16 @@ public class story_controller : MonoBehaviour
     public void got_all_items()
     {
         StartCoroutine(start_stage_6());
+    }
+
+    public void opened_boxes()
+    {
+        StartCoroutine(start_stage_10());
+    }
+
+    public void code_entered()
+    {
+        StartCoroutine(start_stage_11());
     }
 
 
@@ -296,7 +291,7 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_3()
     {
         // coffee has been clicked on
-        set_story_stage("bf_look_at_painting");
+        set_story_stage("before_look_at_painting");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
@@ -317,7 +312,6 @@ public class story_controller : MonoBehaviour
         // turn on glow for camping photo
         camping_wall_photo.GetComponent<Outline>().enabled = true;
         set_story_stage("look_at_painting");
-
         yield return null;
     }
 
@@ -548,6 +542,8 @@ public class story_controller : MonoBehaviour
         // ding dong the door bell
         subtitle_text.text = "Oh I think that is the door!";
         yield return new WaitForSeconds(1); // wait
+
+        boxes.SetActive(true);
         subtitle_text.text = "That must be our camping gear arriving!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "";
@@ -556,54 +552,115 @@ public class story_controller : MonoBehaviour
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Go to the door and see what arrived");
 
-        subtitle_text.text = "Uh oh! false alarm... nothing there. I can't wait to head off for camping tomorrow!!!!!!!";
-        yield return new WaitForSeconds(5); // wait
-
-
-        StartCoroutine(ending_ss_start());
+        // highlight boxes
+        set_story_stage("find_boxes");
+        boxes.GetComponent<Outline>().enabled = true;
 
         yield return null;
 
     }
 
-
-
-
-
-    private IEnumerator start_ss_end_game()
+    private IEnumerator start_stage_10()
     {
-        set_story_stage("ss_end_game");
-        ss_all_interaction_slides.SetActive(false);
+        set_story_stage("boxes_found");
+
+        subtitle_text.text = "I have everything thing I need for camping now!!";
+        yield return new WaitForSeconds(2); // wait
+
+        subtitle_text.text = "Oh wait! I need to confirm that the order arrived on my phone before I forget";
+        yield return new WaitForSeconds(4); // wait
+
+        subtitle_text.text = "I think my code is 3512";
+
+        // pop up task notifaction
+        notifcations.GetComponent<notification_controller>().set_notif("Confirm the order on your phone, check kitchen counter (CODE: 3512)");
+        // turn on glow for bed
+        passcode_phone.GetComponent<Outline>().enabled = true;
+        set_story_stage("ender_passcode");
+
+
+
+        yield return null;
+
+    }
+
+    private IEnumerator start_stage_11()
+    {
+        set_story_stage("code_entered");
+        subtitle_text.text = "Ok cool!!";
+        yield return new WaitForSeconds(2); // wait
+
+        subtitle_text.text = "I can't wait for camping tomorow!!";
+        yield return new WaitForSeconds(4); // wait
+
+        StartCoroutine(ending_ss_1());
+        yield return null;
+    }
+
+
+        /*
+        private IEnumerator ending_ss_end()
+        {
+            set_story_stage("ending_ss_end");
+            ss_all_interaction_slides.SetActive(false);
+            ss_press_e_text.SetActive(false);
+
+            // BEcause of this you spennt ___ extra dollars
+            // and couldn't afford food, your partners dog died :<
+            ss_sg_4.SetActive(true);
+            // Press [e] to exit game to desktop
+            ss_exit_text.SetActive(true);
+
+
+
+            // wait for button to be pressed to go to the next slide
+            set_story_stage("ending_ss_end_waiting");
+            yield return null;
+        }
+        */
+
+    private IEnumerator ending_ss_end()
+    {
+        set_story_stage("ending_ss_end");
+        in_ss = false;
+
+        // disable old objs
+        old_objs.SetActive(false);
+
+        // enable new objs
+        new_objs.SetActive(true);
+
+        // remove task notifaction
+        notifcations.GetComponent<notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+        // currency_UI.SetActive(false); /////// TODO ? 
+
+        // pop up slide show screen (mosly opaque screen with text)
+        // can still kinda see background
+        ss_screen.SetActive(false);
+
+        // you left for your camping trip
+        // however the consqince from the days before came back to bite
+        ss_start_text.SetActive(false); // set other as false
+        // Press [e] to continue
         ss_press_e_text.SetActive(false);
-        
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_sg_4.SetActive(true);
-        // Press [e] to exit game to desktop
-        ss_exit_text.SetActive(true);
+
+        set_story_stage("end_game_interactions");
 
 
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_end_game_waiting");
         yield return null;
     }
 
 
 
-
-
-
-
-
-
-
-
-    private IEnumerator ending_ss_start()
+    private IEnumerator ending_ss_1()
     {
         in_ss = true;
 
-        set_story_stage("ss_start");
+        set_story_stage("ending_ss_1");
         subtitle_text.text = "";
 
         // remove task notifaction
@@ -624,11 +681,12 @@ public class story_controller : MonoBehaviour
         // Press [e] to continue
         ss_press_e_text.SetActive(true);
 
-        set_story_stage("ss_start_waiting");
+        set_story_stage("ending_ss_1_waiting");
 
         yield return null;
     }
 
+    /*
     
     // the slide show showing the dangers
     ///////////////////////////////////////
@@ -732,24 +790,10 @@ public class story_controller : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator start_ss_ad_2()
-    {
-        set_story_stage("ss_ad_2");
-        ss_ad_1.SetActive(false);
-
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_ad_2.SetActive(true);
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_ad_2_waiting");
-        yield return null;
-    }
 
 
 
-
-
+    */
 
 
 
@@ -758,10 +802,3 @@ public class story_controller : MonoBehaviour
 }
 
 
-
-/*
- 
-        subtitle_text.text = "Game will now exit";
-        yield return new WaitForSeconds(10); // wait
-        Application.Quit();
- */
