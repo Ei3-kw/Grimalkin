@@ -89,7 +89,7 @@ public class story_controller : MonoBehaviour
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
-        StartCoroutine(start_stage_1());
+        StartCoroutine(start_stage_4());
 
        
 
