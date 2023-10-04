@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     public float rotationY;
     public CharacterController character;
     public Camera cam;
+    public AudioSource footStep;
     public bool simVision = true;
     Vector2 inputAxes;
     Vector2 visInputAxes;
@@ -84,18 +85,12 @@ public class playerController : MonoBehaviour
         UpdateAxes();
         Vector3 move = inputAxes.x * transform.forward + inputAxes.y * transform.right;
         character.Move(move * moveSpeed * Time.deltaTime); 
+        if (move.magnitude > 0){
+            footStep.UnPause();
+        } else {
+            footStep.Pause();
+        }
         transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-
-        //ray casting 
-        // if (Input.GetKeyDown(KeyCode.P))
-        // {
-        //     Debug.Log("sending out ray");
-        //     Ray ray = cam.ScreenPointToRay(pointerPos);
-        //     if (Physics.Raycast(ray, out hit)) {
-        //         Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
-        //     }
-        // }
-
 
         // check what the player is looking at
         Ray looking_at = cam.ScreenPointToRay(pointerPos);
