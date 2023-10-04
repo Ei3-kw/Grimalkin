@@ -66,7 +66,6 @@ public class observer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("what");
         observations = new Observations(recentSize);
     }
 
