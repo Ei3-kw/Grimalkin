@@ -91,8 +91,8 @@ public class story_controller : MonoBehaviour
         // beging dialog 1
 
         //StartCoroutine(start_stage_4());
-        StartCoroutine(start_stage_11()); // end scenes
-        //StartCoroutine(start_stage_6());
+        //StartCoroutine(start_stage_11()); // end scenes
+        StartCoroutine(start_stage_11()); // comouter game
 
 
     }

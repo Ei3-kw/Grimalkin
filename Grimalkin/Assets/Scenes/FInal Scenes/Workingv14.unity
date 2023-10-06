@@ -33389,7 +33389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7482ab206524d5c81b9fc0d0d1c018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSens: {x: 0.5, y: 0.5}
+  camSens: {x: 0.2, y: 0.2}
   moveSpeed: 5
   visMoveSpeed: 10
   visRatio: {x: 60, y: 30}
