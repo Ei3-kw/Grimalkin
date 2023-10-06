@@ -68,7 +68,7 @@ public class story_controller : MonoBehaviour
     public GameObject old_objs;
     public GameObject new_objs;
 
-
+    public Transform starting_pos;
 
 
 
@@ -90,17 +90,19 @@ public class story_controller : MonoBehaviour
         ss_start_text.SetActive(false);
         ss_press_e_text.SetActive(false);
 
-        optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
-
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
 
         //StartCoroutine(start_stage_4());
         //StartCoroutine(start_stage_11()); // end scenes
-        StartCoroutine(start_stage_11()); // comouter game
+        //StartCoroutine(start_stage_11()); // comouter game
 
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+        currency_UI.SetActive(false);
+        set_story_stage("start_screen");
 
     }
 
@@ -117,6 +119,14 @@ public class story_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // if we are about to begin the game
+        // and press 'e' to begin
+        if (story_stage == "start_screen" && Input.GetKeyDown("e"))
+        {
+            StartCoroutine(start_stage_1()); // begin the game from the start
+        }
+
         // if they want to open their phone for the first time
         if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("e"))
         {
@@ -225,16 +235,21 @@ public class story_controller : MonoBehaviour
     // DIALOG 1
     private IEnumerator start_stage_1()
     {
+        Debug.Log("helerlafoeofp");
+        // move player to starting pos
+        Vector3 targetPosition = starting_pos.position;
+        Quaternion targetRotation = starting_pos.rotation;
+        Transform player_pos = player.GetComponent<Transform>();
+        player_pos.position = targetPosition;
+        player_pos.rotation = targetRotation;
 
-        // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
+
+
 
         set_story_stage("start_dialog");
 
         // screen fade in
-        yield return new WaitForSeconds(3); // wait
+        // yield return new WaitForSeconds(3); // wait
 
         // notifcation pop up
         yield return new WaitForSeconds(2); // wait
