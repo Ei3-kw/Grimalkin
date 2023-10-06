@@ -10,7 +10,6 @@ public class story_controller : MonoBehaviour
 
     public GameObject player;
     public GameObject optional_UI;
-    public GameObject currency_UI;
 
     public GameObject subtitles;
     public GameObject notifcations;
@@ -105,7 +104,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
         set_story_stage("start_screen");
         start_game_text.SetActive(true);
 
@@ -288,7 +286,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("start_dialog");
 
         // screen fade in
-        yield return new WaitForSeconds(4); // wait
+        yield return new WaitForSeconds(3); // wait
 
 
         // subtiles 1
@@ -319,7 +317,6 @@ public class story_controller : MonoBehaviour
         // re enable the movment script and UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
 
 
         // beging game 1
@@ -538,7 +535,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
 
 
 
@@ -566,7 +562,6 @@ public class story_controller : MonoBehaviour
         // re enable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
 
 
         //
@@ -697,7 +692,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        // currency_UI.SetActive(false); /////// TODO ? 
 
         // pop up slide show screen (mosly opaque screen with text)
         // can still kinda see background
@@ -730,7 +724,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
 
         // pop up slide show screen (mosly opaque screen with text)
         // can still kinda see background

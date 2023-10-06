@@ -11,7 +11,6 @@ public class Go2DView : MonoBehaviour
 
     public GameObject player;
     public GameObject optional_UI;
-    public GameObject currency_UI;
 
 
     private void Start()
@@ -34,7 +33,6 @@ public class Go2DView : MonoBehaviour
             orginalCameraPosition = mainCamera.transform.position;
             player.GetComponent<playerController>().enabled = false;
             optional_UI.SetActive(false);
-            currency_UI.SetActive(false); /////// TODO ? 
             Transform phoneTransform = phoneObject.transform; // Replace 'phoneObject' with your phone's GameObject reference.
 
             //int cameraHeightAbovePhone = 6;
@@ -50,7 +48,6 @@ public class Go2DView : MonoBehaviour
             // disable all player controls and excess UI
             player.GetComponent<playerController>().enabled = false;
             optional_UI.SetActive(false);
-            currency_UI.SetActive(false); /////// TODO ? 
 
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
