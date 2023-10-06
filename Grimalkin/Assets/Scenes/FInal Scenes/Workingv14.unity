@@ -6334,7 +6334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press [f] to replay the shopping experience
+  m_text: Press [f] to re open social media
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8066,7 +8066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &488874437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8871,7 +8871,7 @@ GameObject:
   - component: {fileID: 542376750}
   - component: {fileID: 542376752}
   m_Layer: 0
-  m_Name: socialmedia_phone
+  m_Name: social_media_phone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8939,6 +8939,7 @@ MonoBehaviour:
   slides:
   - {fileID: 135766108}
   - {fileID: 488874436}
+  - {fileID: 807492868}
   has_demo: 1
   obj_type: phone
   demo_obj: {fileID: 1667669071}
@@ -12675,7 +12676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &807492869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14119,7 +14120,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: If you wish, you can now re open the phone to see if you can notice the
-    malicious practices for yourself
+    malicious practices for yourself.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29216,6 +29217,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2087699397}
     m_Modifications:
+    - target: {fileID: 153372442803117098, guid: 633bb870b3e791f4fbda79d3f4ce877f, type: 3}
+      propertyPath: demo_text
+      value: 
+      objectReference: {fileID: 1407204753}
     - target: {fileID: 153372442803117098, guid: 633bb870b3e791f4fbda79d3f4ce877f, type: 3}
       propertyPath: myObserver
       value: 
