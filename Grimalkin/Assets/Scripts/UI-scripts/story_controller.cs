@@ -134,7 +134,7 @@ public class story_controller : MonoBehaviour
         // and press 'e' to begin
         if (story_stage == "start_screen")
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("1"))
             {
                 // move player to starting pos
                 Vector3 targetPosition = starting_pos.position;
@@ -147,7 +147,7 @@ public class story_controller : MonoBehaviour
                 start_game_text.SetActive(false);
                 StartCoroutine(start_stage_1()); // begin the game from the start
             }
-            else if (Input.GetKeyDown("f"))
+            else if (Input.GetKeyDown("2"))
             {
                 // move player to starting pos
                 Vector3 targetPosition = starting_pos.position;
