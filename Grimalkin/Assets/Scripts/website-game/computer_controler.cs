@@ -122,6 +122,35 @@ public class computer_controler : MonoBehaviour
         }
     }
 
+    // Will be called when the "demo version" of the game should begin
+    public void start_demo()
+    {
+        // once player starts for the first time glow ends
+        //gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
+        start_text_message.SetActive(true);
+
+        //player_can_quit = false;
+        player_can_start = false;
+
+        // disable the movment script and UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+
+        // move the camera into position
+        // Calculate the position to move the camera to
+        Vector3 targetPosition = camera_pos_for_game.position;
+        Quaternion targetRotation = camera_pos_for_game.rotation;
+        Transform camera = player_cam.GetComponent<Transform>();
+
+        // Interpolate the camera's position toward the target position
+        camera.position = targetPosition;
+        camera.rotation = targetRotation;
+
+        // unlock the cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     public void start_game()
     {

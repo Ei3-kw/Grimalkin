@@ -18,17 +18,37 @@ public class end_game_obj_controller : MonoBehaviour
 
 
     public GameObject[] slides;
+    public bool has_demo = false;
+    public string obj_type = "None";
+    public GameObject demo_obj;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if we go to the next slide
+        // if we are on the last slide and press F
+        // this means we want to begin the demo (if there is one)
+        if (has_demo && next_slide == slides.Length && Input.GetKeyDown("f"))
+        {
+            exit_ss();
+
+            // start the respective demo
+            if (obj_type == "computer")
+            {
+                demo_obj.GetComponent<computer_controler>().start_demo();
+            }
+            else if (obj_type == "phone")
+            {
+                //demo_obj.GetComponent<phone_controler>().start_demo();
+            }
+        }
+
+        // if we want to go to the next slide (press)
         if (in_slides && Input.GetKeyDown("e"))
         {
             // if there are no more slides left
