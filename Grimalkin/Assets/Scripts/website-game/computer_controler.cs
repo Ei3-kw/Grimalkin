@@ -26,8 +26,7 @@ public class computer_controler : MonoBehaviour
     public Transform player_cam_pos; // old cam pos before game
     public GameObject optional_UI;
 
-    // UI to adjust currency
-    public GameObject currency_UI;
+    // UI to adjust notifications
     public GameObject notifcations;
 
     private bool demo_mode = false;
@@ -179,9 +178,6 @@ public class computer_controler : MonoBehaviour
         int final_cost = total_inital_cost + total_extra_paid;
         checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${final_cost} </color>";
 
-        // adust money and credits
-        currency_UI.GetComponent<currency_controler>().change_money(-final_cost);
-        currency_UI.GetComponent<currency_controler>().change_credits(3);
 
     }
 

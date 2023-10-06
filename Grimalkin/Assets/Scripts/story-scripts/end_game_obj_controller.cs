@@ -11,7 +11,6 @@ public class end_game_obj_controller : MonoBehaviour
 
     public GameObject player;
     public GameObject optional_UI;
-    public GameObject currency_UI;
 
     public GameObject ss_screen;
     public GameObject ss_press_e_text;
@@ -80,7 +79,6 @@ public class end_game_obj_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
 
         // pop up slide show screen (mosly opaque screen with text)
         // can still kinda see background
@@ -101,7 +99,6 @@ public class end_game_obj_controller : MonoBehaviour
             // disable all player controls and excess UI
             player.GetComponent<playerController>().enabled = false;
             optional_UI.SetActive(false);
-            currency_UI.SetActive(false);
 
             // pop up slide show screen (mosly opaque screen with text)
             // can still kinda see background

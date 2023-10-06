@@ -54,7 +54,7 @@ public class phoneCon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        demo_mode = false;
+        //demo_mode = false;
         currentPost = posters[0].name;
         imageMat.mainTexture = posters[0].collection[0].image;
         phoneText.text = posters[0].collection[0].Text;
@@ -73,6 +73,7 @@ public class phoneCon : MonoBehaviour
         // if in demo mode and wish to put the phone away
         if (demo_mode && Input.GetKeyDown("f"))
         {
+            Debug.Log("demo mode off");
             demo_text.SetActive(false); // turn of the instruction text
             gameObject.SetActive(false); // turn the phone off
         }
@@ -124,6 +125,7 @@ public class phoneCon : MonoBehaviour
     public void start_demo()
     {
         demo_mode = true; // signify that we are in the demo
+        Debug.Log("demo mode ONNNN");
     }
 
 
