@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     public float rotationY;
     public CharacterController character;
     public Camera cam;
+    public AudioSource footStep;
     public bool simVision = true;
     Vector2 inputAxes;
     Vector2 visInputAxes;
@@ -41,6 +42,8 @@ public class playerController : MonoBehaviour
     // items to pick up for camping
     public GameObject shirt;
     public GameObject laptop;
+    public GameObject backpack;
+    public GameObject waterbottle;
 
     // end game objs
     public List<GameObject> end_game_objs;
@@ -82,18 +85,12 @@ public class playerController : MonoBehaviour
         UpdateAxes();
         Vector3 move = inputAxes.x * transform.forward + inputAxes.y * transform.right;
         character.Move(move * moveSpeed * Time.deltaTime); 
+        if (move.magnitude > 0){
+            footStep.UnPause();
+        } else {
+            footStep.Pause();
+        }
         transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-
-        //ray casting 
-        // if (Input.GetKeyDown(KeyCode.P))
-        // {
-        //     Debug.Log("sending out ray");
-        //     Ray ray = cam.ScreenPointToRay(pointerPos);
-        //     if (Physics.Raycast(ray, out hit)) {
-        //         Debug.Log(hit.collider.gameObject.name + "was hit by my eyes");
-        //     }
-        // }
-
 
         // check what the player is looking at
         Ray looking_at = cam.ScreenPointToRay(pointerPos);
@@ -216,6 +213,42 @@ public class playerController : MonoBehaviour
                 // show a a message on screen that the user can now interact
                 TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
                 interaction_text.text = "Press [e] to pick up laptop";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the object it is being looked at
+                hit.collider.gameObject.GetComponent<camping_item>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            ////////////////////////////////////////////////////////
+            ///////////////////// backpack /////////////////////////
+            ////////////////////////////////////////////////////////
+            else if (story_stage == "getting_items" && hit.collider.gameObject == backpack)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to pick up backpack";
+                interaction_UI.SetActive(true); // turn the UI element on
+
+                // tell the object it is being looked at
+                hit.collider.gameObject.GetComponent<camping_item>().look_at();
+
+                // set the eye pointer to be fully coloured
+                Color newColor = new Color(1, 1, 1, 1);
+                eye_pointer.GetComponent<Image>().color = newColor;
+            }
+            ////////////////////////////////////////////////////////
+            ///////////////////// backpack /////////////////////////
+            ////////////////////////////////////////////////////////
+            else if (story_stage == "getting_items" && hit.collider.gameObject == waterbottle)
+            {
+                Debug.Log(hit.collider.gameObject.name + "was registered");
+                // show a a message on screen that the user can now interact
+                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
+                interaction_text.text = "Press [e] to pick up water bottle";
                 interaction_UI.SetActive(true); // turn the UI element on
 
                 // tell the object it is being looked at

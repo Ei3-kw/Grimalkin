@@ -15,8 +15,6 @@ public class Go3DView : MonoBehaviour
 
     public GameObject player;
     public GameObject optional_UI;
-    public GameObject currency_UI;
-
 
     // Start is called before the first frame update
     // public void OnMouseDown()
@@ -50,7 +48,6 @@ public class Go3DView : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true); /////// TODO ? 
 
         // lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
