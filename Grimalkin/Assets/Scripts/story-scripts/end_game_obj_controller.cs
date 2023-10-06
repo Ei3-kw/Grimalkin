@@ -21,6 +21,7 @@ public class end_game_obj_controller : MonoBehaviour
     public bool has_demo = false;
     public string obj_type = "None";
     public GameObject demo_obj;
+    public GameObject demo_text;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,9 @@ public class end_game_obj_controller : MonoBehaviour
             }
             else if (obj_type == "phone")
             {
-                //demo_obj.GetComponent<phone_controler>().start_demo();
+                demo_obj.SetActive(true); // turn on the phone
+                demo_obj.GetComponent<phoneCon>().start_demo();
+                demo_text.SetActive(true); // turn on text to allow user to exit demo
             }
         }
 
@@ -70,6 +73,7 @@ public class end_game_obj_controller : MonoBehaviour
 
     private void exit_ss()
     {
+        next_slide = 1; // back to the start of the slide show
         slides[slides.Length - 1].SetActive(false); // turn off last slide
         in_slides = false;
 
