@@ -69,12 +69,14 @@ public class story_controller : MonoBehaviour
     public GameObject new_objs;
 
     public Transform starting_pos;
-
+    public GameObject start_game_text;
+    public GameObject fade_in_start;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        fade_in_start.SetActive(false);
         // Cap FPSto ensure consistant behaviour and preformance
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;
@@ -103,6 +105,7 @@ public class story_controller : MonoBehaviour
         optional_UI.SetActive(false);
         currency_UI.SetActive(false);
         set_story_stage("start_screen");
+        start_game_text.SetActive(true);
 
     }
 
@@ -235,7 +238,9 @@ public class story_controller : MonoBehaviour
     // DIALOG 1
     private IEnumerator start_stage_1()
     {
-        Debug.Log("helerlafoeofp");
+
+        start_game_text.SetActive(false);
+        fade_in_start.SetActive(true);
         // move player to starting pos
         Vector3 targetPosition = starting_pos.position;
         Quaternion targetRotation = starting_pos.rotation;
@@ -249,10 +254,8 @@ public class story_controller : MonoBehaviour
         set_story_stage("start_dialog");
 
         // screen fade in
-        // yield return new WaitForSeconds(3); // wait
+        yield return new WaitForSeconds(4); // wait
 
-        // notifcation pop up
-        yield return new WaitForSeconds(2); // wait
 
         // subtiles 1
         subtitle_text.text = "Oh Uh... Our anniversary is this weekend...";
