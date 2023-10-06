@@ -30,6 +30,8 @@ public class computer_controler : MonoBehaviour
     public GameObject currency_UI;
     public GameObject notifcations;
 
+    private bool demo_mode = false;
+
 
 
 
@@ -125,8 +127,10 @@ public class computer_controler : MonoBehaviour
     // Will be called when the "demo version" of the game should begin
     public void start_demo()
     {
+        demo_mode = true;
+
         // once player starts for the first time glow ends
-        //gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
+        gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
         start_text_message.SetActive(true);
 
         //player_can_quit = false;
@@ -183,8 +187,6 @@ public class computer_controler : MonoBehaviour
 
     public void open_start_screen()
     {
-
-        Debug.Log("test");
         // remove end gaem screen
         end_game_screen.SetActive(false);
 
@@ -220,8 +222,20 @@ public class computer_controler : MonoBehaviour
         player_can_start = true;
        // player_can_quit = false;
 
-        // communitcate back to story
-        player.GetComponent<story_controller>().finished_website_game();
+        
+
+
+        if (demo_mode) // if we are only playing a demo
+        {
+            // turn the glow back on
+            gameObject.GetComponent<Outline>().enabled = true; 
+        }
+        else // if we are in the main story
+        {
+            // communitcate back to story
+            player.GetComponent<story_controller>().finished_website_game();
+        }
+
     }
 
 }
