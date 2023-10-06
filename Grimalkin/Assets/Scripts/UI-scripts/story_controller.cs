@@ -72,6 +72,8 @@ public class story_controller : MonoBehaviour
     public GameObject start_game_text;
     public GameObject fade_in_start;
 
+    public GameObject pause_menu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -122,13 +124,50 @@ public class story_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if user wants to bring up the excape menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause_menu.SetActive(true);
+        }
 
         // if we are about to begin the game
         // and press 'e' to begin
-        if (story_stage == "start_screen" && Input.GetKeyDown("e"))
+        if (story_stage == "start_screen")
         {
-            StartCoroutine(start_stage_1()); // begin the game from the start
+            if (Input.GetKeyDown("e"))
+            {
+                // move player to starting pos
+                Vector3 targetPosition = starting_pos.position;
+                Quaternion targetRotation = starting_pos.rotation;
+                Transform player_pos = player.GetComponent<Transform>();
+                player_pos.position = targetPosition;
+                player_pos.rotation = targetRotation;
+
+                // turn off start game text
+                start_game_text.SetActive(false);
+                StartCoroutine(start_stage_1()); // begin the game from the start
+            }
+            else if (Input.GetKeyDown("f"))
+            {
+                // move player to starting pos
+                Vector3 targetPosition = starting_pos.position;
+                Quaternion targetRotation = starting_pos.rotation;
+                Transform player_pos = player.GetComponent<Transform>();
+                player_pos.position = targetPosition;
+                player_pos.rotation = targetRotation;
+
+                // turn off start game text
+                start_game_text.SetActive(false);
+                StartCoroutine(ending_ss_1()); // skip to end game demo scenes
+
+            }
+                
         }
+
+
+
+
+
 
         // if they want to open their phone for the first time
         if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("e"))
@@ -239,14 +278,9 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_1()
     {
 
-        start_game_text.SetActive(false);
+        
         fade_in_start.SetActive(true);
-        // move player to starting pos
-        Vector3 targetPosition = starting_pos.position;
-        Quaternion targetRotation = starting_pos.rotation;
-        Transform player_pos = player.GetComponent<Transform>();
-        player_pos.position = targetPosition;
-        player_pos.rotation = targetRotation;
+
 
 
 
