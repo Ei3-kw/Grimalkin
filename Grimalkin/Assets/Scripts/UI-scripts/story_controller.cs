@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class story_controller : MonoBehaviour
 {
+    // FPS cap for game to ensure consistant behaviour and preformance
+    public int targetFrameRate = 60;
+
     public GameObject player;
     public GameObject optional_UI;
     public GameObject currency_UI;
@@ -72,6 +75,10 @@ public class story_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Cap FPSto ensure consistant behaviour and preformance
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFrameRate;
+
         phone.SetActive(false);
         boxes.SetActive(false);
 
