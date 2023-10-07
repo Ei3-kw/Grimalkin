@@ -73,13 +73,13 @@ public class phoneCon : MonoBehaviour
             demo_text.SetActive(false); // turn of the instruction text
             gameObject.SetActive(false); // turn the phone off
         }
-        if (!phoneON &&  Time.time > nextNotificationTime ){
-            nextNotificationTime = Time.time  + NotificationDelay;
-            if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
-                phoneON = !phoneON;
-                phoneBody.SetActive(phoneON);
-            }
-        }
+        // if (!phoneON &&  Time.time > nextNotificationTime ){
+        //     nextNotificationTime = Time.time  + NotificationDelay;
+        //     if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
+        //         phoneON = !phoneON;
+        //         phoneBody.SetActive(phoneON);
+        //     }
+        // }
         if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
         {   
             nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
