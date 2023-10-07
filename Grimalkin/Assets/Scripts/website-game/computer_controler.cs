@@ -26,9 +26,10 @@ public class computer_controler : MonoBehaviour
     public Transform player_cam_pos; // old cam pos before game
     public GameObject optional_UI;
 
-    // UI to adjust currency
-    public GameObject currency_UI;
+    // UI to adjust notifications
     public GameObject notifcations;
+
+    private bool demo_mode = false;
 
 
 
@@ -122,6 +123,37 @@ public class computer_controler : MonoBehaviour
         }
     }
 
+    // Will be called when the "demo version" of the game should begin
+    public void start_demo()
+    {
+        demo_mode = true;
+
+        // once player starts for the first time glow ends
+        gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
+        start_text_message.SetActive(true);
+
+        //player_can_quit = false;
+        player_can_start = false;
+
+        // disable the movment script and UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+
+        // move the camera into position
+        // Calculate the position to move the camera to
+        Vector3 targetPosition = camera_pos_for_game.position;
+        Quaternion targetRotation = camera_pos_for_game.rotation;
+        Transform camera = player_cam.GetComponent<Transform>();
+
+        // Interpolate the camera's position toward the target position
+        camera.position = targetPosition;
+        camera.rotation = targetRotation;
+
+        // unlock the cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     public void start_game()
     {
@@ -146,16 +178,11 @@ public class computer_controler : MonoBehaviour
         int final_cost = total_inital_cost + total_extra_paid;
         checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${final_cost} </color>";
 
-        // adust money and credits
-        currency_UI.GetComponent<currency_controler>().change_money(-final_cost);
-        currency_UI.GetComponent<currency_controler>().change_credits(3);
 
     }
 
     public void open_start_screen()
     {
-
-        Debug.Log("test");
         // remove end gaem screen
         end_game_screen.SetActive(false);
 
@@ -191,8 +218,20 @@ public class computer_controler : MonoBehaviour
         player_can_start = true;
        // player_can_quit = false;
 
-        // communitcate back to story
-        player.GetComponent<story_controller>().finished_website_game();
+        
+
+
+        if (demo_mode) // if we are only playing a demo
+        {
+            // turn the glow back on
+            gameObject.GetComponent<Outline>().enabled = true; 
+        }
+        else // if we are in the main story
+        {
+            // communitcate back to story
+            player.GetComponent<story_controller>().finished_website_game();
+        }
+
     }
 
 }

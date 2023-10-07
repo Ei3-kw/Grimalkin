@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class story_controller : MonoBehaviour
 {
+    // FPS cap for game to ensure consistant behaviour and preformance
+    public int targetFrameRate = 60;
+
     public GameObject player;
     public GameObject optional_UI;
-    public GameObject currency_UI;
 
     public GameObject subtitles;
     public GameObject notifcations;
@@ -68,13 +70,21 @@ public class story_controller : MonoBehaviour
     public Material night;
     public Material morning;
 
+    public Transform starting_pos;
+    public GameObject start_game_text;
+    public GameObject fade_in_start;
 
-
+    public GameObject pause_menu;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        fade_in_start.SetActive(false);
+        // Cap FPSto ensure consistant behaviour and preformance
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFrameRate;
+
         phone.SetActive(false);
         boxes.SetActive(false);
 
@@ -86,17 +96,17 @@ public class story_controller : MonoBehaviour
         ss_start_text.SetActive(false);
         ss_press_e_text.SetActive(false);
 
-        optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
-
 
         ////// WHERE TO BEGIN ? ////////////
         // beging dialog 1
 
         //StartCoroutine(start_stage_4());
-        StartCoroutine(start_stage_1()); // end scenes
-        //StartCoroutine(start_stage_6());
 
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+        set_story_stage("start_screen");
+        start_game_text.SetActive(true);
 
     }
 
@@ -113,6 +123,51 @@ public class story_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if user wants to bring up the excape menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause_menu.SetActive(true);
+        }
+
+        // if we are about to begin the game
+        // and press 'e' to begin
+        if (story_stage == "start_screen")
+        {
+            if (Input.GetKeyDown("1"))
+            {
+                // move player to starting pos
+                Vector3 targetPosition = starting_pos.position;
+                Quaternion targetRotation = starting_pos.rotation;
+                Transform player_pos = player.GetComponent<Transform>();
+                player_pos.position = targetPosition;
+                player_pos.rotation = targetRotation;
+
+                // turn off start game text
+                start_game_text.SetActive(false);
+                StartCoroutine(start_stage_1()); // begin the game from the start
+            }
+            else if (Input.GetKeyDown("2"))
+            {
+                // move player to starting pos
+                Vector3 targetPosition = starting_pos.position;
+                Quaternion targetRotation = starting_pos.rotation;
+                Transform player_pos = player.GetComponent<Transform>();
+                player_pos.position = targetPosition;
+                player_pos.rotation = targetRotation;
+
+                // turn off start game text
+                start_game_text.SetActive(false);
+                StartCoroutine(ending_ss_1()); // skip to end game demo scenes
+
+            }
+                
+        }
+
+
+
+
+
+
         // if they want to open their phone for the first time
         if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("e"))
         {
@@ -222,18 +277,18 @@ public class story_controller : MonoBehaviour
     private IEnumerator start_stage_1()
     {
 
-        // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
+        
+        fade_in_start.SetActive(true);
+
+
+
+
 
         set_story_stage("start_dialog");
 
         // screen fade in
         yield return new WaitForSeconds(3); // wait
 
-        // notifcation pop up
-        yield return new WaitForSeconds(2); // wait
 
         // subtiles 1
         subtitle_text.text = "Oh Uh... Our anniversary is this weekend...";
@@ -263,7 +318,6 @@ public class story_controller : MonoBehaviour
         // re enable the movment script and UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
 
 
         // beging game 1
@@ -482,7 +536,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
 
 
 
@@ -511,7 +564,6 @@ public class story_controller : MonoBehaviour
         // re enable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        currency_UI.SetActive(true);
 
 
         //
@@ -642,7 +694,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        // currency_UI.SetActive(false); /////// TODO ? 
 
         // pop up slide show screen (mosly opaque screen with text)
         // can still kinda see background
@@ -675,7 +726,6 @@ public class story_controller : MonoBehaviour
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
-        currency_UI.SetActive(false);
 
         // pop up slide show screen (mosly opaque screen with text)
         // can still kinda see background
