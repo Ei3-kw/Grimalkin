@@ -33992,7 +33992,6 @@ MonoBehaviour:
   boxes: {fileID: 642169423}
   shirt: {fileID: 1375785628}
   laptop: {fileID: 982133669}
-  backpack: {fileID: 0}
   waterbottle: {fileID: 1175049847}
   end_game_objs:
   - {fileID: 1107718376}
@@ -34027,7 +34026,6 @@ MonoBehaviour:
   camping_items:
   - {fileID: 1375785628}
   - {fileID: 982133669}
-  - {fileID: 0}
   - {fileID: 1175049847}
   passcode_phone: {fileID: 880073099}
   boxes: {fileID: 642169423}
