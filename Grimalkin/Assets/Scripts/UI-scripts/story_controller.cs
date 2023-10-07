@@ -135,6 +135,9 @@ public class story_controller : MonoBehaviour
         {
             if (Input.GetKeyDown("1"))
             {
+                player.GetComponent<playerController>().enabled = true;
+                optional_UI.SetActive(true);
+
                 // move player to starting pos
                 Vector3 targetPosition = starting_pos.position;
                 Quaternion targetRotation = starting_pos.rotation;
@@ -144,7 +147,7 @@ public class story_controller : MonoBehaviour
 
                 // turn off start game text
                 start_game_text.SetActive(false);
-                StartCoroutine(start_stage_1()); // begin the game from the start
+                StartCoroutine(start_stage_8()); // begin the game from the start
             }
             else if (Input.GetKeyDown("2"))
             {
@@ -276,8 +279,9 @@ public class story_controller : MonoBehaviour
     // DIALOG 1
     private IEnumerator start_stage_1()
     {
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
 
-        
         fade_in_start.SetActive(true);
 
 

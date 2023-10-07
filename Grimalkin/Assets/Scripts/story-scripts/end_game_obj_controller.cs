@@ -48,6 +48,10 @@ public class end_game_obj_controller : MonoBehaviour
                 demo_obj.GetComponent<phoneCon>().start_demo();
                 demo_text.SetActive(true); // turn on text to allow user to exit demo
             }
+            else if (obj_type == "tablet")
+            {
+                demo_obj.GetComponent<tablet_controller>().start_demo();
+            }
         }
 
         // if we want to go to the next slide (press)
