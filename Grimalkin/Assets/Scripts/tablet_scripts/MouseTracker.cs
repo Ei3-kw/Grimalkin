@@ -51,7 +51,7 @@ public class MouseTracker : MonoBehaviour
         }
     }
 
-    public void StartTracking()
+    public static void StartTracking()
     {
         isTracking = true;
         // Clear the previous data if needed.

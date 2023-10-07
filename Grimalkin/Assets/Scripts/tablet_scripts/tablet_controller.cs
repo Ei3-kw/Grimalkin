@@ -8,11 +8,15 @@ public class tablet_controller : MonoBehaviour
     public GameObject player_cam;
     public Transform player_cam_pos;
     public GameObject alarm;
+    public GameObject stop_button;
 
     public GameObject alarm_game;
 
     public GameObject optional_UI;
     public GameObject player;
+
+
+    private bool demo_mode = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,13 @@ public class tablet_controller : MonoBehaviour
         }
     }
 
+    public void start_demo()
+    {
+        demo_mode = true;
+        MouseTracker.StartTracking();
+        StartCoroutine(turn_on());
+    }
+
     private IEnumerator turn_on()
     {
         // once player starts for the first time glow ends
@@ -72,6 +83,11 @@ public class tablet_controller : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f); // wait
         alarm_game.SetActive(true);
+        if (demo_mode)
+        {
+            stop_button.GetComponent<StopButtonController>().force_start();
+        }
+        
         yield return null;
 
     }
@@ -101,6 +117,8 @@ public class tablet_controller : MonoBehaviour
         // re enable the movment script and UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
+
+        if (demo_mode) { gameObject.GetComponent<Outline>().enabled = true; } // turn red glow back on to replay if desired
         yield return null;
 
     }

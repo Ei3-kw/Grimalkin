@@ -42,7 +42,6 @@ public class playerController : MonoBehaviour
     // items to pick up for camping
     public GameObject shirt;
     public GameObject laptop;
-    public GameObject backpack;
     public GameObject waterbottle;
 
     // end game objs
@@ -223,25 +222,7 @@ public class playerController : MonoBehaviour
                 eye_pointer.GetComponent<Image>().color = newColor;
             }
             ////////////////////////////////////////////////////////
-            ///////////////////// backpack /////////////////////////
-            ////////////////////////////////////////////////////////
-            else if (story_stage == "getting_items" && hit.collider.gameObject == backpack)
-            {
-                Debug.Log(hit.collider.gameObject.name + "was registered");
-                // show a a message on screen that the user can now interact
-                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
-                interaction_text.text = "Press [e] to pick up backpack";
-                interaction_UI.SetActive(true); // turn the UI element on
-
-                // tell the object it is being looked at
-                hit.collider.gameObject.GetComponent<camping_item>().look_at();
-
-                // set the eye pointer to be fully coloured
-                Color newColor = new Color(1, 1, 1, 1);
-                eye_pointer.GetComponent<Image>().color = newColor;
-            }
-            ////////////////////////////////////////////////////////
-            ///////////////////// backpack /////////////////////////
+            ///////////////////// water bottle /////////////////////////
             ////////////////////////////////////////////////////////
             else if (story_stage == "getting_items" && hit.collider.gameObject == waterbottle)
             {

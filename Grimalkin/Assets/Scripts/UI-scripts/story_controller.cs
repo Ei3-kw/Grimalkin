@@ -135,6 +135,9 @@ public class story_controller : MonoBehaviour
         {
             if (Input.GetKeyDown("1"))
             {
+                player.GetComponent<playerController>().enabled = true;
+                optional_UI.SetActive(true);
+
                 // move player to starting pos
                 Vector3 targetPosition = starting_pos.position;
                 Quaternion targetRotation = starting_pos.rotation;
@@ -144,7 +147,7 @@ public class story_controller : MonoBehaviour
 
                 // turn off start game text
                 start_game_text.SetActive(false);
-                StartCoroutine(start_stage_1()); // begin the game from the start
+                StartCoroutine(start_stage_8()); // begin the game from the start
             }
             else if (Input.GetKeyDown("2"))
             {
@@ -276,8 +279,9 @@ public class story_controller : MonoBehaviour
     // DIALOG 1
     private IEnumerator start_stage_1()
     {
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
 
-        
         fade_in_start.SetActive(true);
 
 
@@ -416,7 +420,7 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().remove_notif();
 
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
-        yield return new WaitForSeconds(10); // wait
+        yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "I just need to find these items around the house and pick them up";
         yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "I can look at photos of the camp site while I collect the items!";
@@ -502,7 +506,7 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I think I have all the items I need for camping...";
         yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "I Just need to hope they all arrive in time";
+        subtitle_text.text = "I just need to hope they all arrive in time";
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Wow it is getting late...";
         yield return new WaitForSeconds(2); // wait
