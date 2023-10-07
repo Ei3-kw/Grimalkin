@@ -22315,6 +22315,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 845592954}
     - target: {fileID: 5603754784733221176, guid: 20474ee2cc522b94e8489a3245882f1e, type: 3}
+      propertyPath: demo_mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5603754784733221176, guid: 20474ee2cc522b94e8489a3245882f1e, type: 3}
       propertyPath: subtitles
       value: 
       objectReference: {fileID: 2021838269}
@@ -22382,8 +22386,7 @@ PrefabInstance:
       propertyPath: player_cam_pos
       value: 
       objectReference: {fileID: 542591772}
-    m_RemovedComponents:
-    - {fileID: 9156769738166598156, guid: 20474ee2cc522b94e8489a3245882f1e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20474ee2cc522b94e8489a3245882f1e, type: 3}
 --- !u!1 &1407204753
 GameObject:

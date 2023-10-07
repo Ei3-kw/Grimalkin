@@ -16,6 +16,8 @@ public class StopButtonController : MonoBehaviour
 
     private bool clicked = false;
 
+    public bool demo_mode = false;
+
     private void Update()
     {
 
@@ -53,36 +55,22 @@ public class StopButtonController : MonoBehaviour
         yield return new WaitForSeconds(1); // wait
         ipad_text.text = "Updating.";
         yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating..";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating...";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating.";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating..";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating...";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating.";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating..";
-        yield return new WaitForSeconds(1); // wait
-        ipad_text.text = "Updating...";
-        yield return new WaitForSeconds(1); // wait
         ipad_text.text = "Update Complete!";
         subtitles.text = "Finally!";
 
-        yield return new WaitForSeconds(2); // wait
-        // Load the specified heatmap when the object is clicked
-        heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
-        subtitles.text = "";
-        yield return new WaitForSeconds(5); // wait
+        yield return new WaitForSeconds(1); // wait
 
-        tablet.GetComponent<tablet_controller>().update_done();
-        subtitles.text = "";
+        if (demo_mode)
+        {
+            // Load the specified heatmap when the object is clicked
+            heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
+            yield return new WaitForSeconds(5); // wait
+
+        }
 
         // progress story
         // communitcate back to story
+        tablet.GetComponent<tablet_controller>().update_done();
         player.GetComponent<story_controller>().alarm_off();
 
         yield return null;
