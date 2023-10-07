@@ -7,9 +7,6 @@ using System;
 public class phoneCon : MonoBehaviour
 {   
     public float refreshDelay;
-    public float NotificationDelay;
-    public float notificationChance;
-
     public float[] thresholds;
     public observer myObserver;
     public TextMeshPro phoneText;
@@ -21,7 +18,6 @@ public class phoneCon : MonoBehaviour
     
 
     float nextTime;
-    float nextNotificationTime;
     string currentPost;
 
 
@@ -64,20 +60,7 @@ public class phoneCon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F))
-        {
-            // TO DO MAYYBE IMPLEMENT ??????
-            // phoneON = !phoneON;
-            // phoneBody.SetActive(phoneON);
-        }
-        if (!phoneON &&  Time.time > nextNotificationTime ){
-            nextNotificationTime = Time.time  + NotificationDelay;
-            if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
-                phoneON = !phoneON;
-                phoneBody.SetActive(phoneON);
-            }
-        }
-        else if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
+        if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
         {   
             nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
             if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[0])
@@ -108,9 +91,7 @@ public class phoneCon : MonoBehaviour
                     }
                 }
 
-            }
-            
-            
+            } 
         }
         
     }

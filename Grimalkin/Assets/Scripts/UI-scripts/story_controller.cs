@@ -65,6 +65,9 @@ public class story_controller : MonoBehaviour
     public GameObject old_objs;
     public GameObject new_objs;
 
+    public Material night;
+    public Material morning;
+
 
 
 
@@ -91,7 +94,7 @@ public class story_controller : MonoBehaviour
         // beging dialog 1
 
         //StartCoroutine(start_stage_4());
-        StartCoroutine(start_stage_11()); // end scenes
+        StartCoroutine(start_stage_1()); // end scenes
         //StartCoroutine(start_stage_6());
 
 
@@ -490,6 +493,7 @@ public class story_controller : MonoBehaviour
         fade_obj.SetActive(false);
         fade_obj.SetActive(true);
         yield return new WaitForSeconds(3); // wait
+        RenderSettings.skybox = morning;
 
         // turn on alarm
         tablet.GetComponent<tablet_controller>().turn_on_alarm();
