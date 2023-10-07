@@ -67,6 +67,9 @@ public class story_controller : MonoBehaviour
     public GameObject old_objs;
     public GameObject new_objs;
 
+    public Material night;
+    public Material morning;
+
     public Transform starting_pos;
     public GameObject start_game_text;
     public GameObject fade_in_start;
@@ -98,8 +101,6 @@ public class story_controller : MonoBehaviour
         // beging dialog 1
 
         //StartCoroutine(start_stage_4());
-        //StartCoroutine(start_stage_11()); // end scenes
-        //StartCoroutine(start_stage_11()); // comouter game
 
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
@@ -545,6 +546,7 @@ public class story_controller : MonoBehaviour
         fade_obj.SetActive(false);
         fade_obj.SetActive(true);
         yield return new WaitForSeconds(3); // wait
+        RenderSettings.skybox = morning;
 
         // turn on alarm
         tablet.GetComponent<tablet_controller>().turn_on_alarm();
