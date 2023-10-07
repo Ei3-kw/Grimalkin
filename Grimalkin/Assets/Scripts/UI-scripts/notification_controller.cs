@@ -13,7 +13,6 @@ public class notification_controller : MonoBehaviour
     private int num_items;
     public GameObject shirt_icon;
     public GameObject laptop_icon;
-    public GameObject backpack_icon;
     public GameObject waterbottle_icon;
 
     // Start is called before the first frame update
@@ -22,7 +21,6 @@ public class notification_controller : MonoBehaviour
         gameObject.SetActive(false);
         shirt_icon.SetActive(false);
         laptop_icon.SetActive(false);
-        backpack_icon.SetActive(false);
         waterbottle_icon.SetActive(false);
     }
 
@@ -57,11 +55,10 @@ public class notification_controller : MonoBehaviour
         notif_text.text = "Collect:";
 
         ////// set this
-        num_items = 4;
+        num_items = 3;
         // turn all the items on
         shirt_icon.SetActive(true);
         laptop_icon.SetActive(true);
-        backpack_icon.SetActive(true);
         waterbottle_icon.SetActive(true);
 
 
@@ -79,11 +76,6 @@ public class notification_controller : MonoBehaviour
         else if (item_name == "laptop")
         {
             laptop_icon.SetActive(false);
-            num_items--;
-        }
-        else if (item_name == "backpack")
-        {
-            backpack_icon.SetActive(false);
             num_items--;
         }
         else if (item_name == "waterbottle")

@@ -416,7 +416,7 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().remove_notif();
 
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
-        yield return new WaitForSeconds(10); // wait
+        yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "I just need to find these items around the house and pick them up";
         yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "I can look at photos of the camp site while I collect the items!";
@@ -502,7 +502,7 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I think I have all the items I need for camping...";
         yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "I Just need to hope they all arrive in time";
+        subtitle_text.text = "I just need to hope they all arrive in time";
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Wow it is getting late...";
         yield return new WaitForSeconds(2); // wait

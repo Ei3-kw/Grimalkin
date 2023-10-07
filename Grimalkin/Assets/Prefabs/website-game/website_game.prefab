@@ -791,7 +791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'NOTE TO SELF: remeber to buy these for camping:
+  m_text: 'NOTE TO SELF: remember to buy these for camping:
 
 '
   m_isRightToLeft: 0
