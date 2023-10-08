@@ -20,6 +20,7 @@ public class end_game_obj_controller : MonoBehaviour
     public bool has_demo = false;
     public string obj_type = "None";
     public GameObject demo_obj;
+    public GameObject demo_obj_parent;
     public GameObject demo_text;
 
     // Start is called before the first frame update
@@ -51,6 +52,13 @@ public class end_game_obj_controller : MonoBehaviour
             else if (obj_type == "tablet")
             {
                 demo_obj.GetComponent<tablet_controller>().start_demo();
+            }
+            else if (obj_type == "pin_phone")
+            {
+                demo_obj_parent.SetActive(false);
+                demo_obj_parent.SetActive(true);
+                demo_obj.GetComponent<Go2DView>().start_demo();
+                demo_text.SetActive(true); // turn on text telling the user the pin
             }
         }
 

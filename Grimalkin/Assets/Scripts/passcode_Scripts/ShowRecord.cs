@@ -24,6 +24,9 @@ public class ShowRecord : MonoBehaviour
     public GameObject app;
     public bool demo_mode = false;
 
+    public TextMeshProUGUI subtitles;
+    public GameObject demo_text;
+
 
 
     // private void Awake()
@@ -32,10 +35,10 @@ public class ShowRecord : MonoBehaviour
     // }
     void Start()
     {
-        
+        currentPositionIndex = 0;
         // Fill the positions list with Vector3 positions (you can populate it as needed)
         EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
-        Debug.Log("HELOOOOOO");
+        Debug.Log("HELOOOOOO AYAYAYAYAY");
 
         positions = eyePositionTracker.eyePositions;
         // Debug.Log(positions[0]);
@@ -45,6 +48,7 @@ public class ShowRecord : MonoBehaviour
         Vector3 testpos = new Vector3(0, 0, 0);
         // currentCircle = Instantiate(circlePrefab, testpos, Quaternion.identity);
         Debug.Log(positions.Count);
+        Debug.Log(currentPositionIndex);
         sphere.SetActive(true);
         
           
@@ -58,6 +62,11 @@ public class ShowRecord : MonoBehaviour
         // Check if the circle has reached the current position
         if (currentPositionIndex < positions.Count)
         {
+            
+            subtitles.text = "<color=red>[EYE TRACKING DATA STOLEN]</color>";
+            demo_text.SetActive(false); // turn off demo text
+
+            sphere.SetActive(true);
             // - 0.532969f    
             Vector3 posToMove = new Vector3(positions[currentPositionIndex].x - phone.transform.position.x, positions[currentPositionIndex].y - phone.transform.position.y, mainCamera.transform.position.z  - phone.transform.position.z);
             Debug.Log("???");
@@ -117,6 +126,7 @@ public class ShowRecord : MonoBehaviour
     private IEnumerator quiting()
     {
         yield return new WaitForSeconds(2); // wait
+        subtitles.text = "";
         sphere.SetActive(false);
         myCamera.transform.position = Go2DView.orginalCameraPosition;
         myCamera.transform.LookAt(phoneObject.transform.position);
@@ -131,6 +141,14 @@ public class ShowRecord : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        
+ 
+        Is2DView.in2DView = false;
+        CodeIsSet.codeIsSet = false;
+        EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
+        eyePositionTracker.eyePositions.Clear();
+        currentPositionIndex = 0;
+        Debug.Log("CLEARED");
 
         gameObject.SetActive(false); // turn self off
         yield return null;

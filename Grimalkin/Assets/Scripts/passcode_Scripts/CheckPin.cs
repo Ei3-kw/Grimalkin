@@ -31,6 +31,7 @@ public class CheckPin : MonoBehaviour
             numEntered.Clear();
         }
         if (!CodeIsSet.codeIsSet && pinIsCorrect){
+            numEntered.Clear();
             Debug.Log("COrrect pin");
             CodeIsSet.codeIsSet = true;
             app.SetActive(true);
