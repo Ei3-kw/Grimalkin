@@ -47,6 +47,8 @@ public class playerController : MonoBehaviour
     // end game objs
     public List<GameObject> end_game_objs;
 
+    private bool stepSoundOn = false;
+
 
 
     // Start is called before the first frame update
@@ -85,9 +87,17 @@ public class playerController : MonoBehaviour
         Vector3 move = inputAxes.x * transform.forward + inputAxes.y * transform.right;
         character.Move(move * moveSpeed * Time.deltaTime); 
         if (move.magnitude > 0){
-            footStep.UnPause();
+            if (!stepSoundOn){
+                footStep.Play();
+                stepSoundOn = true;
+            }
+            
         } else {
-            footStep.Pause();
+            if (stepSoundOn){
+                footStep.Stop();
+                stepSoundOn = false;
+            }
+
         }
         transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 
