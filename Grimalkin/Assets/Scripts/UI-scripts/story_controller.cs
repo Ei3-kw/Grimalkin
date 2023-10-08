@@ -42,6 +42,7 @@ public class story_controller : MonoBehaviour
 
     public GameObject passcode_phone;
     public GameObject boxes;
+    public GameObject door_bell_sound;
 
     // intro controls
     public GameObject controls_intro;
@@ -598,18 +599,19 @@ public class story_controller : MonoBehaviour
         set_story_stage("alarm_off");
 
         subtitle_text.text = "Thank goodness that alarm is off now";
-        yield return new WaitForSeconds(1); // wait
-        
+        yield return new WaitForSeconds(2); // wait
+
 
         // ding dong the door bell
+        door_bell_sound.SetActive(true);
+
         subtitle_text.text = "Oh I think that is the door!";
-        yield return new WaitForSeconds(1); // wait
+        yield return new WaitForSeconds(2); // wait
 
         boxes.SetActive(true);
         subtitle_text.text = "That must be our camping gear arriving!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "";
-
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Go to the door and see what arrived");
