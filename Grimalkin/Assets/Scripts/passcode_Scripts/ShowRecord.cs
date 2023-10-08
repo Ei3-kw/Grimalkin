@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 public class ShowRecord : MonoBehaviour
 {
@@ -12,7 +13,18 @@ public class ShowRecord : MonoBehaviour
 
     private List<Vector3> positions = new List<Vector3>();
     private int currentPositionIndex = 0;
- 
+
+    public GameObject phone;
+
+    public GameObject player;
+    public GameObject optional_UI;
+    public Camera myCamera;
+    public GameObject phoneObject;
+    public GameObject passcodePhone;
+    public GameObject app;
+    public bool demo_mode = false;
+
+
 
     // private void Awake()
     // {
@@ -23,7 +35,7 @@ public class ShowRecord : MonoBehaviour
         
         // Fill the positions list with Vector3 positions (you can populate it as needed)
         EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
-        Debug.Log("get");
+        Debug.Log("HELOOOOOO");
 
         positions = eyePositionTracker.eyePositions;
         // Debug.Log(positions[0]);
@@ -47,8 +59,8 @@ public class ShowRecord : MonoBehaviour
         if (currentPositionIndex < positions.Count)
         {
              
-            Vector3 posToMove = new Vector3(positions[currentPositionIndex].x, positions[currentPositionIndex].y,mainCamera.transform.position.z);
-            // Debug.Log("???");
+            Vector3 posToMove = new Vector3(positions[currentPositionIndex].x - phone.transform.position.x, positions[currentPositionIndex].y - phone.transform.position.y - 0.532969f, mainCamera.transform.position.z  - phone.transform.position.z);
+            Debug.Log("???");
             posToMove = mainCamera.ScreenToWorldPoint(posToMove);
             sphere.transform.position = posToMove;
             // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -96,7 +108,40 @@ public class ShowRecord : MonoBehaviour
             //     }
             // }
         }
+        else // recording done :)
+        {
+            StartCoroutine(quiting());
+        }
     }
+
+    private IEnumerator quiting()
+    {
+        yield return new WaitForSeconds(1); // wait
+        sphere.SetActive(false);
+        myCamera.transform.position = Go2DView.orginalCameraPosition;
+        myCamera.transform.LookAt(phoneObject.transform.position);
+        passcodePhone.SetActive(false);
+        app.SetActive(false);
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = true;
+        optional_UI.SetActive(true);
+
+        // lock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+
+        if (!demo_mode)
+        {
+            player.GetComponent<story_controller>().code_entered();
+
+
+        }
+        gameObject.SetActive(false); // turn self off
+        yield return null;
+    }
+
 
     // void SpawnCircleAtCurrentPosition()
     // {   
