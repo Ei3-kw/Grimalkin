@@ -147,7 +147,7 @@ public class story_controller : MonoBehaviour
 
                 // turn off start game text
                 start_game_text.SetActive(false);
-                StartCoroutine(start_stage_8()); // begin the game from the start
+                StartCoroutine(start_stage_9()); // begin the game from the start
             }
             else if (Input.GetKeyDown("2"))
             {
