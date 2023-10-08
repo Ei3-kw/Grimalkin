@@ -4970,6 +4970,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1901110304}
     - target: {fileID: 6710135466842166810, guid: 78c4bcecead8ca747a9f77fb06c2269d, type: 3}
+      propertyPath: demo_mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710135466842166810, guid: 78c4bcecead8ca747a9f77fb06c2269d, type: 3}
       propertyPath: ShowRecord
       value: 
       objectReference: {fileID: 1556556091}

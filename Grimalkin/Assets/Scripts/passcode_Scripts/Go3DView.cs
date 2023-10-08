@@ -39,8 +39,28 @@ public class Go3DView : MonoBehaviour
 
         yield return new WaitForSeconds(textDisplayTime); // Wait for the specified time
         app.SetActive(false);
-        ShowRecord.SetActive(true);
 
+        if (demo_mode)
+        { 
+            ShowRecord.SetActive(true);
+        }
+        else 
+        {
+            myCamera.transform.position = Go2DView.orginalCameraPosition;
+            myCamera.transform.LookAt(phoneObject.transform.position);
+            passcodePhone.SetActive(false);
+            app.SetActive(false);
+
+            // disable all player controls and excess UI
+            player.GetComponent<playerController>().enabled = true;
+            optional_UI.SetActive(true);
+
+            // lock the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            player.GetComponent<story_controller>().code_entered();
+
+        }
 
         // Hide the TextMeshPro text
         // textMeshPro.gameObject.SetActive(false);

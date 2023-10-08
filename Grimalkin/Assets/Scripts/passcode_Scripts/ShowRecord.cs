@@ -58,8 +58,8 @@ public class ShowRecord : MonoBehaviour
         // Check if the circle has reached the current position
         if (currentPositionIndex < positions.Count)
         {
-             
-            Vector3 posToMove = new Vector3(positions[currentPositionIndex].x - phone.transform.position.x, positions[currentPositionIndex].y - phone.transform.position.y - 0.532969f, mainCamera.transform.position.z  - phone.transform.position.z);
+            // - 0.532969f    
+            Vector3 posToMove = new Vector3(positions[currentPositionIndex].x - phone.transform.position.x, positions[currentPositionIndex].y - phone.transform.position.y, mainCamera.transform.position.z  - phone.transform.position.z);
             Debug.Log("???");
             posToMove = mainCamera.ScreenToWorldPoint(posToMove);
             sphere.transform.position = posToMove;
@@ -116,7 +116,7 @@ public class ShowRecord : MonoBehaviour
 
     private IEnumerator quiting()
     {
-        yield return new WaitForSeconds(1); // wait
+        yield return new WaitForSeconds(2); // wait
         sphere.SetActive(false);
         myCamera.transform.position = Go2DView.orginalCameraPosition;
         myCamera.transform.LookAt(phoneObject.transform.position);
@@ -132,12 +132,6 @@ public class ShowRecord : MonoBehaviour
         Cursor.visible = false;
 
 
-        if (!demo_mode)
-        {
-            player.GetComponent<story_controller>().code_entered();
-
-
-        }
         gameObject.SetActive(false); // turn self off
         yield return null;
     }
