@@ -122,5 +122,10 @@ public class phoneCon : MonoBehaviour
         Debug.Log("demo mode ONNNN");
     }
 
-
+    public void end_demo()
+    {
+        Debug.Log("demo mode off");
+        demo_text.SetActive(false); // turn of the instruction text
+        gameObject.SetActive(false); // turn the phone off
+    }
 }

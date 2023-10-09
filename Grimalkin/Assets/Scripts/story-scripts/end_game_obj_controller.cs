@@ -23,6 +23,8 @@ public class end_game_obj_controller : MonoBehaviour
     public GameObject demo_obj_parent;
     public GameObject demo_text;
 
+    public GameObject phone;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +108,7 @@ public class end_game_obj_controller : MonoBehaviour
         // and the user has triggered the game to start
         if (Input.GetKeyDown("e")) // TODO: check if user is in range
         {
+            phone.GetComponent<phoneCon>().end_demo();
             in_slides = true;
 
             // disable all player controls and excess UI

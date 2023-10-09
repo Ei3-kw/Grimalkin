@@ -7365,6 +7365,7 @@ MonoBehaviour:
   demo_obj: {fileID: 1667669071}
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 1407204753}
+  phone: {fileID: 1667669071}
 --- !u!65 &542376752
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11749,6 +11750,7 @@ MonoBehaviour:
   demo_obj: {fileID: 3556926673204246782}
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 0}
+  phone: {fileID: 1667669071}
 --- !u!1001 &848079838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16381,6 +16383,7 @@ MonoBehaviour:
   demo_obj: {fileID: 3907504825426914412}
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 0}
+  phone: {fileID: 1667669071}
 --- !u!23 &1108019864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20856,6 +20859,7 @@ MonoBehaviour:
   demo_obj: {fileID: 2883733117954659676}
   demo_obj_parent: {fileID: 4771975975258143840}
   demo_text: {fileID: 1732212920}
+  phone: {fileID: 1667669071}
 --- !u!65 &1369358835
 BoxCollider:
   m_ObjectHideFlags: 0
