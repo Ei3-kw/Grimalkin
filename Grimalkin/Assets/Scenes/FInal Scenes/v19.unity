@@ -12101,7 +12101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Do you notice the cameras that can steal your gaze data... ?
+  m_text: 'Do you notice the cameras that were stealing your gaze data... ?
 
 
     Be
@@ -19017,16 +19017,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Did you notice that over the last two days that your gaze was being tracked
-    and your eye tracking data exploited.
+  m_text: 'Did you notice that that your gaze was being tracked, collected and exploited.
 
 
-    How was your gaze tracked? In a future
-    where surveillance technology is more prevalent than ever...
+    How
+    was your gaze tracked? In a future where surveillance technology is more prevalent
+    than ever...
 
 
-    ...what you
-    are looking at is no longer private infomation...'
+    ...what you are looking at is no longer private infomation...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -24120,26 +24119,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d083f802fd2141ffae2864667176675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myObs: {fileID: 0}
+  myObs: {fileID: 1774747649}
   upDelay: 1
   points:
   - values:
     - men
     - women
-    text: {fileID: 0}
+    text: {fileID: 224190640}
   - values:
     - happy
     - sad
-    text: {fileID: 0}
+    text: {fileID: 946881884}
   - values:
     - bird
     - cat
-    text: {fileID: 0}
+    text: {fileID: 1414046846}
   - values:
     - board game
     - sport
     - video game
-    text: {fileID: 0}
+    text: {fileID: 184657130}
 --- !u!64 &1565373723
 MeshCollider:
   m_ObjectHideFlags: 0
