@@ -102,7 +102,6 @@ public class HeatMapGenerator : MonoBehaviour
         }
 
         // Apply changes to the texture.
-        System.IO.File.WriteAllBytes("heatmap.png", heatMapTexture.EncodeToPNG());
 
         heatMapTexture.Apply();
 
