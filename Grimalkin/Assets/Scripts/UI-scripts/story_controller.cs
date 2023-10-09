@@ -53,13 +53,20 @@ public class story_controller : MonoBehaviour
     // ending slide show
     private bool in_ss = false;
 
+    public GameObject ss_ending_1;
+    public GameObject ss_ending_2;
+    public GameObject ss_ending_3;
+    public GameObject ss_ending_3_text;
+    public GameObject ss_ending_4;
+
+
+
     //end
     public GameObject ss_exit_text;
     public GameObject ss_all_interaction_slides;
 
     // start
     public GameObject ss_screen;
-    public GameObject ss_start_text;
     public GameObject ss_press_e_text;
 
     
@@ -94,7 +101,6 @@ public class story_controller : MonoBehaviour
         ////////////////////////////
         ///
         ss_screen.SetActive(false);
-        ss_start_text.SetActive(false);
         ss_press_e_text.SetActive(false);
 
 
@@ -200,10 +206,11 @@ public class story_controller : MonoBehaviour
         /////// FOR THE SLIDE SHOW
         if (in_ss && Input.GetKeyDown("e"))
         {
-            if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_end()); }
+            if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_2()); }
+            else if (story_stage == "ending_ss_2_waiting") { StartCoroutine(ending_ss_3()); }
+            else if (story_stage == "ending_ss_3_waiting") { StartCoroutine(ending_ss_4()); }
+            else if (story_stage == "ending_ss_4_waiting") { StartCoroutine(ending_ss_end()); }
 
-            //end game
-            // else if (story_stage == "ss_end_game_waiting") { Application.Quit(); }
         }
    
 
@@ -707,7 +714,7 @@ public class story_controller : MonoBehaviour
 
         // you left for your camping trip
         // however the consqince from the days before came back to bite
-        ss_start_text.SetActive(false); // set other as false
+        ss_ending_4.SetActive(false);
         // Press [e] to continue
         ss_press_e_text.SetActive(false);
 
@@ -718,7 +725,7 @@ public class story_controller : MonoBehaviour
     }
 
 
-
+    // first ending slide
     private IEnumerator ending_ss_1()
     {
         in_ss = true;
@@ -739,7 +746,7 @@ public class story_controller : MonoBehaviour
         
         // you left for your camping trip
         // however the consqince from the days before came back to bite
-        ss_start_text.SetActive(true);
+        ss_ending_1.SetActive(true);
         // Press [e] to continue
         ss_press_e_text.SetActive(true);
 
@@ -748,114 +755,58 @@ public class story_controller : MonoBehaviour
         yield return null;
     }
 
-    /*
-    
-    // the slide show showing the dangers
-    ///////////////////////////////////////
-    /// Shopping game dangers
-    ///////////////////////////////////////
-    private IEnumerator start_ss_sg_1()
+    // 2nd ending slide
+    private IEnumerator ending_ss_2()
     {
-        set_story_stage("ss_sg_1");
-        ss_start_text.SetActive(false);
+        set_story_stage("ending_ss_2");
+        // turn off prev slide
+        ss_ending_1.SetActive(false);
+        // turn on new slide
+        ss_ending_2.SetActive(true);
 
-        // did you notice that when you looked away from items
-        // they secrely increased the prices
-        ss_sg_1.SetActive(true);
+        set_story_stage("ending_ss_2_waiting");
 
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_sg_1_waiting");
         yield return null;
     }
 
-    private IEnumerator start_ss_sg_2()
+    // 3nd ending slide - video
+    private IEnumerator ending_ss_3()
     {
-        set_story_stage("ss_sg_2");
-        ss_sg_1.SetActive(false);
+        set_story_stage("ending_ss_3");
+        // turn off prev slide
+        ss_ending_2.SetActive(false);
+        // turn on new slide
+        ss_ending_3.SetActive(true);
 
-        // did you notice if you were intrested in certain items 
-        // they added eye catching banners to apeal to your sense of urgency and FOMO
-        ss_sg_2.SetActive(true);
+        set_story_stage("ending_ss_3_waiting");
 
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_sg_2_waiting");
+        // lead in time
+        yield return new WaitForSeconds(6); // wait
+
+
+        ss_ending_3_text.SetActive(false);
+
+        // video is 40 seconds 40 - 5 = 35
+        yield return new WaitForSeconds(34); // wait
+        StartCoroutine(ending_ss_4());
         yield return null;
     }
 
-    private IEnumerator start_ss_sg_3()
+    // 4nd ending slide
+    private IEnumerator ending_ss_4()
     {
-        set_story_stage("ss_sg_3");
-        ss_sg_2.SetActive(false);
+        set_story_stage("ending_ss_4");
+        // turn off prev slide
+        ss_ending_3.SetActive(false);
+        // turn on new slide
+        ss_ending_4.SetActive(true);
 
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_sg_3.SetActive(true);
+        set_story_stage("ending_ss_4_waiting");
 
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_sg_3_waiting");
+
         yield return null;
     }
 
-    private IEnumerator start_ss_sg_4()
-    {
-        set_story_stage("ss_sg_4");
-        ss_sg_3.SetActive(false);
-
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_sg_4.SetActive(true);
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_sg_4_waiting");
-        yield return null;
-    }
-
-    private IEnumerator start_ss_al_1()
-    {
-        set_story_stage("ss_al_1");
-        ss_sg_4.SetActive(false);
-
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_al_1.SetActive(true);
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_al_1_waiting");
-        yield return null;
-    }
-
-    private IEnumerator start_ss_al_2()
-    {
-        set_story_stage("ss_al_2");
-        ss_al_1.SetActive(false);
-
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_al_2.SetActive(true);
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_al_2_waiting");
-        yield return null;
-    }
-
-    private IEnumerator start_ss_ad_1()
-    {
-        set_story_stage("ss_ad_1");
-        ss_al_2.SetActive(false);
-
-        // BEcause of this you spennt ___ extra dollars
-        // and couldn't afford food, your partners dog died :<
-        ss_ad_1.SetActive(true);
-
-        // wait for button to be pressed to go to the next slide
-        set_story_stage("ss_ad_1_waiting");
-        yield return null;
-    }
-
-
-
-
-    */
 
 
 
