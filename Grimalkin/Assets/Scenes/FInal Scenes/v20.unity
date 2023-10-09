@@ -8999,7 +8999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175.8, y: 16.6}
+  m_AnchoredPosition: {x: 197, y: -20}
   m_SizeDelta: {x: 229.6545, y: 315.3044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677655170
@@ -18866,8 +18866,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161, y: 175}
-  m_SizeDelta: {x: 558.0721, y: 51.9981}
+  m_AnchoredPosition: {x: -107.22284, y: 173.74937}
+  m_SizeDelta: {x: 694.2167, y: 55.1642}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200709313
 MonoBehaviour:
@@ -28108,7 +28108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tablet App Data Collection
+  m_text: Tablet App Data Collection - Demo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31006,7 +31006,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4286414205
-  m_fontColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  m_fontColor: {r: 0.46182328, g: 0.745283, b: 0.4457636, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -33270,8 +33270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161, y: 175}
-  m_SizeDelta: {x: 558.0721, y: 51.9981}
+  m_AnchoredPosition: {x: -110.9747, y: 179.48}
+  m_SizeDelta: {x: 684.7184, y: 40.657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031152061
 MonoBehaviour:
