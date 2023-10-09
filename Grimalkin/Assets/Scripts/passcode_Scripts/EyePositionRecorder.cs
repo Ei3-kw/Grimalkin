@@ -14,7 +14,6 @@ public class EyePositionRecorder : MonoBehaviour
 
     // Update is called once per frame
     public void Update(){
-        Debug.Log(Is2DView.in2DView);
         if (!CodeIsSet.codeIsSet && Is2DView.in2DView){
         // Get the current mouse position in world space
             // Vector3 eyePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
