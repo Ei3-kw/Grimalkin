@@ -85,6 +85,8 @@ public class story_controller : MonoBehaviour
     public GameObject pause_menu;
 
 
+    private bool skipped_cutscene = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -167,7 +169,7 @@ public class story_controller : MonoBehaviour
 
                 // turn off start game text
                 start_game_text.SetActive(false);
-                StartCoroutine(ending_ss_1()); // skip to end game demo scenes
+                StartCoroutine(ending_ss_4()); // skip to end game demo scenes
 
             }
                 
@@ -208,7 +210,11 @@ public class story_controller : MonoBehaviour
         {
             if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_2()); }
             else if (story_stage == "ending_ss_2_waiting") { StartCoroutine(ending_ss_3()); }
-            else if (story_stage == "ending_ss_3_waiting") { StartCoroutine(ending_ss_4()); }
+            else if (story_stage == "ending_ss_3_waiting") 
+            {
+                skipped_cutscene = true;
+                StartCoroutine(ending_ss_4()); 
+            }
             else if (story_stage == "ending_ss_4_waiting") { StartCoroutine(ending_ss_end()); }
 
         }
@@ -788,13 +794,31 @@ public class story_controller : MonoBehaviour
 
         // video is 40 seconds 40 - 5 = 35
         yield return new WaitForSeconds(34); // wait
-        StartCoroutine(ending_ss_4());
+        if (!skipped_cutscene) { StartCoroutine(ending_ss_4()); }
+        
         yield return null;
     }
 
     // 4nd ending slide
     private IEnumerator ending_ss_4()
     {
+        in_ss = true;
+        subtitle_text.text = "";
+
+        // remove task notifaction
+        notifcations.GetComponent<notification_controller>().remove_notif();
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+
+        // pop up slide show screen (mosly opaque screen with text)
+        // can still kinda see background
+        ss_screen.SetActive(true);
+        // Press [e] to continue
+        ss_press_e_text.SetActive(true);
+
+
         set_story_stage("ending_ss_4");
         // turn off prev slide
         ss_ending_3.SetActive(false);
