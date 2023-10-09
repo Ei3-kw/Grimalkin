@@ -154,7 +154,7 @@ public class story_controller : MonoBehaviour
 
                 // turn off start game text
                 start_game_text.SetActive(false);
-                StartCoroutine(start_stage_9()); // begin the game from the start
+                StartCoroutine(start_stage_1()); // begin the game from the start
             }
             else if (Input.GetKeyDown("2"))
             {
@@ -778,11 +778,11 @@ public class story_controller : MonoBehaviour
         // turn on new slide
         ss_ending_3.SetActive(true);
 
-        set_story_stage("ending_ss_3_waiting");
+        
 
         // lead in time
         yield return new WaitForSeconds(6); // wait
-
+        set_story_stage("ending_ss_3_waiting");
 
         ss_ending_3_text.SetActive(false);
 
