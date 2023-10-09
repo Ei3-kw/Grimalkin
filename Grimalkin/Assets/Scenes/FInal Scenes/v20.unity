@@ -14121,11 +14121,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'This demonstrates the use of contextualised advertising- which is adjusting
     ads to the immediate environment. (e.g. Looking at coffe cup; Send user starbucks
-    ad)
+    ad) (Jonas Heller 2020)
 
 
-    Contextualised advertising (utilising gaze data) has been proven to
-    increase sales by 37% in certain circumstances.'
+    Contextualised advertising (utilising gaze data)
+    has been proven to increase sales by 37% in certain circumstances. (Chylinski,
+    M. 2017)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14310,7 +14311,8 @@ MonoBehaviour:
 
 
     Race and gender can both be predcited using
-    machine learning with over 64% classification accuraccy from heat map data alone.'
+    machine learning with over 64% classification accuraccy from heat map data alone.
+    (Mercer Moss,2012)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
