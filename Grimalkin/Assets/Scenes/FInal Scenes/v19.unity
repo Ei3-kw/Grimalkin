@@ -7289,9 +7289,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542376749}
-  - component: {fileID: 542376751}
   - component: {fileID: 542376750}
   - component: {fileID: 542376752}
+  - component: {fileID: 542376753}
   m_Layer: 0
   m_Name: social_media_phone
   m_TagString: Untagged
@@ -7306,9 +7306,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542376748}
-  m_LocalRotation: {x: 0.96624315, y: 0.020302363, z: -0.25498447, w: -0.030741347}
-  m_LocalPosition: {x: 16.891, y: -20.128, z: 0.929}
-  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_LocalRotation: {x: 0.9662431, y: 0.020302387, z: -0.2549845, w: -0.030741306}
+  m_LocalPosition: {x: 16.891006, y: -20.127998, z: 0.92900467}
+  m_LocalScale: {x: 0.76, y: 0.7600003, z: 0.7600003}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1931425733}
@@ -7366,7 +7366,20 @@ MonoBehaviour:
   demo_obj: {fileID: 1667669071}
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 1407204753}
---- !u!114 &542376751
+--- !u!65 &542376752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542376748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.64, y: 1.29, z: 4.71}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &542376753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7384,19 +7397,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!65 &542376752
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542376748}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.64, y: 1.29, z: 4.71}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &542591771
 GameObject:
   m_ObjectHideFlags: 0
@@ -12078,8 +12078,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.6415, y: 72}
-  m_SizeDelta: {x: 854.5333, y: 94.1091}
+  m_AnchoredPosition: {x: 20, y: 68}
+  m_SizeDelta: {x: 913.98, y: 100.6554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879349259
 MonoBehaviour:
@@ -30546,7 +30546,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.138
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -33704,7 +33704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.6415, y: 72}
+  m_AnchoredPosition: {x: -0.000011444, y: 2.9454}
   m_SizeDelta: {x: 854.5333, y: 94.1091}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046879394
