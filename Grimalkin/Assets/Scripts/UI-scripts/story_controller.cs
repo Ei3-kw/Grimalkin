@@ -377,7 +377,9 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().remove_notif();
 
         subtitle_text.text = "Ahh, thats better";
-        yield return new WaitForSeconds(1); // wait
+        yield return new WaitForSeconds(2); // wait
+
+        /*
         subtitle_text.text = "Now... What to do for the anniversary";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "Maybe I should look around and hope inspiration hits";
@@ -392,6 +394,13 @@ public class story_controller : MonoBehaviour
         // turn on glow for camping photo
         camping_wall_photo.GetComponent<Outline>().enabled = true;
         set_story_stage("look_at_painting");
+        */
+        subtitle_text.text = "Oh!! I have an idea for the anniversary!!";
+        yield return new WaitForSeconds(2); // wait
+        subtitle_text.text = "Camping!!";
+        yield return new WaitForSeconds(2); // wait
+
+        StartCoroutine(start_stage_4());
         yield return null;
     }
 
@@ -404,12 +413,13 @@ public class story_controller : MonoBehaviour
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
-        subtitle_text.text = "Oh! Camping!";
-        yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "I wonder if I still have all my gear from my last camping trip";
-        yield return new WaitForSeconds(4); // wait
+        //subtitle_text.text = "Oh! Camping!";
+        //yield return new WaitForSeconds(2); // wait
+        //subtitle_text.text = "I wonder if I still have all my gear from my last camping trip";
+        //yield return new WaitForSeconds(4); // wait
+
         subtitle_text.text = "I have a list of items I need to pack saved on my phone";
-        yield return new WaitForSeconds(4); // wait
+        yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Press [e] to open your phone";
 
 
@@ -437,11 +447,11 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<notification_controller>().remove_notif();
 
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
-        yield return new WaitForSeconds(3); // wait
+        yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I just need to find these items around the house and pick them up";
-        yield return new WaitForSeconds(4); // wait
+        yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I can look at photos of the camp site while I collect the items!";
-        yield return new WaitForSeconds(4); // wait
+        yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Press [e] to open social media";
 
 
