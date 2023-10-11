@@ -30,6 +30,7 @@ public class computer_controler : MonoBehaviour
     public GameObject notifcations;
 
     private bool demo_mode = false;
+    public GameObject gaze_price_text;
 
 
 
@@ -176,7 +177,16 @@ public class computer_controler : MonoBehaviour
         // show end of game screnn
         end_game_screen.SetActive(true);
         int final_cost = total_inital_cost + total_extra_paid;
-        checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${final_cost} </color>";
+        if (demo_mode)
+        {
+            checkout_text.text = $"Shopping Cart Checkout\n\nOriginal Cost: <color=green>${total_inital_cost} </color>\nGaze Interest Fee: <color=red>+${total_extra_paid} </color>\nTotal Cost: <color=red>${final_cost} </color>";
+            gaze_price_text.SetActive(true);
+        }
+        else
+        {
+            gaze_price_text.SetActive(false);
+            checkout_text.text = $"Shopping Cart Checkout\n\nTotal Cost: <color=green>${final_cost} </color>";
+        }
 
 
     }

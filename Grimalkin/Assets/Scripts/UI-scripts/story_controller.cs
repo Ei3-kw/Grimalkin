@@ -84,6 +84,8 @@ public class story_controller : MonoBehaviour
 
     public GameObject pause_menu;
 
+    public GameObject menu_exit_text;
+
 
     private bool skipped_cutscene = false;
 
@@ -710,6 +712,7 @@ public class story_controller : MonoBehaviour
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
+        menu_exit_text.SetActive(true);
 
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
