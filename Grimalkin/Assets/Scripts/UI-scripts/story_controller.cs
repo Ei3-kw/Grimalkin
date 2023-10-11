@@ -298,8 +298,10 @@ public class story_controller : MonoBehaviour
     {
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
+        passcode_phone.SetActive(false); // turn of pin phone to avoid confusion
 
         fade_in_start.SetActive(true);
+
 
 
 
@@ -568,7 +570,8 @@ public class story_controller : MonoBehaviour
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
 
-
+        // turn on the pin phone to use after wake up
+        passcode_phone.SetActive(true);
 
 
         GDTFadeEffect fade_cont = fade_obj.GetComponent<GDTFadeEffect>();

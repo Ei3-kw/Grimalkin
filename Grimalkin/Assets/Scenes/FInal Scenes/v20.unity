@@ -9899,6 +9899,7 @@ GameObject:
   - component: {fileID: 699576554}
   - component: {fileID: 699576553}
   - component: {fileID: 699576552}
+  - component: {fileID: 699576556}
   m_Layer: 7
   m_Name: GlassDoor
   m_TagString: Untagged
@@ -10002,6 +10003,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699576550}
   m_Mesh: {fileID: 4300022, guid: 65c4e0d1191656a43a436373673c91f7, type: 3}
+--- !u!114 &699576556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699576550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d3d601b78396c43af6fb4ebb5dd96e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction_UI: {fileID: 291645215}
 --- !u!1 &709019504
 GameObject:
   m_ObjectHideFlags: 0
@@ -95731,8 +95745,6 @@ GameObject:
   - component: {fileID: 5292986116801084855}
   - component: {fileID: 9185818288467813704}
   - component: {fileID: 1104759992}
-  - component: {fileID: 9185818288467813706}
-  - component: {fileID: 9185818288467813705}
   m_Layer: 0
   m_Name: Dresser Closet_01
   m_TagString: Untagged
@@ -105232,32 +105244,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1604373, y: 3.6130936, z: 0.033844296}
   m_Center: {x: -0.00000011920964, y: 1.8065468, z: -0.9789949}
---- !u!114 &9185818288467813705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7851711042465791916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d3d601b78396c43af6fb4ebb5dd96e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interaction_UI: {fileID: 0}
---- !u!114 &9185818288467813706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7851711042465791916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d3d601b78396c43af6fb4ebb5dd96e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interaction_UI: {fileID: 291645215}
 --- !u!4 &9214626637367062361
 Transform:
   m_ObjectHideFlags: 0
