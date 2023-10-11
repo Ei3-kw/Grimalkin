@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    public Vector2 camSens;
+    public float camSens;
     public float moveSpeed;
     public float visMoveSpeed;
     public Vector2 visRatio; 
@@ -75,8 +75,8 @@ public class playerController : MonoBehaviour
             pointerPos.y = Mathf.Clamp(pointerPos.y + visInputAxes.y * visMoveSpeed * 100 * Time.deltaTime, 0, screenSize.y);
             visionPointer.position = new Vector3(pointerPos.x ,pointerPos.y, 0 );
         }
-        float mouseX = Input.GetAxis("Mouse X") * camSens.x * 1000 * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * camSens.y * 1000 * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * camSens * 1000 * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * camSens * 1000 * Time.deltaTime;
         rotationX -= mouseY ;
         rotationX = Mathf.Clamp(rotationX, -60f, 60f) ;
         rotationY = Mathf.Clamp(((pointerPos.x/screenSize.x) -0.5f)* visRatio.x, -30f, 30f);

@@ -33,7 +33,6 @@ public class profileUpdater : MonoBehaviour
                 int currentMax = 0;
                 foreach (string text in p.values){
                     myObs.observations.total.TryGetValue(text, out var count); 
-                    Debug.Log(text +count);
                     if (count > currentMax){
                         currentMax = count;
                         maxText = text;
