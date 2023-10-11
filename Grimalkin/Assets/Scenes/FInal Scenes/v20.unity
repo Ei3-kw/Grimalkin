@@ -20281,18 +20281,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To walk around, use WASD keys
+  m_text: 'To walk around, use <color="green">WASD</color> keys
+
+    To look around,
+    use your mouse
 
 
-    To look around, use your mouse
+    To interact with objects press  <color="green">[e]</color>
+
+    (Look
+    for  <color="yellow">yellow highlighted objects</color> to progress story)
 
 
-    To
-    interact with the enviroment (e.g. open doors), use left click
-
-
-    Click ESC
-    to bring up menu'
+    Click 
+    <color="green">ESC</color> to bring up menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
