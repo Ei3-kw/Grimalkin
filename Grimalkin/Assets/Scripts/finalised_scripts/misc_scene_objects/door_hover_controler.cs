@@ -8,7 +8,6 @@
  * 
  * Attached to objects in game scene:
  * - Any door type onject
- * 
  */
 
 using System.Collections;
