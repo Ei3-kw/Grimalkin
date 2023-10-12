@@ -378,7 +378,7 @@ public class story_controller : MonoBehaviour
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
-        subtitle_text.text = "Ahh, thats better";
+        subtitle_text.text = "Ahh, that's better";
         yield return new WaitForSeconds(2); // wait
 
         /*
@@ -477,7 +477,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "Oooh these places on social media look nice!";
         yield return new WaitForSeconds(4); // wait
 
-        subtitle_text.text = "Lets go find those items!";
+        subtitle_text.text = "Let's go find those items!";
         notifcations.GetComponent<notification_controller>().create_items_notif();
 
         // set all the items to glow :)
@@ -507,7 +507,7 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Damn, there are definitely things that I forgot on that list though...";
         yield return new WaitForSeconds(4); // wait
-        subtitle_text.text = "I think I have second list on my computer with some other items that I needed to buy";
+        subtitle_text.text = "I think I have a second list on my computer with some other items that I needed to buy";
         // close social media phone
         phone.SetActive(false);
         yield return new WaitForSeconds(5); // wait
@@ -657,7 +657,7 @@ public class story_controller : MonoBehaviour
     {
         set_story_stage("boxes_found");
 
-        subtitle_text.text = "I have everything thing I need for camping now!!";
+        subtitle_text.text = "I have everything I need for camping now!!";
         yield return new WaitForSeconds(2); // wait
 
         subtitle_text.text = "Oh wait! I need to confirm that the order arrived on my phone before I forget";
@@ -683,7 +683,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "Ok cool!!";
         yield return new WaitForSeconds(2); // wait
 
-        subtitle_text.text = "I can't wait for camping tomorow!!";
+        subtitle_text.text = "I can't wait for camping tomorrow!!";
         yield return new WaitForSeconds(4); // wait
 
         StartCoroutine(ending_ss_1());
