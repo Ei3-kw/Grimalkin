@@ -20,7 +20,10 @@ public class end_game_obj_controller : MonoBehaviour
     public bool has_demo = false;
     public string obj_type = "None";
     public GameObject demo_obj;
+    public GameObject demo_obj_parent;
     public GameObject demo_text;
+
+    public GameObject phone;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,17 @@ public class end_game_obj_controller : MonoBehaviour
                 demo_obj.SetActive(true); // turn on the phone
                 demo_obj.GetComponent<phoneCon>().start_demo();
                 demo_text.SetActive(true); // turn on text to allow user to exit demo
+            }
+            else if (obj_type == "tablet")
+            {
+                demo_obj.GetComponent<tablet_controller>().start_demo();
+            }
+            else if (obj_type == "pin_phone")
+            {
+                demo_obj_parent.SetActive(false);
+                demo_obj_parent.SetActive(true);
+                demo_obj.GetComponent<Go2DView>().start_demo();
+                demo_text.SetActive(true); // turn on text telling the user the pin
             }
         }
 
@@ -94,6 +108,7 @@ public class end_game_obj_controller : MonoBehaviour
         // and the user has triggered the game to start
         if (Input.GetKeyDown("e")) // TODO: check if user is in range
         {
+            phone.GetComponent<phoneCon>().end_demo();
             in_slides = true;
 
             // disable all player controls and excess UI

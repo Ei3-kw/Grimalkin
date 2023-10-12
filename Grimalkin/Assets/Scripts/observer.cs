@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.LowLevel;
 
 
 public class observer : MonoBehaviour
@@ -53,15 +50,6 @@ public class observer : MonoBehaviour
 
     public Camera cam;
 
-    public bool testing = true;
-
-    public List<KeyValuePair<string,int>> test;
-
-    public List<string> totalKeys;
-    public List<int> totalValues;
-
-    public List<string> recentKeys;
-    public List<int> recentValues;
 
     // Start is called before the first frame update
     void Start()
@@ -78,35 +66,13 @@ public class observer : MonoBehaviour
 
     void FixedUpdate()
     {   
-        if (testing){
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-
-                Ray ray = cam.ScreenPointToRay(visionPointer.position);
-                if (Physics.Raycast(ray, out var hit)) {
-                    observable test = hit.collider.gameObject.GetComponent<observable>();
-                    if(test != null){
-                        observations.add(test.info);
-                        Debug.Log(test.info[0]);
-                    }
-                }
+        Ray ray = cam.ScreenPointToRay(visionPointer.position);
+        if (Physics.Raycast(ray, out var hit)) {
+            observable test = hit.collider.gameObject.GetComponent<observable>();
+            if(test != null){
+                observations.add(test.info);
             }
-        } else {
-                Ray ray = cam.ScreenPointToRay(visionPointer.position);
-                if (Physics.Raycast(ray, out var hit)) {
-                    observable test = hit.collider.gameObject.GetComponent<observable>();
-                    if(test != null){
-                        observations.add(test.info);
-                    }
-                }
         }
-
-
-        totalKeys = new List<string>(observations.total.Keys);
-        totalValues = new List<int>(observations.total.Values);
-
-        recentKeys = new List<string>(observations.recent.Keys);
-        recentValues = new List<int>(observations.recent.Values);
 
 
     }

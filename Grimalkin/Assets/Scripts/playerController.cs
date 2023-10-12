@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    public Vector2 camSens;
+    public float camSens;
     public float moveSpeed;
     public float visMoveSpeed;
     public Vector2 visRatio; 
@@ -42,11 +42,12 @@ public class playerController : MonoBehaviour
     // items to pick up for camping
     public GameObject shirt;
     public GameObject laptop;
-    public GameObject backpack;
     public GameObject waterbottle;
 
     // end game objs
     public List<GameObject> end_game_objs;
+
+    private bool stepSoundOn = false;
 
 
 
@@ -74,8 +75,8 @@ public class playerController : MonoBehaviour
             pointerPos.y = Mathf.Clamp(pointerPos.y + visInputAxes.y * visMoveSpeed * 100 * Time.deltaTime, 0, screenSize.y);
             visionPointer.position = new Vector3(pointerPos.x ,pointerPos.y, 0 );
         }
-        float mouseX = Input.GetAxis("Mouse X") * camSens.x * 1000 * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * camSens.y * 1000 * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * camSens * 1000 * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * camSens * 1000 * Time.deltaTime;
         rotationX -= mouseY ;
         rotationX = Mathf.Clamp(rotationX, -60f, 60f) ;
         rotationY = Mathf.Clamp(((pointerPos.x/screenSize.x) -0.5f)* visRatio.x, -30f, 30f);
@@ -86,9 +87,17 @@ public class playerController : MonoBehaviour
         Vector3 move = inputAxes.x * transform.forward + inputAxes.y * transform.right;
         character.Move(move * moveSpeed * Time.deltaTime); 
         if (move.magnitude > 0){
-            footStep.UnPause();
+            if (!stepSoundOn){
+                footStep.Play();
+                stepSoundOn = true;
+            }
+            
         } else {
-            footStep.Pause();
+            if (stepSoundOn){
+                footStep.Stop();
+                stepSoundOn = false;
+            }
+
         }
         transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 
@@ -223,25 +232,7 @@ public class playerController : MonoBehaviour
                 eye_pointer.GetComponent<Image>().color = newColor;
             }
             ////////////////////////////////////////////////////////
-            ///////////////////// backpack /////////////////////////
-            ////////////////////////////////////////////////////////
-            else if (story_stage == "getting_items" && hit.collider.gameObject == backpack)
-            {
-                Debug.Log(hit.collider.gameObject.name + "was registered");
-                // show a a message on screen that the user can now interact
-                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
-                interaction_text.text = "Press [e] to pick up backpack";
-                interaction_UI.SetActive(true); // turn the UI element on
-
-                // tell the object it is being looked at
-                hit.collider.gameObject.GetComponent<camping_item>().look_at();
-
-                // set the eye pointer to be fully coloured
-                Color newColor = new Color(1, 1, 1, 1);
-                eye_pointer.GetComponent<Image>().color = newColor;
-            }
-            ////////////////////////////////////////////////////////
-            ///////////////////// backpack /////////////////////////
+            ///////////////////// water bottle /////////////////////////
             ////////////////////////////////////////////////////////
             else if (story_stage == "getting_items" && hit.collider.gameObject == waterbottle)
             {

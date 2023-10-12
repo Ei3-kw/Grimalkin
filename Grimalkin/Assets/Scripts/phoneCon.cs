@@ -7,9 +7,6 @@ using System;
 public class phoneCon : MonoBehaviour
 {   
     public float refreshDelay;
-    public float NotificationDelay;
-    public float notificationChance;
-
     public float[] thresholds;
     public observer myObserver;
     public TextMeshPro phoneText;
@@ -21,7 +18,6 @@ public class phoneCon : MonoBehaviour
     
 
     float nextTime;
-    float nextNotificationTime;
     string currentPost;
 
 
@@ -77,14 +73,14 @@ public class phoneCon : MonoBehaviour
             demo_text.SetActive(false); // turn of the instruction text
             gameObject.SetActive(false); // turn the phone off
         }
-        if (!phoneON &&  Time.time > nextNotificationTime ){
-            nextNotificationTime = Time.time  + NotificationDelay;
-            if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
-                phoneON = !phoneON;
-                phoneBody.SetActive(phoneON);
-            }
-        }
-        else if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
+        // if (!phoneON &&  Time.time > nextNotificationTime ){
+        //     nextNotificationTime = Time.time  + NotificationDelay;
+        //     if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
+        //         phoneON = !phoneON;
+        //         phoneBody.SetActive(phoneON);
+        //     }
+        // }
+        if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
         {   
             nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
             if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[0])
@@ -115,9 +111,7 @@ public class phoneCon : MonoBehaviour
                     }
                 }
 
-            }
-            
-            
+            } 
         }
         
     }
@@ -128,5 +122,10 @@ public class phoneCon : MonoBehaviour
         Debug.Log("demo mode ONNNN");
     }
 
-
+    public void end_demo()
+    {
+        Debug.Log("demo mode off");
+        demo_text.SetActive(false); // turn of the instruction text
+        gameObject.SetActive(false); // turn the phone off
+    }
 }

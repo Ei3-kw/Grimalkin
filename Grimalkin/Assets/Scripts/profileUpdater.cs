@@ -12,9 +12,7 @@ public class profileUpdater : MonoBehaviour
         public TextMeshPro text;
     }
 
-    public observer myobs;
-
-    
+    public observer myObs;
     float  nextUpTime = 0;
     public float upDelay;
 
@@ -34,7 +32,7 @@ public class profileUpdater : MonoBehaviour
                 string maxText = p.values[0];
                 int currentMax = 0;
                 foreach (string text in p.values){
-                    myobs.observations.total.TryGetValue(text, out var count); 
+                    myObs.observations.total.TryGetValue(text, out var count); 
                     if (count > currentMax){
                         currentMax = count;
                         maxText = text;

@@ -31,10 +31,13 @@ public class CheckPin : MonoBehaviour
             numEntered.Clear();
         }
         if (!CodeIsSet.codeIsSet && pinIsCorrect){
-            // Debug.Log("COrrect pin");
+            numEntered.Clear();
+            Debug.Log("COrrect pin");
             CodeIsSet.codeIsSet = true;
             app.SetActive(true);
-            // ShowRecord.SetActive(true);
+
         }
     }
+
+
 }

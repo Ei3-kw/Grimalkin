@@ -34,17 +34,18 @@ public class SlidingDoor : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        // Check if the player is close enough to interact with the door.
-        if (Player != null)
-        {
-            float distance = Vector3.Distance(transform.position, openPosition);
-            if (distance < 15.0f)
+    void OnMouseOver()
+    {   
+        if (Input.GetKeyDown("e"))
+            // Check if the player is close enough to interact with the door.
+            if (Player != null)
             {
-                // Toggle the door's state when clicked.
-                isOpen = !isOpen;
+                float distance = Vector3.Distance(transform.position, openPosition);
+                if (distance < 15.0f)
+                {
+                    // Toggle the door's state when clicked.
+                    isOpen = !isOpen;
+                }
             }
-        }
     }
 }
