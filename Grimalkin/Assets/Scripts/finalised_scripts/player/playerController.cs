@@ -77,7 +77,8 @@ public class playerController : MonoBehaviour
     public List<GameObject> end_game_objs; // these are the "explain the interaction" objs
 
 
-    /* Start is called before the first frame update
+    /* 
+     * Start is called before the first frame update
      * 
      * We wish to initalise the player to the starting settings
      * and ensure that all elements within the scene are ready
@@ -98,7 +99,8 @@ public class playerController : MonoBehaviour
         interaction_UI.SetActive(false); 
     }
 
-    /* Update is called every frame
+    /* 
+     * Update is called every frame
      * 
      * We will do three main things each frame:
      * - Update the player position in response to the player movement inputs
@@ -391,7 +393,8 @@ public class playerController : MonoBehaviour
         }
     }
 
-    /* Record the user inputs that in impact:
+    /* 
+     * Record the user inputs that in impact:
      * - Player Movement
      *    - W A S D
      * - "simulated gaze" Movement (only if eyes are not being tracked)
@@ -434,7 +437,8 @@ public class playerController : MonoBehaviour
         
     }
 
-    /* Allow the story controller to communicate with the player
+    /* 
+     * Allow the story controller to communicate with the player
      * to tell the player what stage of the story they are in
      * i.e. so we know what objects the player is allowed to interact with
      */
