@@ -13,12 +13,12 @@ public class pause_menu_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         resetButton.onClick.AddListener(restart);
         quitButton.onClick.AddListener(() => {Application.Quit();});
         resumeButton.onClick.AddListener(() => 
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             gameObject.SetActive(false);
         });
         camSlider.onValueChanged.AddListener(setCameraSensitivity);

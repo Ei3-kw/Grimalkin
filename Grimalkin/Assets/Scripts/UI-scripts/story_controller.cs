@@ -137,7 +137,10 @@ public class story_controller : MonoBehaviour
         // if user wants to bring up the excape menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // turn on the cursor
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            // bring up the menu
             pause_menu.SetActive(true);
         }
 
