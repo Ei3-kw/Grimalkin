@@ -1,3 +1,21 @@
+/* 
+ * Project Grimalkin
+ * Author: Timothy Ryall
+ * 
+ * Purpose:
+ * - To control the player throughout the game this will involve:
+ * - Controling the camera as the player looks around (responding to mouse inputs)
+ * - Communicating to the objects that the player is looking at
+ * - Communicating to relevent UI's when the player preforms certain activities
+ * - Controling the movement of the player (responding to player movement key inputs)
+ * - Communicating to objects when the player attempts to interact with them
+ *   through user inputs
+ * 
+ * Attached to objects in game scene:
+ * - Player
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,10 +24,13 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    public float camSens;
-    public float moveSpeed;
-    public float visMoveSpeed;
-    public Vector2 visRatio; 
+    // General player movement control settings
+    public float camSens; // mouse sens (can be adjusted in game pause menu)
+    public float moveSpeed; // how fast the player can walk around
+    public float visMoveSpeed; // this is how fast the "simulated" eye movement moves
+    public Vector2 visRatio; // how much the screen will move when user eye movement is registerd
+
+    // Control settings related to 
     public Transform head;
     public RectTransform visionPointer;
     public float rotationX;
