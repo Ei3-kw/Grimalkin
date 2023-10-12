@@ -34,7 +34,7 @@ public class Go3DView : MonoBehaviour
 
     private IEnumerator ShowTextAndMoveCamera()
     {
-        message.SetText("Your delivery is <color=green>confirmed!</color>"); // Set the TextMeshPro text
+        message.SetText("Your delivery is <color=#005500>confirmed!</color>"); // Set the TextMeshPro text
         // message.gameObject.SetActive(true); // Show the TextMeshPro text
 
         yield return new WaitForSeconds(textDisplayTime); // Wait for the specified time
