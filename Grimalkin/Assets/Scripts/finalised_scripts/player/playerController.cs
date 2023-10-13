@@ -203,24 +203,6 @@ public class playerController : MonoBehaviour
                 Color newColor = new Color(1, 1, 1, 1);
                 eye_pointer.GetComponent<Image>().color = newColor;
             }
-            ////////////////////////////////////////////////////////
-            ///////////////////// camping painting /////////////////
-            ////////////////////////////////////////////////////////
-            else if (story_stage == "look_at_painting" && hit.collider.gameObject == camping_wall_painting)
-            {
-                Debug.Log(hit.collider.gameObject.name + "was registered");
-                // show a a message on screen that the user can now interact
-                TextMeshProUGUI interaction_text = interaction_UI.GetComponent<TextMeshProUGUI>();
-                interaction_text.text = "Press [e] look at camping picture";
-                interaction_UI.SetActive(true); // turn the UI element on
-
-                // tell the object it is being looked at
-                hit.collider.gameObject.GetComponent<cwp_controller>().look_at();
-
-                // set the eye pointer to be fully coloured to indicate an interactable object
-                Color newColor = new Color(1, 1, 1, 1);
-                eye_pointer.GetComponent<Image>().color = newColor;
-            }
             ///////////////////////////////////////////////////
             ///////////////////// bed /////////////////////////
             ///////////////////////////////////////////////////
