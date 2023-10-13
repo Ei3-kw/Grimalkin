@@ -15,17 +15,18 @@
 # Play self-compiled version
 1. Download Unity HUB from https://unity.com/download for your required operating system
 2. Download the Unity EDITOR version _"2021.3.20f1"_ from https://unity.com/releases/editor/archive for your required operating system
-   
+3. Check both have downloaded correctly
+---
 4. After those two programs are downloaded open Unity hub
 5. Click the drop down arrow next to the grey open button
 6. Click "Add project from disk"
 7. Navigate to the _Codebase/Grimalkin/_ folder that should be in the same folder as this README
 8. Select that to open in unity
-
+---
 9. Now the project should appear in your Unity Hub
 10. Click on the Grimalkin project in Unity Hub
 11. This should open the Unity editor
-
+---
 12. Once the project opens click on "" on the top bar of the editor
 13. Click on "" from the drop down
 14. Specify your bulid operating system under ""
