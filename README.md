@@ -1,8 +1,25 @@
-# Grimalkin GAMEPLAY DEMO
-To play please:
-1. clone the repo to your local machine
-2. OPEN: DECO3801 / Game_Demo / Grimalkin.exe
-3. you are now playing :) the game will auto exit at the end
+# Play pre-compiled version (RECOMMENED)
+1. Navigate to **_/Grimalkin_compiled/_**
+2. Open the folder corressponding to your operating system of choice and follow the next steps:
+
+**WINDOWS:**
+- Open the _/Grimalkin_compiled/windows/_ folder
+- Run _'Grimalkin.exe'_
+- You should now be playing! Press [ESC] at any time to bring up menu to quit to desktop
+
+**MAC:** _NOTE: this version is not fully up to date as the Mac developers on the team are currerently on holiday_
+- Open the _/Grimalkin_compiled/mac/_ folder
+- Run 
+
+
+# Play self-compiled version
+
+# Code base structure
+The full code base can be found under **_/Grimalkin/_**
+- However NOTE that due to this being a unity project alot of the files are just config or asset files and will therefore be unreadable
+- To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
+
+
 
 
 # DEV INFO
