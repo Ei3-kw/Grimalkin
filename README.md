@@ -1,3 +1,5 @@
+Written by: Tim Ryall
+
 # Play pre-compiled version (RECOMMENED)
 1. Navigate to **_/Grimalkin_compiled/_**
 2. Open the folder corressponding to your operating system of choice and follow the next steps:
