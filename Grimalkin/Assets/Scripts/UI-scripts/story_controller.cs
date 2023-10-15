@@ -1,3 +1,20 @@
+/* 
+ * Project Grimalkin
+ * Author: Timothy Ryall
+ * 
+ * Purpose:
+ * - To control the main story progession of the game
+ * - It will communicate to other objects when needed within the story
+ * - And other object will communicate with in when the story is to be progressed
+ * - It will manage the progression to different stages of the story and 
+ *   send messages to different UI feautres within the game when nessary
+ * - The story will begin when the game starts
+ * 
+ * Attached to objects in game scene:
+ * - Player object in scene (i.e. the user that will stay present throughout the whole game)
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,53 +22,58 @@ using UnityEngine;
 
 public class story_controller : MonoBehaviour
 {
+    // keep track of the current stage that the story is in
+    private string story_stage;
+
+    // gameplay settings
     // FPS cap for game to ensure consistant behaviour and preformance
     public int targetFrameRate = 60;
 
+
     public GameObject player;
+
+    // UI elements that need to be sent messages by the story
     public GameObject optional_UI;
-
     public GameObject subtitles;
-    public GameObject notifcations;
     private TextMeshProUGUI subtitle_text;
+    public GameObject notifcations;
+    public GameObject controls_intro; // screen displaying the introductory controls to the user
 
-    private string story_stage;
 
-    //// interactions ////
-    // game 1
-    public GameObject coffee_cup;
+    /*
+     * Objects associated with each key interaction within the game
+     * During different stages of the story, different objects will be created,
+     * removed or modified to suit what is happening
+     */
+    // drink the coffee
+    public GameObject coffee_cup; // the coffee cup object
 
-    // game 3
-    public GameObject computer;
+    // buy items from online shopping website interaction
+    public GameObject computer; // the computer mointor object that hosts the website
 
-    // game 2
-    public GameObject camping_wall_photo;
-
-    // game 4
-    public GameObject bed;
+    // sleep in bed and sleep through the night
+    public GameObject bed; // bed object
+    // the screen fade object that will ensure that the screen fades to and from black when going to sleep
     public GameObject fade_obj;
 
-    // game 5
-    public GameObject tablet;
+    // tablet alarm interaction
+    public GameObject tablet; // the tablet object that the alarm will be presented on
 
-    // game ??
+    // pick up camping items, and look at social media interaction
     public GameObject phone;
     public GameObject phone_packing_list;
     public GameObject[] camping_items;
 
-
+    // enter passcode on phone to confirm delivery interaction
     public GameObject passcode_phone;
     public GameObject boxes;
     public GameObject door_bell_sound;
 
-    // intro controls
-    public GameObject controls_intro;
 
-
-
-
-    // ending slide show
-    private bool in_ss = false;
+    // ending slide show settings and UI elemenets
+    // the ending slide show is the set of slides that will play after the user has finished
+    // the main game and is entering the "educational demo" part of the game
+    private bool in_ss = false; // keeps track of if we are in the ending slide show or not
 
     public GameObject ss_ending_1;
     public GameObject ss_ending_2;

@@ -26,7 +26,7 @@ public class end_game_obj_controller : MonoBehaviour
     // state variables relating to the current stage of the "infomation slide show"
     // the section where we explain the interaction and reserach behind that 
     // objects interaction within the game
-    private int next_slide = 0; // the slide that we should show the user next
+    private int next_slide = 1; // the slide that we should show the user next
     private bool in_slides = false; // if the user is currerntly looking at the slides
 
     // objects that are explicitly used within the above mentioned slide show
@@ -55,29 +55,35 @@ public class end_game_obj_controller : MonoBehaviour
         // this means we want to begin the demo (if there is one)
         if (has_demo && next_slide == slides.Length && Input.GetKeyDown("f"))
         {
-            exit_ss();
+            exit_ss(); // exit the slide show
 
             // start the respective demo
-            if (obj_type == "computer")
+            // if the demo object is a computer
+            if (obj_type == "computer") 
             {
-                demo_obj.GetComponent<computer_controler>().start_demo();
+                demo_obj.GetComponent<computer_controler>().start_demo(); // start the demo
             }
-            else if (obj_type == "phone")
+            // if the demo object is the social media phone
+            else if (obj_type == "phone") 
             {
                 demo_obj.SetActive(true); // turn on the phone
-                demo_obj.GetComponent<phoneCon>().start_demo();
+                demo_obj.GetComponent<phoneCon>().start_demo(); // start the demo
                 demo_text.SetActive(true); // turn on text to allow user to exit demo
             }
-            else if (obj_type == "tablet")
+            // if the demo object is a tablet
+            else if (obj_type == "tablet") 
             {
-                demo_obj.GetComponent<tablet_controller>().start_demo();
+                demo_obj.GetComponent<tablet_controller>().start_demo(); // start the demo
             }
-            else if (obj_type == "pin_phone")
+            // if the demo object is a the pin code phone
+            else if (obj_type == "pin_phone") 
             {
+                // restart the phone to reset gaze tracking data
                 demo_obj_parent.SetActive(false);
                 demo_obj_parent.SetActive(true);
+                // start the demo within the "phone app"
                 demo_obj.GetComponent<Go2DView>().start_demo();
-                demo_text.SetActive(true); // turn on text telling the user the pin
+                demo_text.SetActive(true); // turn on text telling the user the pin to enter
             }
         }
 
@@ -92,39 +98,54 @@ public class end_game_obj_controller : MonoBehaviour
             else
             {
                 // progress to next slide
-                // turn off prev
+                // turn off prev slide
                 slides[next_slide-1].SetActive(false);
                 // turn on the next slide
                 slides[next_slide].SetActive(true);
-                next_slide++;
+                next_slide++; // increase the counter to the next slide
             }
         }
     }
 
+    /*
+     * Will be called when we want to exit the slide show 
+     * either to show the user the demo or to exit this object completely
+     * 
+     * It will remove the slides from the screen and any other slide show related
+     * UI elements
+     */
     private void exit_ss()
     {
-        next_slide = 1; // back to the start of the slide show
+        next_slide = 1; // reset slides back to the start of the slide show
         slides[slides.Length - 1].SetActive(false); // turn off last slide
         in_slides = false;
 
-        // disable all player controls and excess UI
+        // re enable all player controls and excess UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
 
-        // pop up slide show screen (mosly opaque screen with text)
-        // can still kinda see background
+        // remove slide show background
         ss_screen.SetActive(false);
-        // Press [e] to continue
+        // remove press [e] to continue text
         ss_press_e_text.SetActive(false);
     }
 
-    // Will be called when the opbject is being looked at by the player
+    /*
+     * Will be called when:
+     * - The object is being looked at by the player
+     * - And the player is allowed to interact with the object
+     * - (i.e. in correct story stage to interact)
+     * 
+     * The only time we will be able to interact is during the "end game demo"
+     * section of the game
+     */
     public void look_at()
     {
-        // if the user is not in game yet
-        // and the user has triggered the game to start
-        if (Input.GetKeyDown("e")) // TODO: check if user is in range
+        // if the user wants to interact with the object
+        if (Input.GetKeyDown("e"))
         {
+            // Make sure that the user currerntly does not have their phone out
+            // before we begin the new demo by forcing the phone demo to end
             phone.GetComponent<phoneCon>().end_demo();
             in_slides = true;
 
@@ -135,7 +156,7 @@ public class end_game_obj_controller : MonoBehaviour
             // pop up slide show screen (mosly opaque screen with text)
             // can still kinda see background
             ss_screen.SetActive(true);
-            // Press [e] to continue
+            // turn on Press [e] to continue text
             ss_press_e_text.SetActive(true);
 
             // turn on the first slide
@@ -143,6 +164,4 @@ public class end_game_obj_controller : MonoBehaviour
             next_slide = 1;
         }
     }
-
-
 }
