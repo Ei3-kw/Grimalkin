@@ -3,10 +3,11 @@
  * Author: Timothy Ryall
  * 
  * Purpose:
- * - 
+ * - To generate a heat map to display to the user of their gaze tracking
+ *   data throughout the set period.
  * 
  * Attached to objects in game scene:
- * - 
+ * - Heat map object that lives within the alarm app within the tablet
  */
 
 using System.Collections;
@@ -23,27 +24,29 @@ public class HeatMapGenerator : MonoBehaviour
     // Gradient to map mouse position density to colors.
     public Gradient heatmapGradient;
 
-    // Adjust this to control the size of the units for intensity calculation.
+    // The size of the units for intensity calculation.
     public float unitSize = 10.0f; 
     
+    // the location of the camera in the scene
     public Transform cam;
 
-    public Camera camera1;
+    // the camera object within the scene
+    public Camera cameraObj;
 
-
-
-
+    /*
+     * Show the heat map of where the user was looking during the alarm game.
+     * This shown to the user by overlaying a partially transparnt heat map
+     * over the image they were looking at.
+     * (tablet background)
+     */
     public void show_heat_map()
     {
-        // Get the mouse positions recorded during tracking.
+        // Get the mouse positions recorded during tracking period
         List<Vector2> mousePositions = MouseTracker.GetMousePositions();
-
-
 
         // Calculate the number of units in both x and y directions.
         int unitsX = Mathf.CeilToInt(heatmapImage.rectTransform.rect.width / unitSize);
         int unitsY = Mathf.CeilToInt(heatmapImage.rectTransform.rect.height / unitSize);
-
 
         // Create a texture for the heat map.
         Texture2D heatMapTexture = new Texture2D(unitsX, unitsY, TextureFormat.RGBAFloat, false);
@@ -59,13 +62,12 @@ public class HeatMapGenerator : MonoBehaviour
         {
             // Convert the mouse position to local coordinates relative to the heat map image.
             Vector2 localPos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(heatmapImage.rectTransform, mousePos, camera1, out localPos);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(heatmapImage.rectTransform, mousePos, cameraObj, out localPos);
 
 
             // Calculate the unit index for this mouse position.
             int unitX = Mathf.FloorToInt(localPos.x / unitSize);
             int unitY = Mathf.FloorToInt(localPos.y / unitSize);
-
 
             // Increment the density for the corresponding unit.
             if (unitX >= 0 && unitX < unitsX && unitY >= 0 && unitY < unitsY)
@@ -80,23 +82,21 @@ public class HeatMapGenerator : MonoBehaviour
         {
             for (int y = 0; y < unitsY; y++)
             {
+                // calculate the noramlised densities
                 float normalizedDensity = unitDensity[x, y] / maxDensity;
                 float intensity = normalizedDensity;
 
+                // set the colour of the cell we are looking at
                 Color color = heatmapGradient.Evaluate(intensity);
-                color.a =  0.5f;
-                
-
+                color.a =  0.5f; // set it to be part transparent
                 heatMapTexture.SetPixel(x, y, color);
             }
         }
 
         // Apply changes to the texture.
-
         heatMapTexture.Apply();
 
-        // Assign the heat map texture to the UI Image.
-        // heatmapImage.sprite = Sprite.Create(heatMapTexture, new Rect(0, 0, unitsX, unitsY), Vector2.zero);
+        // Assign the heat map texture to the Image.
         heatmapImage.sprite = Sprite.Create(heatMapTexture, new Rect(0, 0, heatMapTexture.width, heatMapTexture.height), Vector2.zero);
     }
 }
