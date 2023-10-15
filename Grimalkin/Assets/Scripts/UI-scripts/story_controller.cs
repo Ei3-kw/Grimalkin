@@ -14,7 +14,6 @@
  * - Player object in scene (i.e. the user that will stay present throughout the whole game)
  */
 
-
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -134,16 +133,6 @@ public class story_controller : MonoBehaviour
         set_story_stage("start_screen");
         start_game_text.SetActive(true);
     }
-
-
-
-
-
-
-
-
-
-
 
     /*
      * Update is called once per frame
@@ -439,8 +428,7 @@ public class story_controller : MonoBehaviour
      *
      * Will be triggered automatically after previous story stage
      * 
-     * Will describe the main goal within the rest of the story,
-     * to prepare for camping
+     * Will inform the user that they have to open their phone to continue
      */
     private IEnumerator start_stage_4()
     {
@@ -469,8 +457,8 @@ public class story_controller : MonoBehaviour
      * Will be triggered after:
      * - player opens phone to look at camping packing list
      * 
-     * Will describe the main goal within the rest of the story,
-     * to prepare for camping
+     * Will display the items the user needs for camping and how to collect them
+     * This will make the user move around the unit to search for the items
      */
     private IEnumerator start_stage_5()
     {
@@ -479,13 +467,10 @@ public class story_controller : MonoBehaviour
         // open packing list on phone infront of face
         phone_packing_list.SetActive(true);
 
-
-
-
-
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I just need to find these items around the house and pick them up";
@@ -494,81 +479,102 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Press [e] to open social media";
 
-
-
-
+        // wait for user input to open social media
         set_story_stage("waiting_for_socail_phone");
         yield return null;
     }
 
-    // game 2
-    // hmm what to do..
+    /*
+     * Story stage within the game:
+     * - after user opens their phone to look at social media and how has to 
+     *   search around for camping items
+     *
+     * Will be triggered after:
+     * - after user opens their phone to look at social media
+     * 
+     * The user now has to explore their house to collect the items for camping
+     */
     private IEnumerator start_stage_5_2()
     {
         set_story_stage("open_socail_phone");
 
         // close packing list on phone infront of face
         phone_packing_list.SetActive(false);
-        // open social media phone
+
+        // open social media phone that will be displayed on the side of the screen
+        // the phone will display camping photos and targeted ads
         phone.SetActive(true);
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Oooh these places on social media look nice!";
         yield return new WaitForSeconds(4); // wait
-
         subtitle_text.text = "Let's go find those items!";
+
+        // put up a notification that will describe to the user what items they 
+        // need to pick up
         notifcations.GetComponent<notification_controller>().create_items_notif();
 
-        // set all the items to glow :)
+        // set all the camping items that need to be picked up to glow
         foreach (GameObject item_to_get in camping_items)
         {
             item_to_get.GetComponent<Outline>().enabled = true; // turn on glow
         }
+
+        // wait for a bit for the user to register what is going on
         set_story_stage("getting_items");
-
-
         yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "";
-
-
-
-
         yield return null;
     }
 
-    // game 3
-    // hmm what to do..
+    /*
+     * Story stage within the game:
+     * - User has collected all items and is told to do some online shopping
+     *
+     * Will be triggered after:
+     * - User has collected all items for camping within unit
+     * 
+     * The user now has to go to the computer to begin the online shopping
+     */
     private IEnumerator start_stage_6()
     {
         set_story_stage("before_website_game");
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Ok! that seems like all the items on the old list...";
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Damn, there are definitely things that I forgot on that list though...";
         yield return new WaitForSeconds(4); // wait
         subtitle_text.text = "I think I have a second list on my computer with some other items that I needed to buy";
-        // close social media phone
+        
+        // close social media phone to finish up that interaction
         phone.SetActive(false);
         yield return new WaitForSeconds(5); // wait
-
-
-
-
-
         subtitle_text.text = "";
         set_story_stage("website_game");
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Check out the living room computer");
 
-        // turn on glow for computer
+        // turn on glow for computer that the user has to interact with next for online shopping
         computer.GetComponent<Outline>().enabled = true;
         yield return null;
     }
 
+    /*
+     * Story stage within the game:
+     * - User has must now go to sleep to progress the story
+     *
+     * Will be triggered after:
+     * - After user has completed online shopping
+     * 
+     * The user will be told to go to a bed in their bedroom
+     */
     private IEnumerator start_stage_7()
     {
         set_story_stage("before_bed_time");
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Ok! that seems like it then!!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I think I have all the items I need for camping...";
@@ -577,57 +583,63 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Wow it is getting late...";
         yield return new WaitForSeconds(2); // wait
-
         subtitle_text.text = "I should really go to sleep now";
         yield return new WaitForSeconds(3); // wait
-
-
         subtitle_text.text = "";
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Time to go to bed for the night, find your bed");
+        
         // turn on glow for bed
         bed.GetComponent<Outline>().enabled = true;
         set_story_stage("bed_time");
-
-        //StartCoroutine(start_stage_8());
-
         yield return null;
-
     }
 
+    /*
+     * Story stage within the game:
+     * - Turn off ipad alarm on tablet
+     *
+     * Will be triggered after:
+     * - User has slept in their bed, it is now morning
+     * 
+     * The user will be told to turn off their ipad alarm that has woken them up
+     */
     private IEnumerator start_stage_8()
     {
-        // bed has been clicked on
         set_story_stage("before_wake_up");
+
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
-        bed.GetComponent<Outline>().enabled = false;
+        bed.GetComponent<Outline>().enabled = false; // bed no longer glows becuse we have slept in in
 
         // disable all player controls and excess UI
+        // since the user is waking up and cannot move
         player.GetComponent<playerController>().enabled = false;
         optional_UI.SetActive(false);
 
         // turn on the pin phone to use after wake up
+        // since we will need to use it soon
         passcode_phone.SetActive(true);
 
-
+        // register the fade in / out screen object
         GDTFadeEffect fade_cont = fade_obj.GetComponent<GDTFadeEffect>();
-        // fade out screen
+
+        // fade out screen (going to sleep)
         fade_cont.firstToLast = false; // fade to black
         fade_obj.SetActive(false);
         fade_obj.SetActive(true);
         yield return new WaitForSeconds(3); // wait
+
+        // it is now morning :)
         RenderSettings.skybox = morning;
 
         // turn on alarm
         tablet.GetComponent<tablet_controller>().turn_on_alarm();
-        // turn on tabelet glow
+        // turn on tabelet glow since we need to interact with it
         tablet.GetComponent<Outline>().enabled = true;
 
-
-
-        // fade in screen
+        // fade in screen (waking up)
         fade_cont.firstToLast = true; // fade to clear
         fade_obj.SetActive(false);
         fade_obj.SetActive(true);
@@ -637,45 +649,51 @@ public class story_controller : MonoBehaviour
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
 
-
-        //
+        // begin dialog in form of subtitles
         subtitle_text.text = "uhhh..h..";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "That music must be my alarm.....";
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "I am always misplacing my ipad";
         yield return new WaitForSeconds(2); // wait
-
         subtitle_text.text = "";
-
-        set_story_stage("wake_up");
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Find your ipad and turn off the alarm");
-
+        set_story_stage("wake_up");
         yield return null;
 
     }
 
+    /*
+     * Story stage within the game:
+     * - Packages have arrived from your online shopping
+     *
+     * Will be triggered after:
+     * - Player turns off the alarm and exits the tablet
+     * 
+     * The user will be informed that they have to check the door 
+     * as their online shopping has arrived
+     */
     private IEnumerator start_stage_9()
     {
         // alarm is off
+        set_story_stage("alarm_off");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
-        set_story_stage("alarm_off");
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Thank goodness that alarm is off now";
         yield return new WaitForSeconds(2); // wait
 
+        // ding dong the door bell sound plays since packages arrive
+        door_bell_sound.SetActive(true); // play the sound
+        boxes.SetActive(true); // add boxes to the scene
 
-        // ding dong the door bell
-        door_bell_sound.SetActive(true);
-
+        // more dialog
         subtitle_text.text = "Oh I think that is the door!";
         yield return new WaitForSeconds(2); // wait
-
-        boxes.SetActive(true);
         subtitle_text.text = "That must be our camping gear arriving!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "";
@@ -686,82 +704,192 @@ public class story_controller : MonoBehaviour
         // highlight boxes
         set_story_stage("find_boxes");
         boxes.GetComponent<Outline>().enabled = true;
-
         yield return null;
-
     }
 
+    /*
+     * Story stage within the game:
+     * - Boxes opened, need to confirm order on phone
+     *
+     * Will be triggered after:
+     * - Player opens the boxes at the door
+     * 
+     * User will be asked to go to phone and confirm that the order has arrived
+     */
     private IEnumerator start_stage_10()
     {
         set_story_stage("boxes_found");
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "I have everything I need for camping now!!";
         yield return new WaitForSeconds(2); // wait
-
         subtitle_text.text = "Oh wait! I need to confirm that the order arrived on my phone before I forget";
         yield return new WaitForSeconds(4); // wait
-
         subtitle_text.text = "I think my code is 3512";
 
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Confirm the order on your phone, check kitchen counter (CODE: 3512)");
-        // turn on glow for bed
+        
+        // turn on glow for the phone
         passcode_phone.GetComponent<Outline>().enabled = true;
         set_story_stage("ender_passcode");
-
-
-
         yield return null;
-
     }
 
+    /*
+     * Story stage within the game:
+     * - After the code is entered, the main story is now done :)
+     *
+     * Will be triggered after:
+     * - Player correctly enters their pin on the phone to confirm the order
+     * 
+     * After the code is entered, the main story is now done 
+     */
     private IEnumerator start_stage_11()
     {
         set_story_stage("code_entered");
+
+        // begin dialog in form of subtitles
         subtitle_text.text = "Ok cool!!";
         yield return new WaitForSeconds(2); // wait
-
         subtitle_text.text = "I can't wait for camping tomorrow!!";
         yield return new WaitForSeconds(4); // wait
 
+        // begin the ending game slide show
         StartCoroutine(ending_ss_1());
         yield return null;
     }
 
+    /*
+     * First ending slide in the end game slide show
+     * 
+     * Will explain that the main story is over
+     */
+    private IEnumerator ending_ss_1()
+    {
+        set_story_stage("ending_ss_1");
+        // begin the slide show
+        in_ss = true;
+        subtitle_text.text = "";
 
-        /*
-        private IEnumerator ending_ss_end()
-        {
-            set_story_stage("ending_ss_end");
-            ss_all_interaction_slides.SetActive(false);
-            ss_press_e_text.SetActive(false);
+        // remove task notifaction
+        notifcations.GetComponent<notification_controller>().remove_notif();
 
-            // BEcause of this you spennt ___ extra dollars
-            // and couldn't afford food, your partners dog died :<
-            ss_sg_4.SetActive(true);
-            // Press [e] to exit game to desktop
-            ss_exit_text.SetActive(true);
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
 
+        // pop up slide show screen (mosly opaque screen with text)
+        // can still kinda see background
+        ss_screen.SetActive(true);
 
+        // show the first slide
+        ss_ending_1.SetActive(true);
 
-            // wait for button to be pressed to go to the next slide
-            set_story_stage("ending_ss_end_waiting");
-            yield return null;
-        }
-        */
+        // show press [e] to continue text
+        ss_press_e_text.SetActive(true);
 
+        set_story_stage("ending_ss_1_waiting");
+        yield return null;
+    }
+
+    /*
+     * Second ending slide in the end game slide show
+     * 
+     * Will explain that their gaze was being tracked and exploited
+     */
+    private IEnumerator ending_ss_2()
+    {
+        set_story_stage("ending_ss_2");
+        // turn off prev slide
+        ss_ending_1.SetActive(false);
+        // turn on new slide
+        ss_ending_2.SetActive(true);
+        set_story_stage("ending_ss_2_waiting");
+        yield return null;
+    }
+
+    /*
+     * Third ending slide in the end game slide show - Video
+     * 
+     * Will show the user all the cameras that were tracking their gaze
+     * by showing a video of the cam locations
+     */
+    private IEnumerator ending_ss_3()
+    {
+        set_story_stage("ending_ss_3");
+        // turn off prev slide
+        ss_ending_2.SetActive(false);
+        // turn on new slide
+        ss_ending_3.SetActive(true);
+
+        // lead in time before the video begins
+        yield return new WaitForSeconds(6); // wait
+        set_story_stage("ending_ss_3_waiting");
+        ss_ending_3_text.SetActive(false); // turn off text when real video begins
+
+        // video is 40 seconds 40 - 6 = 34
+        yield return new WaitForSeconds(34); // wait while video is player
+
+        // if the user hasn't force skiped the cutsceen yet then move to tthe next
+        if (!skipped_cutscene) { StartCoroutine(ending_ss_4()); }
+        yield return null;
+    }
+
+    /*
+     * Fouth ending slide in the end game slide show - Video
+     * 
+     * Will explain to the user they can now explore all the demos
+     * and get explained how their gaze was tracked
+     * 
+     * NOTE this is the stage that the player will enter if they 
+     * choose to skip to the end game demos from the start screen
+     */
+    private IEnumerator ending_ss_4()
+    {
+        // make sure to record we are in the slide show 
+        // since we may be entering this stage from the start screen
+        in_ss = true;
+        subtitle_text.text = "";
+
+        // remove task notifaction
+        notifcations.GetComponent<notification_controller>().remove_notif();
+
+        // disable all player controls and excess UI
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false);
+
+        // pop up slide show screen (mosly opaque screen with text)
+        // can still kinda see background
+        ss_screen.SetActive(true);
+        // show press [e] to continue text
+        ss_press_e_text.SetActive(true);
+
+        set_story_stage("ending_ss_4");
+        // turn off prev slide
+        ss_ending_3.SetActive(false);
+        // turn on new slide
+        ss_ending_4.SetActive(true);
+
+        set_story_stage("ending_ss_4_waiting");
+        yield return null;
+    }
+
+    /*
+     * This wraps up the end game slide show and allows the user to 
+     * explore the world freely and try out all the demos.
+     */
     private IEnumerator ending_ss_end()
     {
         set_story_stage("ending_ss_end");
-        in_ss = false;
+        in_ss = false; // slide show now over
 
-        // disable old objs
+        // disable old objs that are only in main story
         old_objs.SetActive(false);
-
-        // enable new objs
+        // enable new objs that are only in end game demo part of game
         new_objs.SetActive(true);
 
-        // remove task notifaction
+        // add task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
         menu_exit_text.SetActive(true);
 
@@ -773,124 +901,12 @@ public class story_controller : MonoBehaviour
         // can still kinda see background
         ss_screen.SetActive(false);
 
-        // you left for your camping trip
-        // however the consqince from the days before came back to bite
+        // turn of last slide
         ss_ending_4.SetActive(false);
-        // Press [e] to continue
+        // remove press [e] to continue text
         ss_press_e_text.SetActive(false);
 
         set_story_stage("end_game_interactions");
-
-
         yield return null;
     }
-
-
-    // first ending slide
-    private IEnumerator ending_ss_1()
-    {
-        in_ss = true;
-
-        set_story_stage("ending_ss_1");
-        subtitle_text.text = "";
-
-        // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
-
-        // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-
-        // pop up slide show screen (mosly opaque screen with text)
-        // can still kinda see background
-        ss_screen.SetActive(true);
-        
-        // you left for your camping trip
-        // however the consqince from the days before came back to bite
-        ss_ending_1.SetActive(true);
-        // Press [e] to continue
-        ss_press_e_text.SetActive(true);
-
-        set_story_stage("ending_ss_1_waiting");
-
-        yield return null;
-    }
-
-    // 2nd ending slide
-    private IEnumerator ending_ss_2()
-    {
-        set_story_stage("ending_ss_2");
-        // turn off prev slide
-        ss_ending_1.SetActive(false);
-        // turn on new slide
-        ss_ending_2.SetActive(true);
-
-        set_story_stage("ending_ss_2_waiting");
-
-        yield return null;
-    }
-
-    // 3nd ending slide - video
-    private IEnumerator ending_ss_3()
-    {
-        set_story_stage("ending_ss_3");
-        // turn off prev slide
-        ss_ending_2.SetActive(false);
-        // turn on new slide
-        ss_ending_3.SetActive(true);
-
-        
-
-        // lead in time
-        yield return new WaitForSeconds(6); // wait
-        set_story_stage("ending_ss_3_waiting");
-
-        ss_ending_3_text.SetActive(false);
-
-        // video is 40 seconds 40 - 5 = 35
-        yield return new WaitForSeconds(34); // wait
-        if (!skipped_cutscene) { StartCoroutine(ending_ss_4()); }
-        
-        yield return null;
-    }
-
-    // 4nd ending slide
-    private IEnumerator ending_ss_4()
-    {
-        in_ss = true;
-        subtitle_text.text = "";
-
-        // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
-
-        // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-
-        // pop up slide show screen (mosly opaque screen with text)
-        // can still kinda see background
-        ss_screen.SetActive(true);
-        // Press [e] to continue
-        ss_press_e_text.SetActive(true);
-
-
-        set_story_stage("ending_ss_4");
-        // turn off prev slide
-        ss_ending_3.SetActive(false);
-        // turn on new slide
-        ss_ending_4.SetActive(true);
-
-        set_story_stage("ending_ss_4_waiting");
-
-
-        yield return null;
-    }
-
-
-
-
-
-
 }
-
-
