@@ -3,25 +3,21 @@
  * Author: Timothy Ryall
  * 
  * Purpose:
- * - To control how the boxes acts within the scene
- * - To respond to player when they player interacts with the boxes
- * - To progress the story when the boxes are relevant to the story
+ * - To control how the coffee cup acts within the scene
+ * - To respond to player when they player interacts with the coffee cup
+ * - To progress the story when the coffee cup is relevant to the story
  * 
  * Attached to objects in game scene:
- * - Box object in scene (camping items that have arrived)
+ * - Coffee cup object in scene
  */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boxes_controller : MonoBehaviour
+public class coffee_controller : MonoBehaviour
 {
     public GameObject player; // player object in scene
-    // model for the closed boxes (not yet opened by player)
-    public GameObject closed_boxes;
-    // model for the open boxes (opened by player)
-    public GameObject open_boxes;
 
     /*
      * Start is called before the first frame update
@@ -30,7 +26,7 @@ public class boxes_controller : MonoBehaviour
     {
         // turn off the glow since we only want bed to glow when story commands it 
         // at the start of the game not nessecary 
-        gameObject.GetComponent<Outline>().enabled = false; 
+        gameObject.GetComponent<Outline>().enabled = false;
     }
 
     /*
@@ -46,13 +42,11 @@ public class boxes_controller : MonoBehaviour
         {
             // once player interacts for the first time, object glow ends
             gameObject.GetComponent<Outline>().enabled = false; 
+            // remove the coffee from the scene as the player "drinks it"
+            gameObject.SetActive(false);
 
-            // open the boxes (i.e. swap out the model for the boces)
-            closed_boxes.SetActive(false);
-            open_boxes.SetActive(true);
-
-            // communitcate back to story that the boxes have been interacted with
-            player.GetComponent<story_controller>().opened_boxes();
+            // communitcate back to story that player has interacted with the coffee
+            player.GetComponent<story_controller>().got_coffee();
         }
     }
 }
