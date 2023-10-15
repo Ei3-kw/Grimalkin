@@ -1,18 +1,37 @@
+/* 
+ * Project Grimalkin
+ * Author: Timothy Ryall
+ * 
+ * Purpose:
+ * - To create the background image that is displayed on the tablet
+ *   when trying to turn off the alarm (woman image)
+ * 
+ * Attached to objects in game scene:
+ * - Tablet that has the alarm playing
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
 {
-    public Material backgroundMaterial; // Material with the 2D image texture
-    public GameObject backgroundObject; // GameObject representing the background
+    // material with the 2D image texture (i.e. picture of woman for ipad background)
+    public Material backgroundMaterial;
 
+    // GameObject representing the background (object that displays the picture of woman)
+    public GameObject backgroundObject; 
+
+    /*
+     * Start will be called before first frame update
+     * 
+     * We will create the background if not created yet and display it on the tablet
+     */
     void Start()
     {
         // Check if the background object and material are assigned
         if (backgroundObject == null || backgroundMaterial == null)
         {
-            Debug.LogError("Background Object or Material is not assigned!");
             return;
         }
 
@@ -32,11 +51,8 @@ public class BackgroundController : MonoBehaviour
         // Create a new Mesh with large dimensions (e.g., cube or sphere)
         Mesh backgroundMesh = new Mesh();
 
-        // Customize the mesh here (e.g., create a large cube or sphere)
-        // For a cube:
+        // Creat the background mesh needed for our case
         backgroundMesh = CreateCube();
-        // For a sphere:
-        // backgroundMesh = CreateSphere();
 
         // Attach the background material to the renderer
         backgroundRenderer.material = backgroundMaterial;
@@ -45,7 +61,11 @@ public class BackgroundController : MonoBehaviour
         backgroundObject.GetComponent<MeshFilter>().mesh = backgroundMesh;
     }
 
-    // Create a cube mesh with large dimensions
+    /*
+     * Create a cube mesh with large dimensions
+     *
+     * Designed to house the background image.
+     */
     Mesh CreateCube()
     {
         Mesh mesh = new Mesh();
@@ -72,14 +92,6 @@ public class BackgroundController : MonoBehaviour
         mesh.triangles = triangles;
         mesh.uv = uv;
 
-        return mesh;
-    }
-
-    // Create a sphere mesh with large dimensions
-    Mesh CreateSphere()
-    {
-        Mesh mesh = new Mesh();
-        // Create a sphere mesh here
         return mesh;
     }
 }

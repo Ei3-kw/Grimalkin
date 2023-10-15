@@ -1,47 +1,48 @@
+/* 
+ * Project Grimalkin
+ * Author: Timothy Ryall
+ * 
+ * Purpose:
+ * - 
+ * 
+ * Attached to objects in game scene:
+ * - 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-
-
-// Heatmap show up but covers original image
 public class HeatMapGenerator : MonoBehaviour
 {
-    // public MouseTracker mouseTracker;
-    public Image heatmapImage; // UI Image for displaying the heat map.
+    // Image of the heap map that is to be overlayed on tablet screen
+    // to show the user where they were looking
+    public Image heatmapImage;
 
-    public Gradient heatmapGradient; // Gradient to map mouse position density to colors.
+    // Gradient to map mouse position density to colors.
+    public Gradient heatmapGradient;
 
-    public float unitSize = 10.0f; // Adjust this to control the size of the units for intensity calculation.
+    // Adjust this to control the size of the units for intensity calculation.
+    public float unitSize = 10.0f; 
     
     public Transform cam;
-    // public void GenerateHeatMap()
 
     public Camera camera1;
 
 
-    public void Start()
 
-    {
-
-    }
 
     public void show_heat_map()
     {
         // Get the mouse positions recorded during tracking.
         List<Vector2> mousePositions = MouseTracker.GetMousePositions();
-        //Debug.Log(mousePositions[4]);
+
 
 
         // Calculate the number of units in both x and y directions.
         int unitsX = Mathf.CeilToInt(heatmapImage.rectTransform.rect.width / unitSize);
         int unitsY = Mathf.CeilToInt(heatmapImage.rectTransform.rect.height / unitSize);
-        // Debug.Log(heatmapImage.rectTransform.rect.width);
-        // Debug.Log(heatmapImage.rectTransform.rect.height);
-
-        // Debug.Log(unitsX);
-        // Debug.Log(unitsY);
 
 
         // Create a texture for the heat map.
@@ -59,15 +60,13 @@ public class HeatMapGenerator : MonoBehaviour
             // Convert the mouse position to local coordinates relative to the heat map image.
             Vector2 localPos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(heatmapImage.rectTransform, mousePos, camera1, out localPos);
-            // localPos=cam.InverseTransformPoint(mousePos);
-            // localPos = mousePos;
+
+
             // Calculate the unit index for this mouse position.
             int unitX = Mathf.FloorToInt(localPos.x / unitSize);
             int unitY = Mathf.FloorToInt(localPos.y / unitSize);
-            // Debug.Log("x");
-            // Debug.Log(unitX);
-            // Debug.Log("y");
-            // Debug.Log(unitY);
+
+
             // Increment the density for the corresponding unit.
             if (unitX >= 0 && unitX < unitsX && unitY >= 0 && unitY < unitsY)
             {
@@ -83,21 +82,12 @@ public class HeatMapGenerator : MonoBehaviour
             {
                 float normalizedDensity = unitDensity[x, y] / maxDensity;
                 float intensity = normalizedDensity;
-                // Debug.Log(intensity);
 
-                //Debug.Log(intensity);
                 Color color = heatmapGradient.Evaluate(intensity);
                 color.a =  0.5f;
                 
 
                 heatMapTexture.SetPixel(x, y, color);
-                // Debug.Log(x);
-                // // Debug.Log(intensity);
-                // Debug.Log(y);
-                // Debug.Log(color);
-
-
-
             }
         }
 
@@ -108,6 +98,5 @@ public class HeatMapGenerator : MonoBehaviour
         // Assign the heat map texture to the UI Image.
         // heatmapImage.sprite = Sprite.Create(heatMapTexture, new Rect(0, 0, unitsX, unitsY), Vector2.zero);
         heatmapImage.sprite = Sprite.Create(heatMapTexture, new Rect(0, 0, heatMapTexture.width, heatMapTexture.height), Vector2.zero);
-        Debug.Log("done");
     }
 }

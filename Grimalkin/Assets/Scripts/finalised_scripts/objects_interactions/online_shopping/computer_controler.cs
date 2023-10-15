@@ -28,9 +28,6 @@ public class computer_controler : MonoBehaviour
     // (where should the "browser window" go)
     public Transform game_location;
 
-    // if the player is allowed to commence online shopping
-    private bool player_can_start = true;
-
     // objects on computer screen before online shopping starts
     public GameObject start_game_button; // button to begin the shopping game
     public GameObject start_text_message; // text on the screen before user starts shopping
@@ -87,7 +84,6 @@ public class computer_controler : MonoBehaviour
             // once player starts interacting for the first time glow ends
             gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
-            player_can_start = false;
 
             // disable the movment script and UI since we are looking at computer
             player.GetComponent<playerController>().enabled = false;
@@ -123,7 +119,6 @@ public class computer_controler : MonoBehaviour
         // once player starts for the first time glow ends
         gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
         start_text_message.SetActive(true);
-        player_can_start = false;
 
         // disable the movment script and UI
         player.GetComponent<playerController>().enabled = false;
@@ -227,7 +222,6 @@ public class computer_controler : MonoBehaviour
         // re enable the movment script and UI
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-        player_can_start = true;
 
         if (demo_mode) // if we are only playing a demo
         {
