@@ -25,20 +25,31 @@ public class story_controller : MonoBehaviour
     // keep track of the current stage that the story is in
     private string story_stage;
 
-    // gameplay settings
     // FPS cap for game to ensure consistant behaviour and preformance
     public int targetFrameRate = 60;
 
+    // skyboxes used throughout the game that will be displayed outside
+    public Material night; // before player sleeps
+    public Material morning; // after player sleeps and wakes up
 
+    // the main player object within the scene (what the user controls)
     public GameObject player;
 
     // UI elements that need to be sent messages by the story
-    public GameObject optional_UI;
-    public GameObject subtitles;
-    private TextMeshProUGUI subtitle_text;
-    public GameObject notifcations;
+    public GameObject optional_UI; // UI elements that can be disabled if needed (not nessary to play)
+    public GameObject subtitles; // the subtitles UI object that is displayed on the bottom of screen
+    private TextMeshProUGUI subtitle_text; // the subtitles text that is displayed on screen
+    public GameObject notifcations; // the notification UI element that is displayed
     public GameObject controls_intro; // screen displaying the introductory controls to the user
 
+    // pause menu UI elements
+    public GameObject pause_menu; // pause menu UI element
+    public GameObject menu_exit_text; // text describing to the user how to use pause menu
+
+    // start of the game UI and objects
+    public GameObject start_game_text; // the text that will inform user how to start the game
+    public GameObject fade_in_start; // object that will control the fade in as the world loads
+    public Transform starting_pos; // the position the player will start the game in
 
     /*
      * Objects associated with each key interaction within the game
@@ -69,78 +80,59 @@ public class story_controller : MonoBehaviour
     public GameObject boxes;
     public GameObject door_bell_sound;
 
-
-    // ending slide show settings and UI elemenets
-    // the ending slide show is the set of slides that will play after the user has finished
-    // the main game and is entering the "educational demo" part of the game
+    /*
+     * ending slide show settings and UI elemenets
+     * the ending slide show is the set of slides that will play after the user has finished
+     * the main game and is entering the "educational demo" part of the game
+     */
+    // parameters and general UI elements
     private bool in_ss = false; // keeps track of if we are in the ending slide show or not
+    public GameObject ss_screen; // the black UI screen the the slides will be overlayed ontop of
+    public GameObject ss_press_e_text; // text informing the user they can click e to continue
 
-    public GameObject ss_ending_1;
-    public GameObject ss_ending_2;
-    public GameObject ss_ending_3;
-    public GameObject ss_ending_3_text;
-    public GameObject ss_ending_4;
+    // slides used within slide show
+    public GameObject ss_ending_1; // slide 1
+    public GameObject ss_ending_2; // slide 2
+    public GameObject ss_ending_3; // slide 3 (this is a video showing the cameras in the house)
+    public GameObject ss_ending_3_text; // the text overlayed on the video (from slide 3)
+    public GameObject ss_ending_4; // slide 4
+    private bool skipped_cutscene = false; // if we have skiped the "camera video" cut scene
 
+    // sets of objects that will be changed in the transition from the first to second half of game
+    public GameObject old_objs; // objects that are ONLY apart of the "main story - first half of game"
+    public GameObject new_objs; // objects that are ONLY apart of the "end demos - second half of game"
 
-
-    //end
-    public GameObject ss_exit_text;
-    public GameObject ss_all_interaction_slides;
-
-    // start
-    public GameObject ss_screen;
-    public GameObject ss_press_e_text;
-
-    
-
-
-    public GameObject old_objs;
-    public GameObject new_objs;
-
-    public Material night;
-    public Material morning;
-
-    public Transform starting_pos;
-    public GameObject start_game_text;
-    public GameObject fade_in_start;
-
-    public GameObject pause_menu;
-
-    public GameObject menu_exit_text;
-
-
-    private bool skipped_cutscene = false;
-
-    // Start is called before the first frame update
+    /*
+     * Start is called before the first frame update
+     * we will set up the scene to begin the game
+     */
     void Start()
     {
+        // don't fade in untill the user clicks [1] to start the game
         fade_in_start.SetActive(false);
-        // Cap FPSto ensure consistant behaviour and preformance
+
+        // Cap FPS to ensure consistant behaviour and preformance
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;
 
+        // turn off any objects that are meant to be hidden at the start of the game
         phone.SetActive(false);
         boxes.SetActive(false);
 
-        // define paramas
+        // define params that are to be used within the game
         subtitle_text = subtitles.GetComponent<TextMeshProUGUI>();
-        ////////////////////////////
-        ///
-        ss_screen.SetActive(false);
-        ss_press_e_text.SetActive(false);
-
-
-        ////// WHERE TO BEGIN ? ////////////
-        // beging dialog 1
-
-        //StartCoroutine(start_stage_4());
 
         // disable all player controls and excess UI
         player.GetComponent<playerController>().enabled = false;
+
+        // turn off any UI elements that are not needed yet
+        ss_screen.SetActive(false);
+        ss_press_e_text.SetActive(false);
         optional_UI.SetActive(false);
+
+        // turn on the start screen of the game
         set_story_stage("start_screen");
         start_game_text.SetActive(true);
-
     }
 
 
@@ -153,109 +145,102 @@ public class story_controller : MonoBehaviour
 
 
 
-    // Update is called once per frame
+    /*
+     * Update is called once per frame
+     * 
+     * We will check for any user inputs, if the user is within the correct 
+     * story stage, and press a key that should progress the story, we will
+     * act on it. If either, a key that doesn't do anything is pressed or the 
+     * user is not in the correct story stage for that key to mean anything,
+     * we do nothing.
+     * 
+     * We will also check for key presses that will bring up the menu screens
+     * Or the user is in the start screen and wants to start the game
+     */
     void Update()
     {
-        // if user wants to bring up the excape menu
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // turn on the cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            // bring up the menu
-            pause_menu.SetActive(true);
-        }
-
-        // if we are about to begin the game
-        // and press 'e' to begin
+        // if we are in the start screen, i,e. are about to begin the game
         if (story_stage == "start_screen")
         {
+            // if user wishes to start the game from the begining
             if (Input.GetKeyDown("1"))
             {
+                // turn ON player controls and any UI elements needed for the game
                 player.GetComponent<playerController>().enabled = true;
                 optional_UI.SetActive(true);
 
-                // move player to starting pos
+                // move player to starting location
                 Vector3 targetPosition = starting_pos.position;
                 Quaternion targetRotation = starting_pos.rotation;
                 Transform player_pos = player.GetComponent<Transform>();
-                player_pos.position = targetPosition;
-                player_pos.rotation = targetRotation;
+                player_pos.position = targetPosition; // correct position
+                player_pos.rotation = targetRotation; // correct rotation
 
                 // turn off start game text
                 start_game_text.SetActive(false);
                 StartCoroutine(start_stage_1()); // begin the game from the start
             }
+            // if the user wishes to skip to the end game educational demo 
             else if (Input.GetKeyDown("2"))
             {
-                // move player to starting pos
+                // move player to starting location
                 Vector3 targetPosition = starting_pos.position;
                 Quaternion targetRotation = starting_pos.rotation;
                 Transform player_pos = player.GetComponent<Transform>();
-                player_pos.position = targetPosition;
-                player_pos.rotation = targetRotation;
+                player_pos.position = targetPosition; // correct position
+                player_pos.rotation = targetRotation; // correct rotation
 
                 // turn off start game text
                 start_game_text.SetActive(false);
                 StartCoroutine(ending_ss_4()); // skip to end game demo scenes
-
             }
-                
         }
 
-
-
-
-
+        // if user wants to bring up the pause menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // turn on the cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            // bring up the menu (this includes all the buttons etc.)
+            pause_menu.SetActive(true);
+        }
 
         // if they want to open their phone for the first time
         if (story_stage == "waiting_for_phone_open" && Input.GetKeyDown("e"))
         {
-
-            // DO NOT CHANEG THISSSSS
-            StartCoroutine(start_stage_5());
+            StartCoroutine(start_stage_5()); // progress story
         }
-
+        // if they want to open their phone for the second time
         if (story_stage == "waiting_for_socail_phone" && Input.GetKeyDown("e"))
         {
-            Debug.Log("socail media time");
-            StartCoroutine(start_stage_5_2());
-
+            StartCoroutine(start_stage_5_2()); // progress story
         }
 
-            
-
-
-
-
-
-
-
-
-
-        /////// FOR THE SLIDE SHOW
-        if (in_ss && Input.GetKeyDown("e"))
+        // if the user is within the slide show, and they wish to progress to the next slide
+        if (in_ss && Input.GetKeyDown("e")) // press e to go to next slide
         {
+            // depending on what slide they are currently on, move to the next one
             if (story_stage == "ending_ss_1_waiting") { StartCoroutine(ending_ss_2()); }
             else if (story_stage == "ending_ss_2_waiting") { StartCoroutine(ending_ss_3()); }
             else if (story_stage == "ending_ss_3_waiting") 
-            {
-                skipped_cutscene = true;
+            { // if the user presses e to skip the cut scene 
+                skipped_cutscene = true; // record they skiped it
                 StartCoroutine(ending_ss_4()); 
             }
             else if (story_stage == "ending_ss_4_waiting") { StartCoroutine(ending_ss_end()); }
-
         }
-   
-
-
-
-
-
-
-
     }
 
+    /*
+     * Set the current story stage.
+     * 
+     * We need to ensure that both the story controler and the player are on the 
+     * same page about what story stage we are on. If we want to change the story
+     * stage we must also inform the player
+     * 
+     * stage: name of the story stage we want to go into to
+     */
     public void set_story_stage(string stage)
     {
         story_stage = stage;
@@ -263,82 +248,105 @@ public class story_controller : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// CALLS BY PLAEYRS
-    /// </summary>
-
-    public void looked_at_cwp()
-    {
-        StartCoroutine(start_stage_4());
-    }
-
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When coffee is consumed
+     */
     public void got_coffee()
     {
-        StartCoroutine(start_stage_3());
+        StartCoroutine(start_stage_3()); // start next story stage after this event
     }
 
-    public void finished_website_game()
-    {
-        StartCoroutine(start_stage_7());
-    }
-
-    public void in_bed_now()
-    {
-        StartCoroutine(start_stage_8());
-    }
-
-    public void alarm_off()
-    {
-        StartCoroutine(start_stage_9());
-    }
-
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When all camping items have been gathered
+     */
     public void got_all_items()
     {
-        StartCoroutine(start_stage_6());
+        StartCoroutine(start_stage_6()); // start next story stage after this event
     }
 
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When the website game has been completed
+     */
+    public void finished_website_game()
+    {
+        StartCoroutine(start_stage_7()); // start next story stage after this event
+    }
+
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When the user has gone to bed
+     */
+    public void in_bed_now()
+    {
+        StartCoroutine(start_stage_8()); // start next story stage after this event
+    }
+
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When alarm has been turned off by the user
+     */
+    public void alarm_off()
+    {
+        StartCoroutine(start_stage_9()); // start next story stage after this event
+    }
+
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When usre has opened the boxes at the door
+     */
     public void opened_boxes()
     {
-        StartCoroutine(start_stage_10());
+        StartCoroutine(start_stage_10()); // start next story stage after this event
     }
 
+    /*
+     * Is called by external objects within the scene when a particular event
+     * happens that should progress the story
+     * 
+     * When the correct code has been entered on the phone
+     */
     public void code_entered()
     {
-        StartCoroutine(start_stage_11());
+        StartCoroutine(start_stage_11()); // start next story stage after this event
     }
 
-
-
-
-
-
-
-    /// <summary>
-    /// STORY LINE
-    /// </summary>
-
-
-    // DIALOG 1
+    /*
+     * Story stage within the game
+     * 
+     * This stage is the entry point for the main game
+     * It will introduce the player to the story line
+     * Show the user the controls and explain how the game works in general
+     */
     private IEnumerator start_stage_1()
     {
-        player.GetComponent<playerController>().enabled = false;
-        optional_UI.SetActive(false);
-        passcode_phone.SetActive(false); // turn of pin phone to avoid confusion
-
-        fade_in_start.SetActive(true);
-
-
-
-
-
-
         set_story_stage("start_dialog");
 
-        // screen fade in
-        yield return new WaitForSeconds(3); // wait
+        // start with the player unable to move
+        player.GetComponent<playerController>().enabled = false;
+        optional_UI.SetActive(false); // turn off unnessary UI elements in intro
+        passcode_phone.SetActive(false); // turn of pin phone to avoid confusion
+
+        // fade the game in from black to start while assests load in
+        fade_in_start.SetActive(true);
+        yield return new WaitForSeconds(3); // wait while the screen fades
 
 
-        // subtiles 1
+        // display first set of dialog to the user 
         subtitle_text.text = "Oh Uh... Our anniversary is this weekend...";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "I really need to plan something for that...";
@@ -346,82 +354,76 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "But first, I would kill for a coffee";
         yield return new WaitForSeconds(2); // wait
 
-        // describe to user the controls
+        // describe to user the controls by showing them a controls info screen
+        // they can now click [e] to exit the controls
         ss_screen.SetActive(true);
         ss_press_e_text.SetActive(true);
         controls_intro.SetActive(true);
 
-
-
-        // only progress when click e
+        // only progress when click e to cotntinue
         while (!Input.GetKeyDown("e"))
         {
-            yield return null;
+            yield return null; // keep waiting untill e pressed
         }
+
+        // turn off the controls screen
         controls_intro.SetActive(false);
         ss_screen.SetActive(false);
         ss_press_e_text.SetActive(false);
 
-
-        // re enable the movment script and UI
+        // re enable the movment script and UI so the player can move and look around
         player.GetComponent<playerController>().enabled = true;
         optional_UI.SetActive(true);
-
-
-        // beging game 1
         yield return new WaitForSeconds(2); // wait
 
+        // progress to next stage of game
         subtitle_text.text = "";
-        StartCoroutine(start_stage_2());
-
+        StartCoroutine(start_stage_2()); // progress to collect coffee cup
         yield return null;
     }
 
-    // GAME 1
-    // COFFEE CUP
+    /*
+     * Story stage within the game:
+     * - Get coffee from bench
+     *
+     * Will be triggered automatically after previous story stage
+     * 
+     * This stage will be amost a small "tutorial" on how to play
+     * by describing how we will show objectives within the game
+     */
     private IEnumerator start_stage_2()
     {
         set_story_stage("coffee");
 
-        // pop up task notifaction
+        // pop up task notifaction telling the user what to do
         notifcations.GetComponent<notification_controller>().set_notif("Go grab some coffee from the bench");
 
         // turn on glow for coffee
         coffee_cup.GetComponent<Outline>().enabled = true; // turn off the glow when looked at it
-
-        // game will end when coffee is clicked on 
         yield return null;
     }
 
-    // Dialog 2 
-    // hmm what to do..
+    /*
+     * Story stage within the game:
+     * - Think about camping after drinking coffe
+     *
+     * Will be triggered after:
+     * - player drinks the coffee
+     * 
+     * Will describe the main goal within the rest of the story,
+     * to prepare for camping
+     */
     private IEnumerator start_stage_3()
     {
         // coffee has been clicked on
-        set_story_stage("before_look_at_painting");
+        set_story_stage("after_coffee");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
+        // begin dialog in form of subtitles
         subtitle_text.text = "Ahh, that's better";
         yield return new WaitForSeconds(2); // wait
-
-        /*
-        subtitle_text.text = "Now... What to do for the anniversary";
-        yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "Maybe I should look around and hope inspiration hits";
-        yield return new WaitForSeconds(2); // wait
-        subtitle_text.text = "I have so many pictures on these walls surely there is something..";
-        yield return new WaitForSeconds(3); // wait
-        subtitle_text.text = "";
-
-        // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Look around for ideas for your anniversary plans");
-
-        // turn on glow for camping photo
-        camping_wall_photo.GetComponent<Outline>().enabled = true;
-        set_story_stage("look_at_painting");
-        */
         subtitle_text.text = "Oh!! I have an idea for the anniversary!!";
         yield return new WaitForSeconds(2); // wait
         subtitle_text.text = "Camping!!";
@@ -431,34 +433,45 @@ public class story_controller : MonoBehaviour
         yield return null;
     }
 
-    // Dialog 3 
-    // hmm what to do..
+    /*
+     * Story stage within the game:
+     * - Remeber to look at phone to see items for camping
+     *
+     * Will be triggered automatically after previous story stage
+     * 
+     * Will describe the main goal within the rest of the story,
+     * to prepare for camping
+     */
     private IEnumerator start_stage_4()
     {
-        set_story_stage("after_painting");
+        set_story_stage("remembered_camping");
 
         // remove task notifaction
         notifcations.GetComponent<notification_controller>().remove_notif();
 
-        //subtitle_text.text = "Oh! Camping!";
-        //yield return new WaitForSeconds(2); // wait
-        //subtitle_text.text = "I wonder if I still have all my gear from my last camping trip";
-        //yield return new WaitForSeconds(4); // wait
-
+        // begin dialog in form of subtitles
         subtitle_text.text = "I have a list of items I need to pack saved on my phone";
         yield return new WaitForSeconds(3); // wait
         subtitle_text.text = "Press [e] to open your phone";
 
-
         // pop up task notifaction
         notifcations.GetComponent<notification_controller>().set_notif("Press [e] to open you phone and check packing list");
 
+        // wait for user input to open phone
         set_story_stage("waiting_for_phone_open");
         yield return null;
     }
 
-    // game 2
-    // hmm what to do..
+    /*
+     * Story stage within the game:
+     * - Looking at phone to determin what items we need to pick up for camping
+     *
+     * Will be triggered after:
+     * - player opens phone to look at camping packing list
+     * 
+     * Will describe the main goal within the rest of the story,
+     * to prepare for camping
+     */
     private IEnumerator start_stage_5()
     {
         set_story_stage("phone_opened");
