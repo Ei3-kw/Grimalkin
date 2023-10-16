@@ -1,3 +1,15 @@
+/* 
+ * Project Grimalkin
+ * Author: Ella
+ * 
+ * Purpose:
+ * - handel sliding doors 
+ *   
+ * 
+ * Attached to objects in game scene:
+ * - sliding doors
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +20,7 @@ public class SlidingDoor : MonoBehaviour
     public float doorWidth2 = 0.0f; // The width of the door.
     public float slidingSpeed = 2.0f; // The speed at which the door slides.
     public Transform Player; // Reference to the player.
-    public float dir = -1;
-
+    public float dir = -1; // direction to move the door to open
     private Vector3 closedPosition;
     private Vector3 openPosition;
     public bool isOpen = false;

@@ -1,3 +1,15 @@
+/* 
+ * Project Grimalkin
+ * Author: Fahed Alhanaee
+ * 
+ * Purpose:
+ * - controls the phone and what poster is showing on the phone 
+ *   
+ * 
+ * Attached to objects in game scene:
+ * - phone 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,57 +18,60 @@ using System;
 
 public class phoneCon : MonoBehaviour
 {   
+    // base delay in between post refresh in seconds 
     public float refreshDelay;
+    // limits for randomly selecting topics 
+    // thresholds[0] the chance of not selecting the main topic
+    // thresholds[0] the chance of skipping a observation topic 
     public float[] thresholds;
+    // reference to the observer class see observer.cs for more info
     public observer myObserver;
+    // reference to poster text object  
     public TextMeshPro phoneText;
+    // reference to poster Material, used to update the image 
     public Material imageMat;
-    public GameObject phoneBody;
-    public bool phoneON = false;
-
+    // main topic used to get post not related to the recent observation 
     public string mainTopic = "trip";
-    
-
-    float nextTime;
-    string currentPost;
 
 
+    // a poster made of a image and text 
     [Serializable]
     public class Poster{
         public Texture image;
         public String Text;
     }
 
+    // a collection of poster with a shared topic 
     [Serializable]
     public class PosterCollection
     {
+        // the topic name
         public String name;
         public List<Poster> collection;
     }
 
-
-    public List<String> postersNames;
-
+    // list of PosterCollection to edited in the inspector to add posters 
     public List<PosterCollection> posters;
-    
-    public Poster test;
 
+    // to be enabled at endgame 
     public bool demo_mode = false;
     public GameObject demo_text;
+
+    private List<String> postersNames;
+        
+    private float nextRefreshTime;
 
 
 
 
     // Start is called before the first frame update
     void Start()
-    {
-        //demo_mode = false;
-        currentPost = posters[0].name;
+    {   
+        // set the poster to the first one 
         imageMat.mainTexture = posters[0].collection[0].image;
         phoneText.text = posters[0].collection[0].Text;
-        phoneON = false;
 
-
+        // crate a list of poster names from posters 
         foreach (PosterCollection coll in posters)
         {
             postersNames.Add(coll.name);
@@ -73,47 +88,48 @@ public class phoneCon : MonoBehaviour
             demo_text.SetActive(false); // turn of the instruction text
             gameObject.SetActive(false); // turn the phone off
         }
-        // if (!phoneON &&  Time.time > nextNotificationTime ){
-        //     nextNotificationTime = Time.time  + NotificationDelay;
-        //     if (UnityEngine.Random.Range(0.0f, 1.0f) < notificationChance){
-        //         phoneON = !phoneON;
-        //         phoneBody.SetActive(phoneON);
-        //     }
-        // }
-        if ( Time.time > nextTime || Input.GetKeyUp(KeyCode.N))
+
+        
+        if ( Time.time > nextRefreshTime )
         {   
-            nextTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
+            // set the refresh time with a small random variable   
+            nextRefreshTime = Time.time + refreshDelay + UnityEngine.Random.Range(0.0f,1.0f) ;
+
+            // using a random value to select a poster from the main topic  
             if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[0])
             {
                 int index = postersNames.IndexOf(mainTopic);
-                int rint = UnityEngine.Random.Range(0, posters[index].collection.Count);
-                imageMat.mainTexture = posters[index].collection[rint].image;
-                phoneText.text = posters[index].collection[rint].Text;
+                setToRandomFromCollection(posters[index]);
                 
             } else
             {
+                // select a poster based on the recent observation
                 List<KeyValuePair<String,int>> recent =  myObserver.getRecent();
                 foreach (KeyValuePair<string,int> pair in recent)
                 {   
+                    // observation topic might not have posters related to it 
                     if (postersNames.Contains(pair.Key) )
                     {
+                        // randomly choose to skip topic, 
+                        // to get more variant of posters 
                         if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[1])
                         {
-                            currentPost= pair.Key;
-
                             int index = postersNames.IndexOf(pair.Key);
-                            int rint = UnityEngine.Random.Range(0, posters[index].collection.Count);
-                            imageMat.mainTexture = posters[index].collection[rint].image;
-                            phoneText.text = posters[index].collection[rint].Text;
-                            Debug.Log(phoneText.text);
+                            setToRandomFromCollection(posters[index]);
                             break;
                         }
                     }
                 }
-
             } 
         }
         
+    }
+
+    // set the poster to one of the poster from the givin collection 
+    public void setToRandomFromCollection(PosterCollection collection){
+        int rint = UnityEngine.Random.Range(0, collection.Count);
+        imageMat.mainTexture = collection[rint].image;
+        phoneText.text = collection[rint].Text;
     }
 
     public void start_demo()
