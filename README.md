@@ -9,7 +9,7 @@ Written by: Tim Ryall
 - Run _'Grimalkin.exe'_
 - You should now be playing! Press [ESC] at any time to bring up menu to quit to desktop
 ---
-**MAC:** _NOTE: this version is not fully up to date as the Mac developers on the team are currerently on holiday_
+**MAC:**
 - Open the _/Grimalkin_compiled/mac/_ folder
 - Run the app within this folder
 - You should now be playing! Press [ESC] at any time to bring up menu to quit to desktop
@@ -38,30 +38,10 @@ Written by: Tim Ryall
 13. Click on "build settings" from the drop down
 14. Specify your bulid operating system under "target platform"
 15. Click Build and select any location that you want to build to
-
 16. Go to the location that you selected that you wanted to build to and run the file following the "pre-complied" version instructions
 
 # Code base structure
 The full code base can be found under **_/Grimalkin/_**
 - However NOTE that due to this being a unity project alot of the files are just config or asset files and will therefore be unreadable
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
-
-
-# DEV INFO
-**main** branch: is the main dev branch
-
-**working-preview** branch: is the branch that we merge to ONLY after the changes in main are working
-
-# NEW FEATURES:
-For every new feature developed pelase created a new feature branch called:
-
-"feature/{feature-name}"
-
-And then make a pull request to merge back into the main branch
-
-# COMMITS
-For each commit please have it in the form:
-- fix: bla bla (for a fix commit)
-- feat: bla bla (for a feature commit)
-- wip: bla bla (for a commit that is a work in progress)
 

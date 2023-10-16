@@ -95,7 +95,7 @@ public class phoneCon : MonoBehaviour
             if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[0])
             {
                 int index = postersNames.IndexOf(mainTopic);
-                setToRandomFromCollection(posters[index]);
+                setToRandomFromCollection(posters[index].collection);
                 
             } else
             {
@@ -111,7 +111,7 @@ public class phoneCon : MonoBehaviour
                         if (UnityEngine.Random.Range(0.0f, 1.0f) > thresholds[1])
                         {
                             int index = postersNames.IndexOf(pair.Key);
-                            setToRandomFromCollection(posters[index]);
+                            setToRandomFromCollection(posters[index].collection);
                             break;
                         }
                     }
@@ -121,14 +121,8 @@ public class phoneCon : MonoBehaviour
         
     }
 
-    /*
-     * set the poster on phone to one of the poster from the givin collection 
-     * 
-     * PostCollection: collection of posters we want to access and set the phone
-     *                 screen to be one of the posters in the collection
-     */
-    public void setToRandomFromCollection(PosterCollection PostCollection){
-        List<Poster> collection = PostCollection.collection;
+    // set the poster to one of the poster from the givin collection 
+    public void setToRandomFromCollection(List<Poster>  collection){
         int rint = UnityEngine.Random.Range(0, collection.Count);
         imageMat.mainTexture = collection[rint].image;
         phoneText.text = collection[rint].Text;
