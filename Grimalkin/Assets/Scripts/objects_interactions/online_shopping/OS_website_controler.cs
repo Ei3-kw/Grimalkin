@@ -18,7 +18,7 @@ using System.Linq;
 using UnityEngine;
 using System;
 
-public class website_controler : MonoBehaviour
+public class OS_website_controller : MonoBehaviour
 {
     // number of items that we want the user to have to buy
     public int num_items_to_buy; 
@@ -72,7 +72,7 @@ public class website_controler : MonoBehaviour
         total_extra_paid += sold_price - inital_price;
 
         // update the shopping list to ensure it is up to date with what we have purchased
-        shopping_list.GetComponent<shopping_list_controler>().remove_item(key);
+        shopping_list.GetComponent<OS_shopping_list_controller>().remove_item(key);
     }
 
     /*
@@ -150,7 +150,7 @@ public class website_controler : MonoBehaviour
 
         // tell the shopping list what items we have chosen (tell shopping list the item locations
         // and thier respective icons)
-        shopping_list.GetComponent<shopping_list_controler>().refill_shopping_list(keys, icons);
+        shopping_list.GetComponent<OS_shopping_list_controller>().refill_shopping_list(keys, icons);
     }
 
     /*
@@ -162,7 +162,7 @@ public class website_controler : MonoBehaviour
     public void game_won()
     {
         // tell computer that the online shoppping is over
-        computer.GetComponent<computer_controler>().end_game(total_inital_cost, total_extra_paid);
+        computer.GetComponent<OS_computer_controller>().end_game(total_inital_cost, total_extra_paid);
     }
 
     /*

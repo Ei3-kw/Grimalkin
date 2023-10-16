@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class computer_controler : MonoBehaviour
+public class OS_computer_controller : MonoBehaviour
 {
     // if the online shopping game is to be played in "demo mode" which is the educational
     // mode at the end of the game where the gaze tracking is explained
@@ -153,7 +153,7 @@ public class computer_controler : MonoBehaviour
         // start the game
         current_website_game = Instantiate(website_game_prefab, game_location.position, game_location.rotation, this.transform);
         // make sure the website keeps track of the computer
-        current_website_game.GetComponent<website_controler>().set_computer(gameObject);
+        current_website_game.GetComponent<OS_website_controller>().set_computer(gameObject);
     }
 
     /*

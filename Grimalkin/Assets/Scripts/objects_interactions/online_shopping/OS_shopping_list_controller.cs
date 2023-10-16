@@ -17,7 +17,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class shopping_list_controler : MonoBehaviour
+public class OS_shopping_list_controller : MonoBehaviour
 {
     // the possible locations that items can be on the shopping list
     public Transform[] item_slots;
@@ -121,7 +121,7 @@ public class shopping_list_controler : MonoBehaviour
         if (!item_to_shopping_list.Any())
         {
             // tell the website we got everything
-            website.GetComponent<website_controler>().game_won();
+            website.GetComponent<OS_website_controller>().game_won();
         }
     }
 }

@@ -177,7 +177,7 @@ public class website_item_controler : MonoBehaviour
             sold_banner.SetActive(item_sold);
 
             // communicate back to the website that that item has been sold
-            website.GetComponent<website_controler>().register_item_sold(location_key, inital_price, current_price);
+            website.GetComponent<OS_website_controller>().register_item_sold(location_key, inital_price, current_price);
         }       
     }
 

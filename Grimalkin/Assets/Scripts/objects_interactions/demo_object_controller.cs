@@ -61,7 +61,7 @@ public class demo_object_controller : MonoBehaviour
             // if the demo object is a computer
             if (obj_type == "computer") 
             {
-                demo_obj.GetComponent<computer_controler>().start_demo(); // start the demo
+                demo_obj.GetComponent<OS_computer_controller>().start_demo(); // start the demo
             }
             // if the demo object is the social media phone
             else if (obj_type == "phone") 

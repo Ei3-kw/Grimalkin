@@ -25,7 +25,7 @@ public class website_start_game_controler : MonoBehaviour
     private void OnMouseDown()
     {
         // inform the computer we wish to start
-        computer.GetComponent<computer_controler>().start_game();
+        computer.GetComponent<OS_computer_controller>().start_game();
     }
 
     /*

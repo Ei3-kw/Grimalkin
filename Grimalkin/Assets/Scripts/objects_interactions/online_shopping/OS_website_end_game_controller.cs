@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class website_end_game_controler : MonoBehaviour
+public class OS_website_end_game_controller : MonoBehaviour
 {
     // the computer that this button is displayed on 
     public GameObject computer;
@@ -28,6 +28,6 @@ public class website_end_game_controler : MonoBehaviour
      */
     private void OnMouseDown()
     {
-        computer.GetComponent<computer_controler>().open_start_screen();
+        computer.GetComponent<OS_computer_controller>().open_start_screen();
     }
 }

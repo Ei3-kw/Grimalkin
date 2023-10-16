@@ -179,7 +179,7 @@ public class player_controller : MonoBehaviour
                 interaction_UI.SetActive(true); // turn the UI element on
 
                 // tell the object it is being looked at
-                hit.collider.gameObject.GetComponent<computer_controler>().look_at();
+                hit.collider.gameObject.GetComponent<OS_computer_controller>().look_at();
 
                 // set the eye pointer to be fully coloured to indicate an interactable object
                 Color newColor = new Color(1, 1, 1, 1);
