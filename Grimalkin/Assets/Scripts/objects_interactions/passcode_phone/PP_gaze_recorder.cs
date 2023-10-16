@@ -13,7 +13,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyePositionRecorder : MonoBehaviour
+public class PP_gaze_recorder : MonoBehaviour
 {
     // List to store mouse positions of where the user is "looking"
     public List<Vector3>  eyePositions = new List<Vector3>();
@@ -27,7 +27,7 @@ public class EyePositionRecorder : MonoBehaviour
     public void Update()
     {
         // if we are in the phone and the code is not set yet
-        if (!CodeIsSet.codeIsSet && Is2DView.in2DView){
+        if (!PP_pin_parameters.codeIsSet && PP_phone_parameters.in2DView){
             // Get the current mouse position in world space
             Vector3 eyePosition = Input.mousePosition;
 

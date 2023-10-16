@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlidingDoor : MonoBehaviour
+public class door_sliding_controller : MonoBehaviour
 {
     public float doorWidth = 2.0f; // The width of the door.
     public float doorWidth2 = 0.0f; // The width of the door.

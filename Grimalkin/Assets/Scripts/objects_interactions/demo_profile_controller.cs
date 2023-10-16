@@ -17,7 +17,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class profileUpdater : MonoBehaviour
+public class demo_profile_controller : MonoBehaviour
 {   
     // represent a data point with a text object and possible values  
     [Serializable]
@@ -26,8 +26,8 @@ public class profileUpdater : MonoBehaviour
         public TextMeshPro text;
     }
 
-    // reference to the observer class see observer.cs for more info
-    public observer myObs;
+    // reference to the player_observer class see player_observer.cs for more info
+    public player_observer myObs;
 
     // delay between each update to the profile
     public float upDelay;

@@ -21,7 +21,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerController : MonoBehaviour
+public class player_controller : MonoBehaviour
 {
     // General scene settings
     Vector2 screenSize; // size of screen user has
@@ -306,7 +306,7 @@ public class playerController : MonoBehaviour
                 interaction_UI.SetActive(true); // turn the UI element on
 
                 // tell the object it is being looked at
-                hit.collider.gameObject.GetComponent<end_game_obj_controller>().look_at();
+                hit.collider.gameObject.GetComponent<demo_object_controller>().look_at();
 
                 // set the eye pointer to be fully coloured to indicate an interactable object
                 Color newColor = new Color(1, 1, 1, 1);

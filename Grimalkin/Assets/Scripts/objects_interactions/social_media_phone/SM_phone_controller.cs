@@ -15,7 +15,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class phoneCon : MonoBehaviour
+public class SM_phone_controller : MonoBehaviour
 {   
     // base delay in between post refresh in seconds 
     public float refreshDelay;
@@ -23,8 +23,8 @@ public class phoneCon : MonoBehaviour
     // thresholds[0] the chance of not selecting the main topic
     // thresholds[0] the chance of skipping a observation topic 
     public float[] thresholds;
-    // reference to the observer class see observer.cs for more info
-    public observer myObserver;
+    // reference to the player_observer class see player_observer.cs for more info
+    public player_observer myplayer_observer;
     // reference to poster text object  
     public TextMeshPro phoneText;
     // reference to poster Material, used to update the image 
@@ -116,7 +116,7 @@ public class phoneCon : MonoBehaviour
             } else
             {
                 // select a poster based on the recent observation
-                List<KeyValuePair<String,int>> recent =  myObserver.getRecent();
+                List<KeyValuePair<String,int>> recent =  myplayer_observer.getRecent();
                 foreach (KeyValuePair<string,int> pair in recent)
                 {   
                     // observation topic might not have posters related to it 

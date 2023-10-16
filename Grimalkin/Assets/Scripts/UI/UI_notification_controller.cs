@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class notification_controller : MonoBehaviour
+public class UI_notification_controller : MonoBehaviour
 {
     public TextMeshProUGUI notif_text; // the notification text that the user can read
     public GameObject player; // the player object that the user controls

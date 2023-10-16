@@ -21,7 +21,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class end_game_obj_controller : MonoBehaviour
+public class demo_object_controller : MonoBehaviour
 {
     // state variables relating to the current stage of the "infomation slide show"
     // the section where we explain the interaction and reserach behind that 
@@ -67,7 +67,7 @@ public class end_game_obj_controller : MonoBehaviour
             else if (obj_type == "phone") 
             {
                 demo_obj.SetActive(true); // turn on the phone
-                demo_obj.GetComponent<phoneCon>().start_demo(); // start the demo
+                demo_obj.GetComponent<SM_phone_controller>().start_demo(); // start the demo
                 demo_text.SetActive(true); // turn on text to allow user to exit demo
             }
             // if the demo object is a tablet
@@ -121,7 +121,7 @@ public class end_game_obj_controller : MonoBehaviour
         in_slides = false;
 
         // re enable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         // remove slide show background
@@ -146,11 +146,11 @@ public class end_game_obj_controller : MonoBehaviour
         {
             // Make sure that the user currerntly does not have their phone out
             // before we begin the new demo by forcing the phone demo to end
-            phone.GetComponent<phoneCon>().end_demo();
+            phone.GetComponent<SM_phone_controller>().end_demo();
             in_slides = true;
 
             // disable all player controls and excess UI
-            player.GetComponent<playerController>().enabled = false;
+            player.GetComponent<player_controller>().enabled = false;
             optional_UI.SetActive(false);
 
             // pop up slide show screen (mosly opaque screen with text)

@@ -109,7 +109,7 @@ public class tablet_controller : MonoBehaviour
         gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
 
         // disable the movment script and UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // move the camera into position
@@ -168,7 +168,7 @@ public class tablet_controller : MonoBehaviour
         camera.rotation = targetRotation; // change roation back to players old roation
 
         // re enable the movment script and UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         // turn red glow back on to replay if desired if in demo mode

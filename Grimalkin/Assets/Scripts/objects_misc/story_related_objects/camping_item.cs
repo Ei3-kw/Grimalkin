@@ -43,7 +43,7 @@ public class camping_item : MonoBehaviour
 
             // communitcate back to notification UI that the item has been picked up
             // so the user knows what is left to collect
-            notifs.GetComponent<notification_controller>().got_item(item_name);
+            notifs.GetComponent<UI_notification_controller>().got_item(item_name);
         }
     }
 }

@@ -67,7 +67,7 @@ public class Go2DView : MonoBehaviour
     {   
         // if the user is not alreay within the phone
         // and they press e to interact
-        if (!Is2DView.in2DView && Input.GetKeyDown("e"))
+        if (!PP_phone_parameters.in2DView && Input.GetKeyDown("e"))
         {
             // since this can only happen in the main story, must not be demo mode
             confirm_text.GetComponent<Go3DView>().demo_mode = false;
@@ -86,11 +86,11 @@ public class Go2DView : MonoBehaviour
             mainCamera.transform.LookAt(phoneObject.transform.position);
 
             // we are now entering the pin
-            Is2DView.in2DView = true;
+            PP_phone_parameters.in2DView = true;
             passcodePhone.SetActive(true);
 
             // disable all player controls and excess UI
-            player.GetComponent<playerController>().enabled = false;
+            player.GetComponent<player_controller>().enabled = false;
             optional_UI.SetActive(false);
 
             // unlock the cursor so user can enter pin
@@ -122,12 +122,12 @@ public class Go2DView : MonoBehaviour
         mainCamera.transform.LookAt(phoneObject.transform.position);
 
         // we are now about to enter the pin
-        Is2DView.in2DView = true; 
-        CodeIsSet.codeIsSet = false; // code is no longer set as we will re enter it
+        PP_phone_parameters.in2DView = true; 
+        PP_pin_parameters.codeIsSet = false; // code is no longer set as we will re enter it
         passcodePhone.SetActive(true);
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // unlock the cursor so user can enter pin

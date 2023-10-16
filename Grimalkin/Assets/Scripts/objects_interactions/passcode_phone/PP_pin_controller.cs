@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CheckPin : MonoBehaviour
+public class PP_pin_controller : MonoBehaviour
 {
     public  GameObject ShowRecord;
     public List<int> numEntered = new List<int>();
@@ -49,13 +49,13 @@ public class CheckPin : MonoBehaviour
         bool pinIsCorrect = numEntered.SequenceEqual(correctPin);
       
         // if they have entered a full pin (4 numbers) and it is wrong
-        if(!CodeIsSet.codeIsSet && !pinIsCorrect && numEntered.Count==4){
+        if(!PP_pin_parameters.codeIsSet && !pinIsCorrect && numEntered.Count==4){
             numEntered.Clear();
         }
         // if they have entered a full pin 
-        if (!CodeIsSet.codeIsSet && pinIsCorrect){
+        if (!PP_pin_parameters.codeIsSet && pinIsCorrect){
             numEntered.Clear();
-            CodeIsSet.codeIsSet = true;
+            PP_pin_parameters.codeIsSet = true;
 
             // let them confirm their order
             app.SetActive(true);

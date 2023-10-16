@@ -9,7 +9,7 @@
  *   
  * 
  * Attached to objects in game scene:
- * - Player (as this is our observer in game)
+ * - Player (as this is our player_observer in game)
  */
 
 using System.Collections;
@@ -18,7 +18,7 @@ using System.Linq;
 using UnityEngine;
 
 
-public class observer : MonoBehaviour
+public class player_observer : MonoBehaviour
 {
     /*
      * Observations class stores the total, recent observation
@@ -150,7 +150,7 @@ public class observer : MonoBehaviour
         if (Physics.Raycast(ray, out var hit)) 
         {
             // if the hit object has a observable component the observation is add
-            observable test = hit.collider.gameObject.GetComponent<observable>();
+            observable_object test = hit.collider.gameObject.GetComponent<observable_object>();
             if (test != null) // if we are observing an obserable object
             {
                 observations.add(test.info);

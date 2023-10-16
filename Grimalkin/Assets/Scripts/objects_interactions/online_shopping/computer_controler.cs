@@ -79,14 +79,14 @@ public class computer_controler : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             // remove task notifaction
-            notifcations.GetComponent<notification_controller>().remove_notif();
+            notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
             // once player starts interacting for the first time glow ends
             gameObject.GetComponent<Outline>().enabled = false; // turn off the glow when looked at it
             start_text_message.SetActive(true);
 
             // disable the movment script and UI since we are looking at computer
-            player.GetComponent<playerController>().enabled = false;
+            player.GetComponent<player_controller>().enabled = false;
             optional_UI.SetActive(false);
 
             // move the camera into position
@@ -121,7 +121,7 @@ public class computer_controler : MonoBehaviour
         start_text_message.SetActive(true);
 
         // disable the movment script and UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // move the camera into position
@@ -220,7 +220,7 @@ public class computer_controler : MonoBehaviour
         camera.rotation = targetRotation; // back to old rotaion
 
         // re enable the movment script and UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         if (demo_mode) // if we are only playing a demo

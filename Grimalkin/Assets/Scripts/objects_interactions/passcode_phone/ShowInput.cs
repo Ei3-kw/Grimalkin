@@ -21,7 +21,7 @@ public class ShowInput : MonoBehaviour
     public TextMeshPro input2; // second input to key pad
     public TextMeshPro input3; // third input to key pad
     public TextMeshPro input4; // fourth input to key pad
-    public CheckPin pinChecker; // object that keeps track of the pin
+    public PP_pin_controller pinChecker; // object that keeps track of the pin
 
     /*
      * Update is called once per frame

@@ -10,7 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CodeIsSet
+public static class PP_pin_parameters
 {
     // To record and keep track of if the users pin is "set" or not
     public static bool codeIsSet = false;

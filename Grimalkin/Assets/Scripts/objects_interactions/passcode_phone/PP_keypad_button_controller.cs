@@ -15,13 +15,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class EnterANum : MonoBehaviour
+public class PP_keypad_button_controller : MonoBehaviour
 {
     // the number displayed on this button
     public int thisNum;
 
     // the object that will keep track of the pin
-    public CheckPin pinChecker;
+    public PP_pin_controller pinChecker;
 
     /*
      * When the button is clicked
@@ -31,7 +31,7 @@ public class EnterANum : MonoBehaviour
     private void OnMouseDown()
     {
         // if we are in the phone and the code is not set yet
-        if (Is2DView.in2DView && !CodeIsSet.codeIsSet){
+        if (PP_phone_parameters.in2DView && !PP_pin_parameters.codeIsSet){
             // add this number to the user entered pin
             pinChecker.numEntered.Add(thisNum);
         }

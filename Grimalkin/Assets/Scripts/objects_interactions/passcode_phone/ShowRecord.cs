@@ -37,7 +37,7 @@ public class ShowRecord : MonoBehaviour
     {
         currentPositionIndex = 0;
         // Fill the positions list with Vector3 positions (you can populate it as needed)
-        EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
+        PP_gaze_recorder eyePositionTracker = GameObject.Find("PP_gaze_recorder").GetComponent<PP_gaze_recorder>();
         Debug.Log("HELOOOOOO AYAYAYAYAY");
 
         positions = eyePositionTracker.eyePositions;
@@ -134,7 +134,7 @@ public class ShowRecord : MonoBehaviour
         app.SetActive(false);
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         // lock the cursor
@@ -143,22 +143,13 @@ public class ShowRecord : MonoBehaviour
 
         
  
-        Is2DView.in2DView = false;
-        CodeIsSet.codeIsSet = false;
-        EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
+        PP_phone_parameters.in2DView = false;
+        PP_pin_parameters.codeIsSet = false;
+        PP_gaze_recorder eyePositionTracker = GameObject.Find("PP_gaze_recorder").GetComponent<PP_gaze_recorder>();
         eyePositionTracker.eyePositions.Clear();
         currentPositionIndex = 0;
-        Debug.Log("CLEARED");
 
         gameObject.SetActive(false); // turn self off
         yield return null;
     }
-
-
-    // void SpawnCircleAtCurrentPosition()
-    // {   
-       
-    //     currentCircle = Instantiate(circlePrefab, positions[currentPositionIndex], Quaternion.identity);
-
-    // }
 }

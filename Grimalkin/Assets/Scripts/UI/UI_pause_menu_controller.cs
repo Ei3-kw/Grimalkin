@@ -18,10 +18,10 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class pause_menu_controller : MonoBehaviour
+public class UI_pause_menu_controller : MonoBehaviour
 {
     // The script that will control the player object in scene
-    public playerController playerController;
+    public player_controller player_controller;
 
     // The camera sensitivity slider that will show up in the menu
     public Slider camSlider; 
@@ -61,7 +61,7 @@ public class pause_menu_controller : MonoBehaviour
      * value: the value we wish to set the mouse sensitivity to 
      */
     void setCameraSensitivity(float value){
-        playerController.camSens = value;
+        player_controller.camSens = value;
     }
 
     /*

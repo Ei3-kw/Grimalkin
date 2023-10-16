@@ -122,7 +122,7 @@ public class story_controller : MonoBehaviour
         subtitle_text = subtitles.GetComponent<TextMeshProUGUI>();
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
 
         // turn off any UI elements that are not needed yet
         ss_screen.SetActive(false);
@@ -155,7 +155,7 @@ public class story_controller : MonoBehaviour
             if (Input.GetKeyDown("1"))
             {
                 // turn ON player controls and any UI elements needed for the game
-                player.GetComponent<playerController>().enabled = true;
+                player.GetComponent<player_controller>().enabled = true;
                 optional_UI.SetActive(true);
 
                 // move player to starting location
@@ -233,7 +233,7 @@ public class story_controller : MonoBehaviour
     public void set_story_stage(string stage)
     {
         story_stage = stage;
-        player.GetComponent<playerController>().set_story_stage(stage);
+        player.GetComponent<player_controller>().set_story_stage(stage);
 
     }
 
@@ -326,7 +326,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("start_dialog");
 
         // start with the player unable to move
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false); // turn off unnessary UI elements in intro
         passcode_phone.SetActive(false); // turn of pin phone to avoid confusion
 
@@ -361,7 +361,7 @@ public class story_controller : MonoBehaviour
         ss_press_e_text.SetActive(false);
 
         // re enable the movment script and UI so the player can move and look around
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
         yield return new WaitForSeconds(2); // wait
 
@@ -385,7 +385,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("coffee");
 
         // pop up task notifaction telling the user what to do
-        notifcations.GetComponent<notification_controller>().set_notif("Go grab some coffee from the bench");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Go grab some coffee from the bench");
 
         // turn on glow for coffee
         coffee_cup.GetComponent<Outline>().enabled = true; // turn off the glow when looked at it
@@ -408,7 +408,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("after_coffee");
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // begin dialog in form of subtitles
         subtitle_text.text = "Ahh, that's better";
@@ -435,7 +435,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("remembered_camping");
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // begin dialog in form of subtitles
         subtitle_text.text = "I have a list of items I need to pack saved on my phone";
@@ -443,7 +443,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "Press [e] to open your phone";
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Press [e] to open you phone and check packing list");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Press [e] to open you phone and check packing list");
 
         // wait for user input to open phone
         set_story_stage("waiting_for_phone_open");
@@ -468,7 +468,7 @@ public class story_controller : MonoBehaviour
         phone_packing_list.SetActive(true);
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // begin dialog in form of subtitles
         subtitle_text.text = "Ahh yes this is the list of stuff I need to pack!";
@@ -512,7 +512,7 @@ public class story_controller : MonoBehaviour
 
         // put up a notification that will describe to the user what items they 
         // need to pick up
-        notifcations.GetComponent<notification_controller>().create_items_notif();
+        notifcations.GetComponent<UI_notification_controller>().create_items_notif();
 
         // set all the camping items that need to be picked up to glow
         foreach (GameObject item_to_get in camping_items)
@@ -554,7 +554,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("website_game");
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Check out the living room computer");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Check out the living room computer");
 
         // turn on glow for computer that the user has to interact with next for online shopping
         computer.GetComponent<Outline>().enabled = true;
@@ -588,7 +588,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "";
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Time to go to bed for the night, find your bed");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Time to go to bed for the night, find your bed");
         
         // turn on glow for bed
         bed.GetComponent<Outline>().enabled = true;
@@ -610,12 +610,12 @@ public class story_controller : MonoBehaviour
         set_story_stage("before_wake_up");
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
         bed.GetComponent<Outline>().enabled = false; // bed no longer glows becuse we have slept in in
 
         // disable all player controls and excess UI
         // since the user is waking up and cannot move
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // turn on the pin phone to use after wake up
@@ -646,7 +646,7 @@ public class story_controller : MonoBehaviour
         yield return new WaitForSeconds(3); // wait
 
         // re enable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         // begin dialog in form of subtitles
@@ -659,7 +659,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "";
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Find your ipad and turn off the alarm");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Find your ipad and turn off the alarm");
         set_story_stage("wake_up");
         yield return null;
 
@@ -681,7 +681,7 @@ public class story_controller : MonoBehaviour
         set_story_stage("alarm_off");
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // begin dialog in form of subtitles
         subtitle_text.text = "Thank goodness that alarm is off now";
@@ -699,7 +699,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "";
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Go to the door and see what arrived");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Go to the door and see what arrived");
 
         // highlight boxes
         set_story_stage("find_boxes");
@@ -728,7 +728,7 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "I think my code is 3512";
 
         // pop up task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Confirm the order on your phone, check kitchen counter (CODE: 3512)");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Confirm the order on your phone, check kitchen counter (CODE: 3512)");
         
         // turn on glow for the phone
         passcode_phone.GetComponent<Outline>().enabled = true;
@@ -773,10 +773,10 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "";
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // pop up slide show screen (mosly opaque screen with text)
@@ -853,10 +853,10 @@ public class story_controller : MonoBehaviour
         subtitle_text.text = "";
 
         // remove task notifaction
-        notifcations.GetComponent<notification_controller>().remove_notif();
+        notifcations.GetComponent<UI_notification_controller>().remove_notif();
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = false;
+        player.GetComponent<player_controller>().enabled = false;
         optional_UI.SetActive(false);
 
         // pop up slide show screen (mosly opaque screen with text)
@@ -890,11 +890,11 @@ public class story_controller : MonoBehaviour
         new_objs.SetActive(true);
 
         // add task notifaction
-        notifcations.GetComponent<notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
+        notifcations.GetComponent<UI_notification_controller>().set_notif("Interact with red objects to see how they exploit your gaze tracking data");
         menu_exit_text.SetActive(true);
 
         // disable all player controls and excess UI
-        player.GetComponent<playerController>().enabled = true;
+        player.GetComponent<player_controller>().enabled = true;
         optional_UI.SetActive(true);
 
         // pop up slide show screen (mosly opaque screen with text)

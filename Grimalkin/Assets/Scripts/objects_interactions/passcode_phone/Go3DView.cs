@@ -81,8 +81,8 @@ public class Go3DView : MonoBehaviour
         else 
         {
             // erase eye tracking data
-            CodeIsSet.codeIsSet = false;
-            EyePositionRecorder eyePositionTracker = GameObject.Find("EyePositionRecorder").GetComponent<EyePositionRecorder>();
+            PP_pin_parameters.codeIsSet = false;
+            PP_gaze_recorder eyePositionTracker = GameObject.Find("PP_gaze_recorder").GetComponent<PP_gaze_recorder>();
             eyePositionTracker.eyePositions.Clear();
 
             // move the camera back to original position
@@ -92,11 +92,11 @@ public class Go3DView : MonoBehaviour
             app.SetActive(false);
 
             // re enable all player controls and excess UI
-            player.GetComponent<playerController>().enabled = true;
+            player.GetComponent<player_controller>().enabled = true;
             optional_UI.SetActive(true);
 
             // back to 3D view
-            Is2DView.in2DView = false;
+            PP_phone_parameters.in2DView = false;
 
             // lock the cursor
             Cursor.lockState = CursorLockMode.Locked;
