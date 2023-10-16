@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Go3DView : MonoBehaviour
+public class PP_confirm_button_controller : MonoBehaviour
 {
     // the camera that the user looks through
     public Camera myCamera;
@@ -42,7 +42,7 @@ public class Go3DView : MonoBehaviour
     public GameObject optional_UI;
 
     // the object that will show the user how their gaze was tracked
-    public GameObject ShowRecord;
+    public GameObject PP_gaze_displayer;
 
     // keep track of if we are in the educational demo version of the interaction
     public bool demo_mode = false;
@@ -72,8 +72,8 @@ public class Go3DView : MonoBehaviour
         if (demo_mode)
         {
             // show the user how their eyes were tracked
-            ShowRecord.GetComponent<ShowRecord>().demo_mode = true;
-            ShowRecord.SetActive(true);
+            PP_gaze_displayer.GetComponent<PP_gaze_displayer>().demo_mode = true;
+            PP_gaze_displayer.SetActive(true);
             app.SetActive(false);
         }
         // if we are in the main story
@@ -86,7 +86,7 @@ public class Go3DView : MonoBehaviour
             eyePositionTracker.eyePositions.Clear();
 
             // move the camera back to original position
-            myCamera.transform.position = Go2DView.orginalCameraPosition;
+            myCamera.transform.position = PP_app_controller.orginalCameraPosition;
             myCamera.transform.LookAt(phoneObject.transform.position);
             passcodePhone.SetActive(false);
             app.SetActive(false);

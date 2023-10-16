@@ -17,7 +17,7 @@ using System.Linq;
 
 public class PP_pin_controller : MonoBehaviour
 {
-    public  GameObject ShowRecord;
+    public  GameObject PP_gaze_displayer;
     public List<int> numEntered = new List<int>();
     public List<int> correctPin = new List<int>();
     public GameObject app;

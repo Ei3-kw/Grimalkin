@@ -82,7 +82,7 @@ public class demo_object_controller : MonoBehaviour
                 demo_obj_parent.SetActive(false);
                 demo_obj_parent.SetActive(true);
                 // start the demo within the "phone app"
-                demo_obj.GetComponent<Go2DView>().start_demo();
+                demo_obj.GetComponent<PP_app_controller>().start_demo();
                 demo_text.SetActive(true); // turn on text telling the user the pin to enter
             }
         }

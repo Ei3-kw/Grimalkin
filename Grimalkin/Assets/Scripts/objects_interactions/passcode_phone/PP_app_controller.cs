@@ -15,7 +15,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Go2DView : MonoBehaviour
+public class PP_app_controller : MonoBehaviour
 {
     // the camera that the user looks through
     public Camera mainCamera;
@@ -70,7 +70,7 @@ public class Go2DView : MonoBehaviour
         if (!PP_phone_parameters.in2DView && Input.GetKeyDown("e"))
         {
             // since this can only happen in the main story, must not be demo mode
-            confirm_text.GetComponent<Go3DView>().demo_mode = false;
+            confirm_text.GetComponent<PP_confirm_button_controller>().demo_mode = false;
 
             // ask the user to confirm the delivery
             app_text.GetComponent<TextMeshPro>().SetText("Confim your delivery");
@@ -108,7 +108,7 @@ public class Go2DView : MonoBehaviour
      */
     public void start_demo()
     {
-        confirm_text.GetComponent<Go3DView>().demo_mode = true;
+        confirm_text.GetComponent<PP_confirm_button_controller>().demo_mode = true;
 
         // ask the user to confirm the delivery
         app_text.GetComponent<TextMeshPro>().SetText("Confim your delivery");

@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ShowInput : MonoBehaviour
+public class PP_keypad_controller : MonoBehaviour
 {
     public TextMeshPro input1; // first input to key pad
     public TextMeshPro input2; // second input to key pad
