@@ -5,7 +5,6 @@
  * Purpose:
  * - controls the phone and what poster is showing on the phone 
  *   
- * 
  * Attached to objects in game scene:
  * - phone 
  */
@@ -62,8 +61,6 @@ public class phoneCon : MonoBehaviour
     private float nextRefreshTime;
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {   
@@ -84,7 +81,6 @@ public class phoneCon : MonoBehaviour
         // if in demo mode and wish to put the phone away
         if (demo_mode && Input.GetKeyDown("f"))
         {
-            Debug.Log("demo mode off");
             demo_text.SetActive(false); // turn of the instruction text
             gameObject.SetActive(false); // turn the phone off
         }
@@ -125,8 +121,14 @@ public class phoneCon : MonoBehaviour
         
     }
 
-    // set the poster to one of the poster from the givin collection 
-    public void setToRandomFromCollection(PosterCollection collection){
+    /*
+     * set the poster on phone to one of the poster from the givin collection 
+     * 
+     * PostCollection: collection of posters we want to access and set the phone
+     *                 screen to be one of the posters in the collection
+     */
+    public void setToRandomFromCollection(PosterCollection PostCollection){
+        List<Poster> collection = PostCollection.collection;
         int rint = UnityEngine.Random.Range(0, collection.Count);
         imageMat.mainTexture = collection[rint].image;
         phoneText.text = collection[rint].Text;
@@ -135,12 +137,10 @@ public class phoneCon : MonoBehaviour
     public void start_demo()
     {
         demo_mode = true; // signify that we are in the demo
-        Debug.Log("demo mode ONNNN");
     }
 
     public void end_demo()
     {
-        Debug.Log("demo mode off");
         demo_text.SetActive(false); // turn of the instruction text
         gameObject.SetActive(false); // turn the phone off
     }
