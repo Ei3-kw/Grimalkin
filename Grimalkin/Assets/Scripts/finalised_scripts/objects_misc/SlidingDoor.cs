@@ -26,7 +26,10 @@ public class SlidingDoor : MonoBehaviour
     public bool isOpen = false;
 
     /*
+     * Will be called before first frame
      * 
+     * Record the closed and opened postions of the door within
+     * the scene
      */
     private void Start()
     {
@@ -34,6 +37,12 @@ public class SlidingDoor : MonoBehaviour
         openPosition = closedPosition + dir * new Vector3(doorWidth, 0f, doorWidth2); // Calculate the open position to the left.
     }
 
+    /*
+     * Will be called every frame
+     * 
+     * If the door is open and we want it to close, move it closer to closed position
+     * If the door is closed and we want it to open, move it closer to the open position.
+     */
     private void Update()
     {
         if (isOpen)
@@ -48,6 +57,14 @@ public class SlidingDoor : MonoBehaviour
         }
     }
 
+    /*
+     * If the player is pointing / looking at the door
+     * and they are close enough to the door
+     * and they interact with the door
+     * 
+     * then change the current state of the door (i.e. open to closed
+     * or closed to open)
+     */
     void OnMouseOver()
     {   
         if (Input.GetKeyDown("e"))
