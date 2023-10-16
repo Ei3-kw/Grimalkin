@@ -1,12 +1,12 @@
 /* 
  * Project Grimalkin
- * Author: Fahed Alhanaee
+ * Author: Fahed Alhanaee & Timothy Ryall
  * 
  * Purpose:
  * - controls the phone and what poster is showing on the phone 
  *   
  * Attached to objects in game scene:
- * - phone 
+ * - phone that user can hold in hand
  */
 
 using System.Collections;
@@ -56,12 +56,19 @@ public class phoneCon : MonoBehaviour
     public bool demo_mode = false;
     public GameObject demo_text;
 
+    // list of the names of the posters that will be shown (for dev purposes)
     private List<String> postersNames;
-        
+
+    // time between image chages on phone
     private float nextRefreshTime;
 
 
-    // Start is called before the first frame update
+    /*
+     * Start is called before the first frame update
+     * 
+     * We want to set up the phone with the first poster.
+     * And keep track of all the possible posters we can show the user
+     */
     void Start()
     {   
         // set the poster to the first one 
@@ -75,7 +82,17 @@ public class phoneCon : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /*
+     * Update is called once per frame.
+     * 
+     * We will check if the user whishes to exit the phone.
+     * If not, we will check if it is time for the poster to change
+     * i.e. refresh to a new image. if it is, we will set a new image based
+     * on what the user has been looking at.
+     * 
+     * (the more frequent the user has looked at the item, the more likly it is to 
+     * show up on phone)
+     */
     void Update()
     {
         // if in demo mode and wish to put the phone away
@@ -85,7 +102,6 @@ public class phoneCon : MonoBehaviour
             gameObject.SetActive(false); // turn the phone off
         }
 
-        
         if ( Time.time > nextRefreshTime )
         {   
             // set the refresh time with a small random variable   
@@ -118,21 +134,32 @@ public class phoneCon : MonoBehaviour
                 }
             } 
         }
-        
     }
 
-    // set the poster to one of the poster from the givin collection 
-    public void setToRandomFromCollection(List<Poster>  collection){
+    /*
+     * set the poster on the phone to one of the poster from the givin collection.
+     * i.e. change the image on the phone
+     * 
+     * collection: list of posters that we will choose one randomly from
+     *             to display on the phone.
+     */
+    public void setToRandomFromCollection(List<Poster> collection){
         int rint = UnityEngine.Random.Range(0, collection.Count);
         imageMat.mainTexture = collection[rint].image;
         phoneText.text = collection[rint].Text;
     }
 
+    /*
+     * Will start the phone in demo mode (i.e. end of game explainations)
+     */
     public void start_demo()
     {
         demo_mode = true; // signify that we are in the demo
     }
 
+    /*
+     * Will end the user demo and return the phone away
+     */
     public void end_demo()
     {
         demo_text.SetActive(false); // turn of the instruction text

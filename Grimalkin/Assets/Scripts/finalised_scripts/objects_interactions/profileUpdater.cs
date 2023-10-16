@@ -1,6 +1,6 @@
 /* 
  * Project Grimalkin
- * Author: Fahed Alhanaee
+ * Author: Fahed Alhanaee & Timothy Ryall
  * 
  * Purpose:
  * - update the text on the tv, that represent the profile of the player 
@@ -8,7 +8,7 @@
  *   
  * 
  * Attached to objects in game scene:
- * - ending_stats
+ * - ending_stats (tv screen in end game that displays stats)
  */
 
 using System.Collections;
@@ -28,14 +28,24 @@ public class profileUpdater : MonoBehaviour
 
     // reference to the observer class see observer.cs for more info
     public observer myObs;
+
     // delay between each update to the profile
     public float upDelay;
+
     // the next update time
     float  nextUpTime = 0;
+
     // list of the dataPoint on the end_state 
     public List<DataPoint> points;
 
-    // Update is called once per frame
+    /*
+     * Update is called once per frame.
+     * 
+     * We will check through everything that the user has observed.
+     * And for each "category of items" e.g. fav animal, we will pick the 
+     * item in that category that the user has looked at the most 
+     * to display on the screen.
+     */
     void Update()
     {
         if (Time.time >= nextUpTime){
@@ -51,6 +61,7 @@ public class profileUpdater : MonoBehaviour
                     myObs.observations.total.TryGetValue(text, out var count); 
                     if (count > currentMax){
                         currentMax = count;
+                        // set the new text on the screen
                         maxText = text;
                     } 
                 }

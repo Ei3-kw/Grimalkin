@@ -1,13 +1,13 @@
 /* 
  * Project Grimalkin
- * Author: Ella
+ * Author: Ella Wang
  * 
  * Purpose:
- * - handel sliding doors 
+ * - handel sliding doors openeing and closing
  *   
  * 
  * Attached to objects in game scene:
- * - sliding doors
+ * - sliding doors in scene
  */
 
 using System.Collections;
@@ -25,6 +25,9 @@ public class SlidingDoor : MonoBehaviour
     private Vector3 openPosition;
     public bool isOpen = false;
 
+    /*
+     * 
+     */
     private void Start()
     {
         closedPosition = transform.position;
