@@ -38,7 +38,6 @@ Written by: Tim Ryall
 13. Click on "build settings" from the drop down
 14. Specify your bulid operating system under "target platform"
 15. Click Build and select any location that you want to build to
-
 16. Go to the location that you selected that you wanted to build to and run the file following the "pre-complied" version instructions
 
 # Code base structure
