@@ -39,6 +39,8 @@ Written by: Tim Ryall
 14. Specify your bulid operating system under "target platform"
 15. Click Build and select any location that you want to build to
 16. Go to the location that you selected that you wanted to build to and run the file following the "pre-complied" version instructions
+
+
 _PLEASE NOTE: That due to certain protection settings on files that unity imposses when you maunually zip a project it can sometimes result in meta files not having the correct permissions and not being able to be read. If you are running into problems with the ziped version of the project please contact the dev team as we can give you access to the git repo to pull and compile as this will not have these issues. (This is a KNOWN issue with zipping up the unity project however this is the method of submission)_
 
 # Code base structure
