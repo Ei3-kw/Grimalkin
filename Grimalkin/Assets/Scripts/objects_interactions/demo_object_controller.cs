@@ -73,7 +73,7 @@ public class demo_object_controller : MonoBehaviour
             // if the demo object is a tablet
             else if (obj_type == "tablet") 
             {
-                demo_obj.GetComponent<tablet_controller>().start_demo(); // start the demo
+                demo_obj.GetComponent<AT_tablet_controller>().start_demo(); // start the demo
             }
             // if the demo object is a the pin code phone
             else if (obj_type == "pin_phone") 

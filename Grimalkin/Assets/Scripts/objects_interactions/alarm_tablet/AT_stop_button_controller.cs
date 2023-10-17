@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class StopButtonController : MonoBehaviour
+public class AT_stop_button_controller : MonoBehaviour
 {
     // heat map object that will display the heat map data
     public GameObject heatmap; 
@@ -137,7 +137,7 @@ public class StopButtonController : MonoBehaviour
             player.GetComponent<story_controller>().alarm_off();
         }
         // inform the tablet that the update is finished
-        tablet.GetComponent<tablet_controller>().update_done();
+        tablet.GetComponent<AT_tablet_controller>().update_done();
         yield return null;
     }
 }

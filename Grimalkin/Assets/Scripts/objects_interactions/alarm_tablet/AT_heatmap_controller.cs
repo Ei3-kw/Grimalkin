@@ -13,7 +13,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ShowHeatMap : MonoBehaviour
+public class AT_heatmap_controller : MonoBehaviour
 {
     // keeps track of the heat map object
     public GameObject heatmap;

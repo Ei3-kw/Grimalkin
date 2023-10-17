@@ -635,7 +635,7 @@ public class story_controller : MonoBehaviour
         RenderSettings.skybox = morning;
 
         // turn on alarm
-        tablet.GetComponent<tablet_controller>().turn_on_alarm();
+        tablet.GetComponent<AT_tablet_controller>().turn_on_alarm();
         // turn on tabelet glow since we need to interact with it
         tablet.GetComponent<Outline>().enabled = true;
 

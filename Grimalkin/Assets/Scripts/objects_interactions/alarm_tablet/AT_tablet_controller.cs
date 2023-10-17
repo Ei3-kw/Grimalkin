@@ -17,7 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tablet_controller : MonoBehaviour
+public class AT_tablet_controller : MonoBehaviour
 {
     // the position where we want the camera to play the tablet interaction
     // i.e. infront of tablet
@@ -133,7 +133,7 @@ public class tablet_controller : MonoBehaviour
         // having to click the stop button
         if (demo_mode)
         {
-            stop_button.GetComponent<StopButtonController>().force_start();
+            stop_button.GetComponent<AT_stop_button_controller>().force_start();
         }
         yield return null;
     }
