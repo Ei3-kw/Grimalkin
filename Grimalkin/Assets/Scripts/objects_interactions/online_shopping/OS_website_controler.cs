@@ -125,8 +125,8 @@ public class OS_website_controller : MonoBehaviour
             spriteRenderer.sprite = item_chosen;
 
             // set the location 'key' of the item so that we can keep track of which item is where
-            item.GetComponent<website_item_controler>().set_location_key(i);
-            item.GetComponent<website_item_controler>().set_website(gameObject);
+            item.GetComponent<OS_website_item_controller>().set_location_key(i);
+            item.GetComponent<OS_website_item_controller>().set_website(gameObject);
         }
 
         /*

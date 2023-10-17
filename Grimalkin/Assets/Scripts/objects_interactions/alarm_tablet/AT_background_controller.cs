@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundController : MonoBehaviour
+public class AT_background_controller : MonoBehaviour
 {
     // material with the 2D image texture (i.e. picture of woman for ipad background)
     public Material backgroundMaterial;

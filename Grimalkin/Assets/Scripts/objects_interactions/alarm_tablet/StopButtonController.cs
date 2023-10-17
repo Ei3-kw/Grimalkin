@@ -121,7 +121,7 @@ public class StopButtonController : MonoBehaviour
         {
             // Load the specified heatmap when the object is clicked
             heatmap_wallpaper.SetActive(true);
-            heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
+            heatmap.GetComponent<AT_heatmap_generator>().show_heat_map();
 
             // tell the user this data was stolen and wait a bit
             subtitles.text = "<color=red>[EYE TRACKING DATA STOLEN]</color>";

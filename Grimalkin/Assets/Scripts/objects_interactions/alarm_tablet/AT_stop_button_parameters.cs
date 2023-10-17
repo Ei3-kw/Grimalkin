@@ -7,7 +7,7 @@
  *   i.e. if the user has clicked stop or not
  */
 
-public static class Result
+public static class AT_stop_button_parameters
 {
     // keep track of if the alarm game is over 
     // i.e. if the user has clicked stop or not

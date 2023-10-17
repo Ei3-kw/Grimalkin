@@ -26,7 +26,7 @@ public class TextMeshProVisibilityController : MonoBehaviour
      */
     public void Update()
     {
-        if(!Result.solved) // if the alarm is on
+        if(!AT_stop_button_parameters.solved) // if the alarm is on
         {
             instruction.enabled = true;
         }

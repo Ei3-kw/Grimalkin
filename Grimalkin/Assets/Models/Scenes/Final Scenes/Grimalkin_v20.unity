@@ -1276,6 +1276,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 2087699397}
   dir: -1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &126538563
 GameObject:
@@ -7450,8 +7452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abb457ee4b3d34ab2be5efe04ff91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2087699393}
-  optional_UI: {fileID: 1986388605}
   ss_screen: {fileID: 1083577560}
   ss_press_e_text: {fileID: 1420789429}
   slides:
@@ -7464,6 +7464,8 @@ MonoBehaviour:
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 1407204753}
   phone: {fileID: 1667669071}
+  player: {fileID: 2087699393}
+  optional_UI: {fileID: 1986388605}
 --- !u!65 &542376752
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9858,6 +9860,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 2087699397}
   dir: -1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!23 &699576554
 MeshRenderer:
@@ -12107,8 +12111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abb457ee4b3d34ab2be5efe04ff91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2087699393}
-  optional_UI: {fileID: 1986388605}
   ss_screen: {fileID: 1083577560}
   ss_press_e_text: {fileID: 1420789429}
   slides:
@@ -12121,6 +12123,8 @@ MonoBehaviour:
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 0}
   phone: {fileID: 1667669071}
+  player: {fileID: 2087699393}
+  optional_UI: {fileID: 1986388605}
 --- !u!1001 &848079838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12813,6 +12817,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: -1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &911366335
 GameObject:
@@ -14809,7 +14815,7 @@ GameObject:
   - component: {fileID: 1001666081}
   - component: {fileID: 1001666082}
   m_Layer: 0
-  m_Name: EyePositionRecorder
+  m_Name: PP_gaze_recorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16737,6 +16743,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: 1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &1106577297
 GameObject:
@@ -16852,8 +16860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abb457ee4b3d34ab2be5efe04ff91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2087699393}
-  optional_UI: {fileID: 1986388605}
   ss_screen: {fileID: 1083577560}
   ss_press_e_text: {fileID: 1420789429}
   slides:
@@ -16867,6 +16873,8 @@ MonoBehaviour:
   demo_obj_parent: {fileID: 0}
   demo_text: {fileID: 0}
   phone: {fileID: 1667669071}
+  player: {fileID: 2087699393}
+  optional_UI: {fileID: 1986388605}
 --- !u!23 &1108019864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18067,7 +18075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc6676c5890a6740b66fd8ec6a415e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 2087699399}
+  player_controller: {fileID: 0}
   camSlider: {fileID: 1750632508}
   resetButton: {fileID: 14270227}
   quitButton: {fileID: 844886985}
@@ -20085,7 +20093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a1166ebb79e3b49a621a7b645f773c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2087699393}
 --- !u!1 &1265051457
 GameObject:
   m_ObjectHideFlags: 0
@@ -21503,8 +21510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85abb457ee4b3d34ab2be5efe04ff91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2087699393}
-  optional_UI: {fileID: 1986388605}
   ss_screen: {fileID: 1083577560}
   ss_press_e_text: {fileID: 1420789429}
   slides:
@@ -21517,6 +21522,8 @@ MonoBehaviour:
   demo_obj_parent: {fileID: 4771975975258143840}
   demo_text: {fileID: 1732212920}
   phone: {fileID: 1667669071}
+  player: {fileID: 2087699393}
+  optional_UI: {fileID: 1986388605}
 --- !u!65 &1369358835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23039,6 +23046,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: 1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!23 &1442051890
 MeshRenderer:
@@ -24490,7 +24499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd00091ace54857458961a1a859bc50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circlePrefab: {fileID: 3627735093230829465, guid: f2a6dd9a1ab9ea14dbc331461f192be7, type: 3}
   moveSpeed: 2
   mainCamera: {fileID: 1901110304}
   sphere: {fileID: 597428749}
@@ -28838,6 +28846,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: -1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &1774747647
 GameObject:
@@ -28999,7 +29009,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132147801603388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc568410ee9d1bf488b4f2a33775e543, type: 3}
+  m_Script: {fileID: 11500000, guid: 90c54a3397f85de46a526e7fb4e28add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2087699393}
@@ -34488,6 +34498,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: -1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &2046879392
 GameObject:
@@ -35174,19 +35186,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7482ab206524d5c81b9fc0d0d1c018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerPos: {x: 0, y: 0}
+  character: {fileID: 2087699398}
   camSens: 0.2
   moveSpeed: 5
   visMoveSpeed: 10
   visRatio: {x: 60, y: 30}
   head: {fileID: 1901110302}
+  simVision: 1
   visionPointer: {fileID: 885656896}
+  cam: {fileID: 1901110304}
   rotationX: 0
   rotationY: 0
-  character: {fileID: 2087699398}
-  cam: {fileID: 1901110304}
   footStep: {fileID: 2087699401}
-  simVision: 1
-  pointerPos: {x: 0, y: 0}
   eye_pointer: {fileID: 885656895}
   interaction_UI: {fileID: 1580393473}
   computer: {fileID: 8168413674818712868}
@@ -35217,13 +35229,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetFrameRate: 60
+  night: {fileID: 2100000, guid: 4e5e0af2148284d23892c0b353a06514, type: 2}
+  morning: {fileID: 2100000, guid: ab1ac38dc7d214abab5c55fc0328dd58, type: 2}
   player: {fileID: 2087699393}
   optional_UI: {fileID: 1986388605}
   subtitles: {fileID: 2021838267}
   notifcations: {fileID: 730381504}
+  controls_intro: {fileID: 1268297914}
+  pause_menu: {fileID: 1134093076}
+  menu_exit_text: {fileID: 1706954446}
+  start_game_text: {fileID: 641298360}
+  fade_in_start: {fileID: 794514028}
+  starting_pos: {fileID: 2138517236}
   coffee_cup: {fileID: 919132147801603388}
   computer: {fileID: 8168413674818712868}
-  camping_wall_photo: {fileID: 7344289596033967741}
   bed: {fileID: 6998527035302230020}
   fade_obj: {fileID: 794514028}
   tablet: {fileID: 7372441577433226014}
@@ -35236,25 +35255,15 @@ MonoBehaviour:
   passcode_phone: {fileID: 2883733117954659676}
   boxes: {fileID: 642169423}
   door_bell_sound: {fileID: 1672017987}
-  controls_intro: {fileID: 1268297914}
+  ss_screen: {fileID: 1083577560}
+  ss_press_e_text: {fileID: 1420789429}
   ss_ending_1: {fileID: 521965447}
   ss_ending_2: {fileID: 1724481063}
   ss_ending_3: {fileID: 223215375}
   ss_ending_3_text: {fileID: 879349257}
   ss_ending_4: {fileID: 1550958251}
-  ss_exit_text: {fileID: 618626667}
-  ss_all_interaction_slides: {fileID: 279665502}
-  ss_screen: {fileID: 1083577560}
-  ss_press_e_text: {fileID: 1420789429}
   old_objs: {fileID: 1246222195}
   new_objs: {fileID: 1099099122}
-  night: {fileID: 2100000, guid: 4e5e0af2148284d23892c0b353a06514, type: 2}
-  morning: {fileID: 2100000, guid: ab1ac38dc7d214abab5c55fc0328dd58, type: 2}
-  starting_pos: {fileID: 2138517236}
-  start_game_text: {fileID: 641298360}
-  fade_in_start: {fileID: 794514028}
-  pause_menu: {fileID: 1134093076}
-  menu_exit_text: {fileID: 1706954446}
 --- !u!82 &2087699401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35763,6 +35772,8 @@ MonoBehaviour:
   slidingSpeed: 2
   Player: {fileID: 0}
   dir: 1
+  closedPosition: {x: 0, y: 0, z: 0}
+  openPosition: {x: 0, y: 0, z: 0}
   isOpen: 0
 --- !u!1 &2138517235
 GameObject:
@@ -55929,7 +55940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc96bfb840bcc743bdd5ccba4f9d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowRecord: {fileID: 1556556091}
+  PP_gaze_displayer: {fileID: 0}
   numEntered: 
   correctPin: 
   app: {fileID: 461180941524292207}
@@ -60643,8 +60654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e86744cacd7748b7e28f8fdc637a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 3556926673031118945}
-  camera1: {fileID: 1901110304}
 --- !u!4 &3556926672441071894
 Transform:
   m_ObjectHideFlags: 0
@@ -61047,7 +61056,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   unitSize: 10
   cam: {fileID: 1901110302}
-  camera1: {fileID: 1901110304}
+  cameraObj: {fileID: 0}
 --- !u!1 &3556926673480672615
 GameObject:
   m_ObjectHideFlags: 0
@@ -62822,20 +62831,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e97e42a7611578469cb3ec8caabb60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  website_game_prefab: {fileID: 4157763867188900048, guid: f0426eab87de34f45b5c0a0c30fbf846, type: 3}
+  game_location: {fileID: 3907504825585093900}
   start_game_button: {fileID: 3907504826556555796}
   start_text_message: {fileID: 3907504827184764983}
-  game_location: {fileID: 3907504825585093900}
+  website_game_prefab: {fileID: 4157763867188900048, guid: f0426eab87de34f45b5c0a0c30fbf846, type: 3}
   end_game_screen: {fileID: 3907504825714768538}
   checkout_text: {fileID: 3907504825830227414}
+  gaze_price_text: {fileID: 3907504826446158944}
   player: {fileID: 2087699393}
   player_cam: {fileID: 1901110301}
   camera_pos_for_game: {fileID: 1105206464107939030}
   player_cam_pos: {fileID: 542591772}
   optional_UI: {fileID: 1986388605}
   notifcations: {fileID: 730381504}
-  gaze_price_text: {fileID: 3907504826446158944}
-  buffer_timer_between_interactios: 0
 --- !u!4 &3907504825426914411
 Transform:
   m_ObjectHideFlags: 0
@@ -86797,8 +86805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e86744cacd7748b7e28f8fdc637a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 7372441577067176833}
-  camera1: {fileID: 1901110304}
 --- !u!4 &7372441576603089654
 Transform:
   m_ObjectHideFlags: 0
@@ -87364,7 +87370,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   unitSize: 10
   cam: {fileID: 1901110302}
-  camera1: {fileID: 1901110304}
+  cameraObj: {fileID: 0}
 --- !u!1 &7372441577708603015
 GameObject:
   m_ObjectHideFlags: 0
@@ -93793,20 +93799,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e97e42a7611578469cb3ec8caabb60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  website_game_prefab: {fileID: 4157763867188900048, guid: f0426eab87de34f45b5c0a0c30fbf846, type: 3}
+  game_location: {fileID: 8168413674662188100}
   start_game_button: {fileID: 8168413675837078364}
   start_text_message: {fileID: 8168413676291342719}
-  game_location: {fileID: 8168413674662188100}
+  website_game_prefab: {fileID: 4157763867188900048, guid: f0426eab87de34f45b5c0a0c30fbf846, type: 3}
   end_game_screen: {fileID: 8168413675614069714}
   checkout_text: {fileID: 8168413675490452638}
+  gaze_price_text: {fileID: 8168413675955389736}
   player: {fileID: 2087699393}
   player_cam: {fileID: 1901110301}
   camera_pos_for_game: {fileID: 5201742740814011806}
   player_cam_pos: {fileID: 542591772}
   optional_UI: {fileID: 1986388605}
   notifcations: {fileID: 730381504}
-  gaze_price_text: {fileID: 8168413675955389736}
-  buffer_timer_between_interactios: 0
 --- !u!4 &8168413674818712867
 Transform:
   m_ObjectHideFlags: 0

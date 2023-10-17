@@ -93,7 +93,7 @@ public class tablet_controller : MonoBehaviour
         demo_mode = true;
 
         // turn on mouse tracking
-        MouseTracker.StartTracking();
+        AT_mouse_tracker.StartTracking();
         StartCoroutine(turn_on());
     }
 

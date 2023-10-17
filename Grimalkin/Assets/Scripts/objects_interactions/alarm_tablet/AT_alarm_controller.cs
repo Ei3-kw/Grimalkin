@@ -14,7 +14,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AlarmPlayer : MonoBehaviour
+public class AT_alarm_controller : MonoBehaviour
 {
     [SerializeField] AudioSource musicSource; // The alarm music that will be playing
 
@@ -27,13 +27,13 @@ public class AlarmPlayer : MonoBehaviour
     private void Update()
     {
         // if the alarm has not been turned off yet
-        if ((!Result.solved) && (!AlarmIsPlaying.alarmIsPlaying))
+        if ((!AT_stop_button_parameters.solved) && (!AT_alarm_parameters.alarmIsPlaying))
         {
             musicSource.Play(); // keep playing the alarm
-            AlarmIsPlaying.alarmIsPlaying = true;
+            AT_alarm_parameters.alarmIsPlaying = true;
         }
         // if the alarm has been turned off
-        else if ((Result.solved) && (AlarmIsPlaying.alarmIsPlaying))
+        else if ((AT_stop_button_parameters.solved) && (AT_alarm_parameters.alarmIsPlaying))
         {
             musicSource.Stop(); // stop the alarm
         }

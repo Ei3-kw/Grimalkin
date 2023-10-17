@@ -17,7 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camping_item : MonoBehaviour
+public class camping_item_controller : MonoBehaviour
 {
     // the notification UI that will show the user what items are left to collect
     public GameObject notifs;

@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Tracker for heatmap
-public class MouseTracker : MonoBehaviour
+public class AT_mouse_tracker : MonoBehaviour
 {
     private static bool isTracking = true;
     private static List<Vector2> mousePositions = new List<Vector2>();

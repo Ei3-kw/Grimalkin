@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class HeatMapGenerator : MonoBehaviour
+public class AT_heatmap_generator : MonoBehaviour
 {
     // Image of the heap map that is to be overlayed on tablet screen
     // to show the user where they were looking
@@ -42,7 +42,7 @@ public class HeatMapGenerator : MonoBehaviour
     public void show_heat_map()
     {
         // Get the mouse positions recorded during tracking period
-        List<Vector2> mousePositions = MouseTracker.GetMousePositions();
+        List<Vector2> mousePositions = AT_mouse_tracker.GetMousePositions();
 
         // Calculate the number of units in both x and y directions.
         int unitsX = Mathf.CeilToInt(heatmapImage.rectTransform.rect.width / unitSize);

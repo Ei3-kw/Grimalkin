@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoNotDestroyAlarmMusic : MonoBehaviour
+public class AT_alarm_player : MonoBehaviour
 {
     /*
      * When the object is "Awoken" we want to ensure that we only have 1

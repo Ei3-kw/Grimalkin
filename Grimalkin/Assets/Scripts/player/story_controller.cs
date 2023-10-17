@@ -72,7 +72,7 @@ public class story_controller : MonoBehaviour
     // pick up camping items, and look at social media interaction
     public GameObject phone;
     public GameObject phone_packing_list;
-    public GameObject[] camping_items;
+    public GameObject[] camping_item_controllers;
 
     // enter passcode on phone to confirm delivery interaction
     public GameObject passcode_phone;
@@ -515,7 +515,7 @@ public class story_controller : MonoBehaviour
         notifcations.GetComponent<UI_notification_controller>().create_items_notif();
 
         // set all the camping items that need to be picked up to glow
-        foreach (GameObject item_to_get in camping_items)
+        foreach (GameObject item_to_get in camping_item_controllers)
         {
             item_to_get.GetComponent<Outline>().enabled = true; // turn on glow
         }

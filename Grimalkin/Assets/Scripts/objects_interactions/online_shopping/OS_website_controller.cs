@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class website_item_controler : MonoBehaviour   
+public class OS_website_item_controller : MonoBehaviour   
 {
     // text that displays the current price of the item
     public TextMeshPro item_price;

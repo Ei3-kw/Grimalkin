@@ -24,6 +24,6 @@ public class ShowHeatMap : MonoBehaviour
     public void showHeatMap()
     {
         // Show the heat map to the user
-        heatmap.GetComponent<HeatMapGenerator>().show_heat_map();
+        heatmap.GetComponent<AT_heatmap_generator>().show_heat_map();
     }   
 }

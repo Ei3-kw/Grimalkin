@@ -15,7 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class website_start_game_controler : MonoBehaviour
+public class OS_website_start_game_controller : MonoBehaviour
 {
     public GameObject computer; // computer that the icon is displayed on
 
