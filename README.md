@@ -8,7 +8,7 @@
   - [Script structure](#script-structure)
 - [Getting started](#getting-started)
 - [Security](#security)
-- [external sources used](#external-sources-used)
+- [External sources used](#external-sources-used)
 
 # Run
 ## Run pre-compiled version (RECOMMENED)
@@ -78,7 +78,7 @@ every script is started with a header explaining it Purpose and the objects it i
         code 
 
 # Getting started
-- ## Cratering a new script
+- ## Creating a new script
   - open the project in unity
   - navigate to **Assets/Scripts_** in unity 
     - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
@@ -112,11 +112,8 @@ Script that include that structure
 - observable.cs
 - phoneCon.cs
 - profileUpdater.cs 
-- d
-- d
 
-# external sources used
-- ## assets
+# External sources used
   - https://assetstore.unity.com/packages/3d/props/electronics/web-camera-164934
   - https://assetstore.unity.com/packages/3d/environments/apartment-kit-124055
   - https://assetstore.unity.com/packages/3d/props/electronics/next-gen-camera-37365
