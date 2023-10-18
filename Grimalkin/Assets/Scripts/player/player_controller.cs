@@ -1,6 +1,6 @@
 /* 
  * Project Grimalkin
- * Author: Timothy Ryall
+ * Author: Timothy Ryall & Fahed Alhanaee
  * 
  * Purpose:
  * - To control the player throughout the game this will involve:

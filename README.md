@@ -61,6 +61,7 @@ The full code base can be found under **_/Grimalkin/_**
 -- 
 
 ## Script structure 
+every script is started with a header explaining it Purpose and the objects it is Attached to:
 
         /* 
         * Project Grimalkin
@@ -88,10 +89,11 @@ The full code base can be found under **_/Grimalkin/_**
   - follow the [Security](#security) structure if the script is using user data and update the README 
   - add the script to the relevant objects
 - ## Adding a new observable object
+    A observable object a object that has list of topics and whenever the player looks at the object the list of topics is added to a database. The database is used by other parts of the game like the targeted advertising  
   - add the new object 3d model to **Assets/Models**
   - add the new object to the scene 
-  - add a observable_object component
-  - add the topic related to the object under info
+  - add a observable_object component to it 
+  - add the topics related to the object under info
 
 
 
