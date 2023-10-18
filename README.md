@@ -1,6 +1,17 @@
-Written by: Tim Ryall
+# Grimalkin 
 
-# Play pre-compiled version (RECOMMENED)
+- [Grimalkin](#grimalkin)
+- [Run](#run)
+  - [Run pre-compiled version (RECOMMENED)](#run-pre-compiled-version-recommened)
+  - [Run self-compiled version](#run-self-compiled-version)
+- [Code base structure](#code-base-structure)
+  - [Script structure](#script-structure)
+- [Getting started](#getting-started)
+- [Security](#security)
+- [external sources used](#external-sources-used)
+
+# Run
+## Run pre-compiled version (RECOMMENED)
 1. Navigate to **_/Grimalkin_compiled/_**
 2. Open the folder corressponding to your operating system of choice and follow the next steps:
 ---
@@ -19,7 +30,7 @@ Written by: Tim Ryall
 - Run _'grimalkin'_
 - You should now be playing! Press [ESC] at any time to bring up menu to quit to desktop
 
-# Play self-compiled version
+## Run self-compiled version
 1. Download Unity HUB from https://unity.com/download for your required operating system
 2. Download the Unity EDITOR version _"2021.3.20f1"_ from https://unity.com/releases/editor/archive for your required operating system
 3. Check both have downloaded correctly
@@ -47,4 +58,74 @@ _PLEASE NOTE: That due to certain protection settings on files that unity imposs
 The full code base can be found under **_/Grimalkin/_**
 - However NOTE that due to this being a unity project alot of the files are just config or asset files and will therefore be unreadable
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
+-- 
 
+## Script structure 
+
+        /* 
+        * Project Grimalkin
+        * Author: 
+        * 
+        * Purpose:
+        * - the Purpose of the script
+        *   
+        * 
+        * Attached to objects in game scene:
+        * - the unity game objects this script is Attached to
+        */
+
+        code 
+
+# Getting started
+- ## Cratering a new script
+  - open the project in unity
+  - navigate to **Assets/Scripts_** in unity 
+    - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
+    -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
+    -  if its UI related it should be crated at **Assets/Scripts/UI**
+    -  otherwise it should be crated at **Assets/Scripts/objects_misc**
+  - write the script according to [Script structure ](#script-structure)
+  - follow the [Security](#security) structure if the script is using user data and update the README 
+  - add the script to the relevant objects
+- ## Adding a new observable object
+  - add the new object 3d model to **Assets/Models**
+  - add the new object to the scene 
+  - add a observable_object component
+  - add the topic related to the object under info
+
+
+
+# Security
+several scripts deal with data collected from the user. To insure there privacy, the following structure is used when handling such data.
+
+    *********************************
+    // user data in use section start 
+    ********************************* 
+    code using the data 
+    ---------------------------------
+    // user data in use section end
+    ---------------------------------
+
+Script that include that structure
+- observable.cs
+- phoneCon.cs
+- profileUpdater.cs 
+- d
+- d
+
+# external sources used
+- ## assets
+  - https://assetstore.unity.com/packages/3d/props/electronics/web-camera-164934
+  - https://assetstore.unity.com/packages/3d/environments/apartment-kit-124055
+  - https://assetstore.unity.com/packages/3d/props/electronics/next-gen-camera-37365
+  - https://assetstore.unity.com/packages/3d/props/electronics/free-pbr-security-camera-70061
+  - https://assetstore.unity.com/packages/3d/props/furniture/washing-machine-a01-70644
+  - https://assetstore.unity.com/packages/3d/props/electronics/free-laptop-90315
+  - https://assetstore.unity.com/packages/3d/props/tools/simple-keys-231162
+  - https://assetstore.unity.com/packages/3d/environments/sci-fi/free-sci-fi-office-pack-195067
+  - https://assetstore.unity.com/packages/3d/vegetation/plants/cactus-pack-11547
+  - https://assetstore.unity.com/packages/3d/environments/minimalist-archviz-bedroom-131093
+  - https://assetstore.unity.com/packages/3d/environments/modern-archviz-leafless-108308
+
+
+Written by: Tim Ryall, Fahed Alhanaee
