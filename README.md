@@ -5,6 +5,7 @@ A 3D immersive game built in Unity teaches users the danger of gaze tracking thr
   - [Run pre-compiled version (RECOMMENDED)](#run-pre-compiled-version-recommended)
   - [Run self-compiled version](#run-self-compiled-version)
 - [Code base structure](#code-base-structure)
+  - [code guide](#code-guide)
   - [Script structure](#script-structure)
 - [Getting started](#getting-started)
 - [Security](#security)
@@ -58,7 +59,26 @@ _PLEASE NOTE: Due to certain protection settings on files that Unity imposes whe
 The full code base can be found under **_/Grimalkin/_**
 - However, NOTE that due to this being a unity project a lot of the files are just config or asset files and will therefore be unreadable
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
--- 
+
+## code guide
+- __player scripts__: scripts that handle general player input and game progression 
+  - player_controller.cs 
+  - player_observer.cs 
+  - story_controller.cs
+- __interaction scripts__ : scripts that execute a specific interaction  
+- __UI scripts__: scripts that handle GUI interactions
+  - UI_notification_controller.cs
+  - UI_pause_menu_controller.cs
+- __miscellanies scripts__ : short utility scripts, used to serve one function  
+  - door_hover_controler.cs
+  - door_sliding_controller.cs
+  - bed_controller.cs
+  - boxes_controller.cs
+  - camping_item_controller.cs
+  - coffee_controller.cs
+  - observable_object
+
+
 
 ## Script structure 
 Every script is started with a header explaining its purpose and the objects it is attached to:
