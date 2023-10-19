@@ -1,5 +1,7 @@
 # Grimalkin 
 A 3D immersive game built in Unity teaches users the danger of gaze tracking through devices in the home, including phones, computers, tablets and security cameras.  Throughout the game, the user will experience many direct or indirect interactions with devices based on the provided scenario.  Each of the interactions targets a specific exploitation of gaze data in real life that is evidenced by research.  Some examples of the risks taught are price and compulsive behaviour manipulation, data theft, personal data inference and contextualized advertising.
+
+This document was designed for a seamless handover between teams. It will cover the installation, running, unity basics, project code structure and an overview of the current code base. Head to [Getting started](#getting-started) if this is your first time using this code base. 
 - [Grimalkin](#grimalkin)
 - [Run](#run)
   - [Run pre-compiled version (RECOMMENDED)](#run-pre-compiled-version-recommended)
@@ -61,21 +63,29 @@ The full code base can be found under **_/Grimalkin/_**
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
 
 ## code guide
-- __Player scripts__: scripts that handle general player input and game progression 
+the code base can be split into 4 main parts, Player scripts, Interaction scripts, UI scripts and Miscellanies scripts. This section will explain what each part dose and list the script that belong to them.
+
+- ### __Player__:
+   scripts that handle general player input including biosensor, mouse and keyboard then process them and also handles game progression  
   - player_controller.cs 
   - player_observer.cs 
   - story_controller.cs
-- __Interaction scripts__ : scripts that execute a specific interaction  
+
+
+- ### __Interaction scripts__ : 
+  scripts that execute a specific interaction, these scripts get enabled by the story_controller as the story progress.
   - alarm tablet - all files that start with AT_
   - online shopping - all files that start with OS_
   - passcode phone - all files that start with PP_
   - SM_phone_controller.cs
   - demo_object_controller.cs
   - demo_profile_controller.cs
-- __UI scripts__: scripts that handle GUI interactions
+- ###  __UI scripts__:
+   scripts that handle GUI interactions
   - UI_notification_controller.cs
   - UI_pause_menu_controller.cs
-- __Miscellanies scripts__ : short utility scripts, used to serve one function  
+- ### __Miscellanies scripts__ :
+   short utility scripts, used to serve one function or interface with other scripts 
   - door_hover_controler.cs
   - door_sliding_controller.cs
   - bed_controller.cs
@@ -105,22 +115,75 @@ Every script is started with a header explaining its purpose and the objects it 
 Look at player_observer.cs for examples, in case of any confusion or contact the dev team for further clarification.
 
 # Getting started
-- ## Creating a new script
-  - open the project in unity
-  - navigate to **Assets/Scripts_** in unity 
-    - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
-    -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
-    -  if it UI UI-related it should be created at **Assets/Scripts/UI**
-    -  otherwise, it should be created at **Assets/Scripts/objects_misc**
-  - write the script according to [Script structure ](#script-structure)
-  - follow the [Security](#security) structure if the script is using user data and update the README 
-  - add the script to the relevant objects
-- ## Adding a new observable object
-    An observable object is an object that has a list of topics and whenever the player looks at the object the list of topics is added to a database. The database is used by other parts of the game like the targeted advertising  
-  - add the new object 3d model to **Assets/Models**
-  - add the new object to the scene 
-  - add an observable_object component to it 
-  - add the topics related to the object under the info
+this section is to help people get the project running and run through some example to get more familiar with editing the project and adding to it.
+
+Prior basic knowledge of unity will be helpful but not necessary. Going through [Unity getting started](https://unity.com/learn/get-started) will help. Each unity   
+
+
+1. Start by following the [Run self-compiled version](#run-self-compiled-version) instructions, once you have it running you can move to the next step.
+2. The next step to get more familiar with code base, is adding an observable cube with the topic "cube", by following the next steps. A cube can be added to the scene by right-clicking on the Hierarchy, and you will find Cube under 3D Object. 
+   -  ## Adding a new observable object
+        An observable object is an object that has a list of topics and whenever the player looks at the object the list of topics is added to a database. The database is used by other parts of the game like the targeted advertising  
+        - add the new object 3d model to **Assets/Models**
+        - add the new object to the scene 
+        - position the object in the scene
+        - add an observable_object component to it by using the inspector on the left 
+        - add the topics related to the object under the info
+3. To test that the cube is working as intended, will create a new script to fetch the current observation and see if it contains a cube. You will need to follow the [Creating a new script](#creating-a-new-script) instructions and modify the new script to match the following.
+
+        // the player_observer class is in charge of
+        // keeping track of the objects that have been observed
+        public player_observer myplayer_observer;
+
+        void Update()
+        {
+            // try to get a value for the topic "cube"
+            myObs.observations.total.TryGetValue("cube", out var count);
+            // if count is 0 then it must not have been looked at this play thorough  
+            if (count <= 0){
+                Debug.Log("have not looked at the cube")
+            } else {
+                Debug.Log("the cube has been looked at")
+            }
+        }
+   - ## Creating a new script
+     - open the project in unity
+     - navigate to **Assets/Scripts_** in unity 
+       - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
+       -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
+       -  if it UI UI-related it should be created at **Assets/Scripts/UI**
+       -  otherwise, it should be created at **Assets/Scripts/objects_misc**
+     - write the script according to [Script structure ](#script-structure)
+     - follow the [Security](#security) structure if the script is using user data and update the README 
+     - add the script to the relevant objects
+4. remember to use [Security](#security) structure since where fetching user data, the script should look like this 
+   
+        // the player_observer class is in charge of
+        // keeping track of the objects that have been observed
+        public player_observer myplayer_observer;
+
+        //*******************************
+        // user data in the use section start 
+        //*******************************
+        void Update()
+        {
+            // try to get a value for the topic "cube"
+            myObs.observations.total.TryGetValue("cube", out var count);
+            // if count is 0 then it must not have been looked at this play thorough  
+            if (count <= 0){
+                Debug.Log("have not looked at the cube")
+            } else {
+                Debug.Log("the cube has been looked at")
+            }
+        }
+        //-------------------------------
+        // user data in use section end
+        //-------------------------------
+5. Attaching the script to an object, we could attach it to the player object since this script will be running non-stop in the game.
+6. Add the reference to player_observer to the script in the inspector, the player_observer is attached to the observer object under the player. To Add the reference drag the observer object to the slot in the script in the inspector
+7. after step 6, if you start the game you should get a bunch of "have not looked at the cube" messages in console and once you look at the cube the messages should turn to "the cube has been looked at".
+   
+You should be somewhat familiar with the code structure and how it works with unity at this point. To learn more about the whole code base look at [Code base structure](#code-base-structure)
 
 
 
