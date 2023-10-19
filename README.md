@@ -11,6 +11,9 @@ This document was designed for a seamless handover between teams. It will cover 
   - [Code guide](#code-guide)
   - [Script structure](#script-structure)
 - [Getting started](#getting-started)
+- [Common design patterns used](#common-design-patterns-used)
+- [Getting started examples](#getting-started-examples)
+  - [Adding an observable object](#adding-an-observable-object)
 - [Security](#security)
 - [External sources used](#external-sources-used)
 
@@ -64,7 +67,7 @@ The full code base can be found under **_/Grimalkin/_**
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
 
 ## Script naming conventions 
-this section will explain all the Script naming conventions used in the project
+This section will explain all the Script naming conventions used in the project
  - *_controller.cs is used to describe a script that controls a behaver in the game.
  - AT_* script that is used in the alarm tablet interaction
  - OS_* script that is used in the online shopping interaction
@@ -72,17 +75,17 @@ this section will explain all the Script naming conventions used in the project
 - SM_* script that is used in the social media interaction
 
 ## Code guide
-the code base can be split into 4 main parts, Player scripts, Interaction scripts, UI scripts and Miscellanies scripts. This section will explain what each part dose and list the script that belong to them.
+The code base can be split into 4 main parts, Player scripts, Interaction scripts, UI scripts and Miscellanies scripts. This section will explain what each part dose and list the script that belong to them.
 
 - ### __Player__:
-   scripts that handle general player input including biosensor, mouse and keyboard then process them and also handles game progression  
+   Scripts that handle general player input including biosensor, mouse and keyboard then process them and also handles game progression  
   - player_controller.cs 
   - player_observer.cs 
   - story_controller.cs
 
 
 - ### __Interaction scripts__ : 
-  scripts that execute a specific interaction, these scripts get enabled by the story_controller as the story progress.
+  Scripts that execute a specific interaction, these scripts get enabled by the story_controller as the story progress.
   - alarm tablet - all files that start with AT_
   - online shopping - all files that start with OS_
   - passcode phone - all files that start with PP_
@@ -90,11 +93,11 @@ the code base can be split into 4 main parts, Player scripts, Interaction script
   - demo_object_controller.cs
   - demo_profile_controller.cs
 - ###  __UI scripts__:
-   scripts that handle GUI interactions
+  Scripts that handle GUI interactions
   - UI_notification_controller.cs
   - UI_pause_menu_controller.cs
 - ### __Miscellanies scripts__ :
-   short utility scripts, used to serve one function or interface with other scripts 
+   Short utility scripts, used to serve one function or interface with other scripts 
   - door_hover_controler.cs
   - door_sliding_controller.cs
   - bed_controller.cs
@@ -135,31 +138,33 @@ Look at player_observer.cs for examples, in case of any confusion or contact the
 # Common design patterns used
    -  ## Adding a new observable object
         An observable object is an object that has a list of topics and whenever the player looks at the object the list of topics is added to a database. The database is used by other parts of the game like the targeted advertising  
-        - add the new object 3d model to **Assets/Models**
-        - add the new object to the scene 
-        - position the object in the scene
-        - add an observable_object component to it by using the inspector on the left 
-        - add the topics related to the object under the info
+        - Add the new object 3d model to **Assets/Models**
+        - Add the new object to the scene 
+        - Position the object in the scene
+        - Add an observable_object component to it by using the inspector on the left 
+        - Add the topics related to the object under the info
 
   - ## Creating a new script
-     - open the project in unity
-     - navigate to **Assets/Scripts_** in unity 
-       - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
-       -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
-       -  if it UI UI-related it should be created at **Assets/Scripts/UI**
-       -  otherwise, it should be created at **Assets/Scripts/objects_misc**
-     - write the script according to [Script structure ](#script-structure)
-     - follow the [Security](#security) structure if the script is using user data and update the README 
-     - add the script to the relevant objects
+     - Open the project in unity
+     - Navigate to **Assets/Scripts_** in unity 
+       - If the new script runs throughout the game it should be created at **Assets/Scripts/player**
+       -  If the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
+       -  If it UI UI-related it should be created at **Assets/Scripts/UI**
+       -  Otherwise, it should be created at **Assets/Scripts/objects_misc**
+     - Write the script according to [Script structure ](#script-structure)
+     - Follow the [Security](#security) structure if the script is using user data and update the README 
+     - Add the script to the relevant objects by attaching it within the Unity editor (for more info see the [Unity Script Documentation](https://docs.unity3d.com/Manual/CreatingAndUsingScripts.html))
 
 # Getting started examples
-this section is to help people get the project running and run through some example to get more familiar with editing the project and adding to it.
+This section is to help people get the project running and run through some example to get more familiar with editing the project and adding to it.
 
 Prior basic knowledge of unity will be helpful but not necessary. Going through [Unity getting started](https://unity.com/learn/get-started) will help. Each unity   
 
+## Adding an observable object
+This example will run through how to add an observable object to the scene. For this simple example we will just be adding a cube, but it can be any object you would like.
 
 1. Start by following the [Run self-compiled version](#run-self-compiled-version) instructions, once you have it running you can move to the next step.
-2. The next step to get more familiar with code base, is adding an observable cube with the topic "cube", by following the next steps. A cube can be added to the scene by right-clicking on the hierarchy, and you will find Cube under 3D Object. 
+2. We will now add our 'observable cube', a cube can be added to the scene by right-clicking on the hierarchy, and you will find Cube under 3D Object. 
 3. To test that the cube is working as intended, will create a new script to fetch the current observation and see if it contains a cube. You will need to follow the [Creating a new script](#creating-a-new-script) instructions and modify the new script to match the following.
 
         // the player_observer class is in charge of
@@ -226,7 +231,7 @@ Scripts that include that structure
 - demo_profile_controller.cs 
 
 # External sources used
-this is a list of all the assets used in the project, including 3D models, code, and other miscellaneous. 
+this is a list of all the assets used within the code base of the project, including 3D models, code, and other miscellaneous. 
   - https://assetstore.unity.com/packages/3d/props/electronics/web-camera-164934
   - https://assetstore.unity.com/packages/3d/environments/apartment-kit-124055
   - https://assetstore.unity.com/packages/3d/props/electronics/next-gen-camera-37365
