@@ -123,14 +123,16 @@ Every script is started with a header explaining its purpose and the objects it 
         code according to the C# standards 
 Look at player_observer.cs for examples, in case of any confusion or contact the dev team for further clarification.
 
+
+
 # Getting started
-this section is to help people get the project running and run through some example to get more familiar with editing the project and adding to it.
+- talk about how to open the scene with our game
+- how to understand the hierarchy on the side
+- where do UI objects go?
+- where to interaction objext go?
+- where do enviroment objects go?
 
-Prior basic knowledge of unity will be helpful but not necessary. Going through [Unity getting started](https://unity.com/learn/get-started) will help. Each unity   
-
-
-1. Start by following the [Run self-compiled version](#run-self-compiled-version) instructions, once you have it running you can move to the next step.
-2. The next step to get more familiar with code base, is adding an observable cube with the topic "cube", by following the next steps. A cube can be added to the scene by right-clicking on the Hierarchy, and you will find Cube under 3D Object. 
+# Common design patterns used
    -  ## Adding a new observable object
         An observable object is an object that has a list of topics and whenever the player looks at the object the list of topics is added to a database. The database is used by other parts of the game like the targeted advertising  
         - add the new object 3d model to **Assets/Models**
@@ -138,6 +140,26 @@ Prior basic knowledge of unity will be helpful but not necessary. Going through 
         - position the object in the scene
         - add an observable_object component to it by using the inspector on the left 
         - add the topics related to the object under the info
+
+  - ## Creating a new script
+     - open the project in unity
+     - navigate to **Assets/Scripts_** in unity 
+       - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
+       -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
+       -  if it UI UI-related it should be created at **Assets/Scripts/UI**
+       -  otherwise, it should be created at **Assets/Scripts/objects_misc**
+     - write the script according to [Script structure ](#script-structure)
+     - follow the [Security](#security) structure if the script is using user data and update the README 
+     - add the script to the relevant objects
+
+# Getting started examples
+this section is to help people get the project running and run through some example to get more familiar with editing the project and adding to it.
+
+Prior basic knowledge of unity will be helpful but not necessary. Going through [Unity getting started](https://unity.com/learn/get-started) will help. Each unity   
+
+
+1. Start by following the [Run self-compiled version](#run-self-compiled-version) instructions, once you have it running you can move to the next step.
+2. The next step to get more familiar with code base, is adding an observable cube with the topic "cube", by following the next steps. A cube can be added to the scene by right-clicking on the hierarchy, and you will find Cube under 3D Object. 
 3. To test that the cube is working as intended, will create a new script to fetch the current observation and see if it contains a cube. You will need to follow the [Creating a new script](#creating-a-new-script) instructions and modify the new script to match the following.
 
         // the player_observer class is in charge of
@@ -155,16 +177,7 @@ Prior basic knowledge of unity will be helpful but not necessary. Going through 
                 Debug.Log("the cube has been looked at")
             }
         }
-   - ## Creating a new script
-     - open the project in unity
-     - navigate to **Assets/Scripts_** in unity 
-       - if the new script runs throughout the game it should be created at **Assets/Scripts/player**
-       -  if the script is for an interaction it should be created at **Assets/Scripts/objects_interactions**
-       -  if it UI UI-related it should be created at **Assets/Scripts/UI**
-       -  otherwise, it should be created at **Assets/Scripts/objects_misc**
-     - write the script according to [Script structure ](#script-structure)
-     - follow the [Security](#security) structure if the script is using user data and update the README 
-     - add the script to the relevant objects
+
 4. remember to use [Security](#security) structure since where fetching user data, the script should look like this 
    
         // the player_observer class is in charge of
