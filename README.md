@@ -7,7 +7,8 @@ This document was designed for a seamless handover between teams. It will cover 
   - [Run pre-compiled version (RECOMMENDED)](#run-pre-compiled-version-recommended)
   - [Run self-compiled version](#run-self-compiled-version)
 - [Code base structure](#code-base-structure)
-  - [code guide](#code-guide)
+  - [Script naming conventions](#script-naming-conventions)
+  - [Code guide](#code-guide)
   - [Script structure](#script-structure)
 - [Getting started](#getting-started)
 - [Security](#security)
@@ -62,7 +63,15 @@ The full code base can be found under **_/Grimalkin/_**
 - However, NOTE that due to this being a unity project a lot of the files are just config or asset files and will therefore be unreadable
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
 
-## code guide
+## Script naming conventions 
+this section will explain all the Script naming conventions used in the project
+ - *_controller.cs is used to describe a script that controls a behaver in the game.
+ - AT_* script that is used in the alarm tablet interaction
+ - OS_* script that is used in the online shopping interaction
+ - PP_* script that is used in the passcode phone interaction
+- SM_* script that is used in the social media interaction
+
+## Code guide
 the code base can be split into 4 main parts, Player scripts, Interaction scripts, UI scripts and Miscellanies scripts. This section will explain what each part dose and list the script that belong to them.
 
 - ### __Player__:
