@@ -61,11 +61,11 @@ The full code base can be found under **_/Grimalkin/_**
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**
 
 ## code guide
-- __player scripts__: scripts that handle general player input and game progression 
+- __Player scripts__: scripts that handle general player input and game progression 
   - player_controller.cs 
   - player_observer.cs 
   - story_controller.cs
-- __interaction scripts and folders__ : scripts that execute a specific interaction  
+- __Interaction scripts__ : scripts that execute a specific interaction  
   - alarm tablet - all files that start with AT_
   - online shopping - all files that start with OS_
   - passcode phone - all files that start with PP_
@@ -75,7 +75,7 @@ The full code base can be found under **_/Grimalkin/_**
 - __UI scripts__: scripts that handle GUI interactions
   - UI_notification_controller.cs
   - UI_pause_menu_controller.cs
-- __miscellanies scripts__ : short utility scripts, used to serve one function  
+- __Miscellanies scripts__ : short utility scripts, used to serve one function  
   - door_hover_controler.cs
   - door_sliding_controller.cs
   - bed_controller.cs
