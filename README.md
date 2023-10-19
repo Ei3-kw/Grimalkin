@@ -67,7 +67,7 @@ The full code base can be found under **_/Grimalkin/_**
 - To find the scripts that were developed to produce the game please go to **_/Grimalkin/Assets/Scripts_**.
 
 # Getting started
-- To get started with editing the project for your self you will first need to open up the game scene that the game is played within at **_/Grimalkin/Assets/Final_scene_**.
+- To get started with editing the project for your self you will first need to open up the game scene that the game is played within at **_/Grimalkin/Assets/Final_scene.Unity_**.
 - All the objects within the game will here be in the scene. 
 - This means to add any object to the game all you have to do is add it to the scene.
 - To navigate the scene and place objects please see [Unity scene interaction documentation](https://docs.unity3d.com/Manual/SceneViewNavigation.html).
