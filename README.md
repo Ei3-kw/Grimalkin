@@ -1,5 +1,5 @@
 # Grimalkin 
-
+3D immersive game built in Unity teaching users the danger of gaze tracking through devices in the home, including phones, computers, tablets and security cameras.  Throughout the game the user will experience many direct or indirect interactions with with devices based on provided scenario.  Each of the interactions target a specific exploitation of gaze data in real life that is evidenced by research.  Some examples of the risks taught are: price and compulsive behavior manipulation, data theft, personal data inference and contextualized advertising.
 - [Grimalkin](#grimalkin)
 - [Run](#run)
   - [Run pre-compiled version (RECOMMENED)](#run-pre-compiled-version-recommened)
@@ -75,7 +75,8 @@ every script is started with a header explaining it Purpose and the objects it i
         * - the unity game objects this script is Attached to
         */
 
-        code 
+        code according to the C# standards 
+Look at player_observer.cs for examples, in case of any confusion or contact the dev team for further clarification.
 
 # Getting started
 - ## Creating a new script
@@ -100,20 +101,21 @@ every script is started with a header explaining it Purpose and the objects it i
 # Security
 several scripts deal with data collected from the user. To insure there privacy, the following structure is used when handling such data.
 
-    *********************************
+    //*******************************
     // user data in use section start 
-    ********************************* 
+    //*******************************
     code using the data 
-    ---------------------------------
+    //-------------------------------
     // user data in use section end
-    ---------------------------------
+    //-------------------------------
 
 Script that include that structure
-- observable.cs
-- phoneCon.cs
-- profileUpdater.cs 
+- player_observer.cs
+- SM_phone_controller.cs
+- demo_profile_controller.cs 
 
 # External sources used
+this is a list of all the assets used in project, including 3d models, code, and other miscellaneous. 
   - https://assetstore.unity.com/packages/3d/props/electronics/web-camera-164934
   - https://assetstore.unity.com/packages/3d/environments/apartment-kit-124055
   - https://assetstore.unity.com/packages/3d/props/electronics/next-gen-camera-37365

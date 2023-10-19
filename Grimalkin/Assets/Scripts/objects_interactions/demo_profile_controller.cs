@@ -19,12 +19,6 @@ using System;
 
 public class demo_profile_controller : MonoBehaviour
 {   
-    // represent a data point with a text object and possible values  
-    [Serializable]
-    public class DataPoint{
-        public List<string> values;
-        public TextMeshPro text;
-    }
 
     // reference to the player_observer class see player_observer.cs for more info
     public player_observer myObs;
@@ -34,6 +28,18 @@ public class demo_profile_controller : MonoBehaviour
 
     // the next update time
     float  nextUpTime = 0;
+
+    //*******************************
+    // user data in use section start 
+    //*******************************
+
+    // represent a data point with a text object and possible values  
+    [Serializable]
+    public class DataPoint{
+        public List<string> values;
+        public TextMeshPro text;
+    }
+
 
     // list of the dataPoint on the end_state 
     public List<DataPoint> points;
@@ -69,4 +75,8 @@ public class demo_profile_controller : MonoBehaviour
             }
         }
     }
+
+    //-------------------------------
+    // user data in use section end
+    //-------------------------------
 }

@@ -81,6 +81,9 @@ public class SM_phone_controller : MonoBehaviour
             postersNames.Add(coll.name);
         }
     }
+    //*******************************
+    // user data in use section start 
+    //*******************************
 
     /*
      * Update is called once per frame.
@@ -135,6 +138,10 @@ public class SM_phone_controller : MonoBehaviour
             } 
         }
     }
+
+    //-------------------------------
+    // user data in use section end
+    //-------------------------------
 
     /*
      * set the poster on the phone to one of the poster from the givin collection.

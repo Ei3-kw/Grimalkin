@@ -17,7 +17,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
+//*********************************
+// user data in use section start 
+//*********************************
 public class player_observer : MonoBehaviour
 {
     /*
@@ -108,6 +110,7 @@ public class player_observer : MonoBehaviour
     // main camera 
     public Camera cam;
 
+    
 
     /*
      * Start is called before the first frame update
@@ -119,6 +122,10 @@ public class player_observer : MonoBehaviour
     {
         observations = new Observations(recentSize);
     }
+
+    //*********************************
+    // user data in use section start 
+    //*********************************
 
     /*
      * Get the recent obeservations made by the user
@@ -134,6 +141,8 @@ public class player_observer : MonoBehaviour
         outputList.Sort((pair1,pair2) => pair2.Value.CompareTo(pair1.Value));
         return outputList;
     }
+
+
 
     /*
      * This update is called after a fixed amount of time
@@ -158,3 +167,7 @@ public class player_observer : MonoBehaviour
         }
     }
 }
+
+//-------------------------------
+// user data in use section end
+//-------------------------------
