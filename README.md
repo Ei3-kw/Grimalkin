@@ -66,9 +66,9 @@ The full code base can be found under **_/Grimalkin/_**
   - player_observer.cs 
   - story_controller.cs
 - __interaction scripts and folders__ : scripts that execute a specific interaction  
-  - alarm_tablet - AT_*.cs
-  - online_shopping - OS_*.cs
-  - passcode_phone - PP_*.cs
+  - alarm tablet - all files that start with AT_
+  - online shopping - all files that start with OS_
+  - passcode phone - all files that start with PP_
   - SM_phone_controller.cs
   - demo_object_controller.cs
   - demo_profile_controller.cs
