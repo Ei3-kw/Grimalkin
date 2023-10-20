@@ -1,7 +1,8 @@
 # Grimalkin 
 A 3D immersive game built in Unity teaches users the danger of gaze tracking through devices in the home, including phones, computers, tablets and security cameras.  Throughout the game, the user will experience many direct or indirect interactions with devices based on the provided scenario.  Each of the interactions targets a specific exploitation of gaze data in real life that is evidenced by research.  Some examples of the risks taught are price and compulsive behavior manipulation, data theft, personal data inference and contextualized advertising.
 
-If you wish to just play the game for yourself in its current state please head to [Run pre-compiled version (RECOMMENDED)](#run-pre-compiled-version-recommended)
+- If you wish to play the game for yourself in its current state please head to [Run pre-compiled version (RECOMMENDED)](#run-pre-compiled-version-recommended)
+- If you wish to view a gameplay demo of the game please view **_Grimalkin_gameplay_demo.mp4_**
 
 This document was designed for a seamless handover between teams. It will cover the installation, running, unity basics, project code structure and an overview of the current code base. Head to [Getting started](#getting-started) if this is your first time using this code base and you wish to contribute to development. 
 - [Grimalkin](#grimalkin)
