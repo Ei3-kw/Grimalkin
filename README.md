@@ -40,6 +40,8 @@ This document was designed for a seamless handover between teams. It will cover 
 - Run _'grimalkin'_
 - You should now be playing! Press [ESC] at any time to bring up a menu to quit to desktop
 
+_NOTE that in some cases do to configuration settings on your system there may be blocks on running exe / apps from unknow sources. Please ensure you disable such settings or this will not work. There could be any number of reasons why it doesn't work as zipping in the format required for submission is not recommended for unity projects. For futher advice please see [Trusting a file](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26) and please do not hesitate to reach out to the team._
+
 ## Run self-compiled version
 1. Download Unity HUB from https://unity.com/download for your required operating system
 2. Download the Unity EDITOR version _"2021.3.20f1"_ from https://unity.com/releases/editor/archive for your required operating system
